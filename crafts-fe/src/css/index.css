@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ECCFC3 !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#logo {
+  height: 70px;
+  width: 100px;
+}
+
+.nav-item {
+  margin-left: 50px;
+}
+
+.carousel-img {
+  height: 500px;
+  width: 10%;
+}
+
+.custom-carousel .carousel-control-prev,
+.custom-carousel .carousel-control-next {
+  font-size: 24px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.custom-carousel .carousel-control-prev {
+  padding-right: 15px;
+}
+
+.custom-carousel .carousel-control-next {
+  padding-left: 15px;
+}
+
+.custom-navbar {
+  background-color: #ECB8A5;
+}
+
+.custom-navbar .nav-item {
+  color: black;
+}
+
+.feature-container {
+  margin-top: 50px;
+  display: flex;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 200px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#header-3 {
+  margin-top: 20px;
+  position: absolute;
+}
+
+.feature-container img {
+  height: 150px;
+  width: 200px;
+}
+
+.footer {
+  background-color: #ECB8A5;
+  margin-top: 50px;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer #insta-logo {
+  height: 50px;
+}
+
+.footer .navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-link {
+  margin-top: 10px;
+}
