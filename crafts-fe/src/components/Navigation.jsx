@@ -4,8 +4,9 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Logo from '../images/Logo.png';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Home from './Home/Home'
+import Home from './Home/Home';
 import Shopping from './Shop/Shopping';
+import AddForm from '../components/Shop/AddForm';
 
 export default function Navigation() {
   return (
@@ -25,6 +26,7 @@ export default function Navigation() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shopping />}/>
+        <Route path="/add-form" element={<AddForm />} />
       </Routes>
     </Router>
   );
