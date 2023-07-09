@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './Home/Home';
 import Shopping from './Shop/Shopping';
 import AddForm from '../components/Shop/AddForm';
+import LoginForm from './Login/LoginForm';
 
 export default function Navigation() {
   return (
@@ -27,6 +28,8 @@ export default function Navigation() {
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shopping />}/>
         <Route path="/add-form" element={<AddForm />} />
+        <Route path="/blog" element={""} />
+        <Route path="/login" element={<LoginForm />} />
       </Routes>
     </Router>
   );

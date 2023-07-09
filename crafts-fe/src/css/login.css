@@ -1,0 +1,56 @@
+.header-container {
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+.login-container{
+  margin-left: auto;
+  margin-right: auto;
+
+  height: 700px;
+  width: 700px;
+
+  background-color: rgba(211, 211, 211, 0.623);
+
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container input {
+  background-color: rgb(211, 211, 211);
+
+  height: 30px;
+  margin-top: 50px;
+}
+
+.login-container label img{
+  height: 40px;
+  width: 40px;
+
+  margin-right: 20px;
+  margin-top: -15px;
+}
+
+a:hover{
+  color: red;
+}
+
+.login-container button{
+  width: 100px;
+  height: 30px;
+
+  margin-top: 70px;
+  margin-left: 50px;
+
+  background-color: pink;
+}
+
+
+.login-container button:active{
+  background-color: rgb(179, 148, 153);
+}
