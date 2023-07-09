@@ -1,24 +1,24 @@
-import React from 'react'
-import InstaLogo from '../images/instagram-logo.png';
-import PageLogo from '../images/Logo.png'
-import { Link } from 'react-router-dom';
+import React from 'react';
 export default function Footer() {
   return (
     <>
-        <div className="footer">
-          <img src={PageLogo}></img>
-          <div className="socials">
-            <h4>Socials</h4>
-            <a href="https://www.instagram.com/mckcarcreations/" target="_blank">
-              <img src={InstaLogo} id="insta-logo" alt="instagram logo"/>
-            </a>
-          </div>
-          <div className="navigation">
-            <Link to="/" className="nav-link">Home</Link>
-            <Link to="/" className="nav-link">Shop</Link>
-            <Link to="/" className="nav-link">About</Link>
+      <footer class="footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h5>About Us</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet turpis sed ex semper mollis.</p>
+            </div>
+            <div class="col-md-6">
+              <h5>Contact Us</h5>
+              <ul class="contact-info">
+                <li>Email: example@example.com</li>
+                <li>Phone: +1 123 456 7890</li>
+              </ul>
+            </div>
           </div>
         </div>
+      </footer>
     </>
   )
 }

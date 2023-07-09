@@ -49,7 +49,12 @@ code {
   color: black;
 }
 
-.feature-container {
+#header-3 {
+  margin-top: 20px;
+  position: absolute;
+}
+
+.recommended-container {
   margin-top: 50px;
   display: flex;
   border-top: 1px solid black;
@@ -59,33 +64,41 @@ code {
   justify-content: space-around;
 }
 
-#header-3 {
-  margin-top: 20px;
-  position: absolute;
-}
-
-.feature-container img {
+.recommended-container img {
   height: 150px;
   width: 200px;
 }
 
 .footer {
   background-color: #ECB8A5;
-  margin-top: 50px;
-  height: 100px;
-  display: flex;
-  justify-content: space-around;
+  padding: 20px 0;
 }
 
-.footer #insta-logo {
-  height: 50px;
+.footer h5 {
+  color: #333;
+  font-size: 20px;
+  margin-bottom: 15px;
 }
 
-.footer .navigation {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.footer p {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.5;
 }
+
+.footer .contact-info {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer .contact-info li {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+
 
 .nav-link {
   margin-top: 10px;
