@@ -8,6 +8,7 @@ import Home from './Home/Home';
 import Shopping from './Shop/Shopping';
 import AddForm from '../components/Shop/AddForm';
 import LoginForm from './Login/LoginForm';
+import RegisterForm from './Register/RegisterForm';
 
 export default function Navigation() {
   return (
@@ -30,6 +31,7 @@ export default function Navigation() {
         <Route path="/add-form" element={<AddForm />} />
         <Route path="/blog" element={""} />
         <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterForm />} />
       </Routes>
     </Router>
   );

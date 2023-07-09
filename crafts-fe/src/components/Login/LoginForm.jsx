@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 export default function LoginForm() {
   return (
     <>
-      <div className="header-container">
-        <h2>Login here</h2>
-      </div>
-      <div class="login-container">
+      <div className="login-container">
+        <div className="header-container">
+          <h2>Login here</h2>
+        </div>
 
-        <form class="login-form">
+        <form className="login-form">
 
-            <div class="email-field">
+            <div className="email-field">
                 <label for="email"><img src={LoginIcon} alt="login icon"/></label>
                 <input type="email" id="email" required placeholder="Enter your email" name="username" />
             </div>
@@ -23,7 +23,7 @@ export default function LoginForm() {
             </div>
 
             <Link to={"/register"}>
-            <button type="button" id="login">Register</button>
+              <button type="button" id="login">Register</button>
             </Link>
             <button type="submit" id="login">Login</button>
 
