@@ -1,9 +1,12 @@
 .register-container .header-container {
-    border-bottom: 2px solid black;
-    margin-top: -150px;
-  }
-  
-  .register-container{
+  position: absolute;
+  border-bottom: 2px solid black;
+  width: 50rem;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.register-container{
     margin-left: auto;
     margin-right: auto;
     margin-top: 150px;
@@ -17,43 +20,12 @@
     
     display: flex;
     justify-content: center;
-    flex-direction: column;
-  }
-  
-  .register-container .login-form {
-    margin-top: 100px;
-  }
-  
-  .register-container input {
-    background-color: rgb(211, 211, 211);
-  
-    height: 30px;
-    margin-top: 50px;
-  }
-  
-  .register-container label img{
-    height: 40px;
-    width: 40px;
-  
-    margin-right: 20px;
-    margin-top: -15px;
-  }
-  
-  a:hover{
-    color: red;
-  }
-  
-  .register-container button{
-    width: 100px;
-    height: 30px;
-  
-    margin-top: 70px;
-    margin-left: 30px;
-  
-    background-color: pink;
-  }
-  
-  
-  .register-container button:active{
-    background-color: rgb(179, 148, 153);
-  }
+}
+
+.register-container .register-form {
+  margin-top: 100px;
+}
+
+.register-container .input-field {
+  width: 250px;
+}

@@ -42,7 +42,7 @@ code {
 }
 
 .custom-navbar {
-  background-color: #ECB8A5;
+  background-color: #8D89A6;
 }
 
 .custom-navbar .nav-item {
@@ -70,19 +70,19 @@ code {
 }
 
 .footer {
-  background-color: #ECB8A5;
+  background-color: #8D89A6;
   padding: 20px 0;
   margin-top: 100px;
 }
 
 .footer h5 {
-  color: #333;
+  color: black;
   font-size: 20px;
   margin-bottom: 15px;
 }
 
 .footer p {
-  color: #777;
+  color: black;
   font-size: 14px;
   line-height: 1.5;
 }
@@ -94,7 +94,7 @@ code {
 }
 
 .footer .contact-info li {
-  color: #777;
+  color: black;
   font-size: 14px;
   line-height: 1.5;
   margin-bottom: 5px;
@@ -103,4 +103,8 @@ code {
 
 .nav-link {
   margin-top: 10px;
+}
+
+.dropdown {
+  color: black;
 }

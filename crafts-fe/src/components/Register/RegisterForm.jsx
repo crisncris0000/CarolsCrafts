@@ -1,38 +1,38 @@
-import React from 'react'
+import React from 'react';
+import { CForm, CFormLabel, CFormInput, CButton } from '@coreui/react';
 
 export default function RegisterForm() {
   return (
     <>        
         <div className="register-container">
+
             <div className="header-container">
-            <h2>Register here</h2>
+                <h3>Registration Form</h3>
             </div>
-
-            <form className="login-form">
-
-                <div className="first-name-field">
-                    <label for="first">First Name</label>
-                    <input type="text" id="first-name" required placeholder="Enter your first name" name="first" />
+            
+            <CForm className="register-form">
+                <div className="mb-3">
+                    <CFormLabel htmlFor="InputFirstName">First Name</CFormLabel>
+                    <CFormInput type="text" id="InputFirstName" aria-describedby="First Name" className="input-field" placeholder="Enter First Name"/>
+                </div>
+                <div className="mb-3">
+                    <CFormLabel htmlFor="InputLastName">Last Name</CFormLabel>
+                    <CFormInput type="text" id="InputLastName" className="input-field" placeholder="Enter Last Name"/>
+                </div>
+                <div className="mb-3">
+                    <CFormLabel htmlFor="InputEmail">Email</CFormLabel>
+                    <CFormInput type="email" id="InputEmail" aria-describedby="Email" className="input-field" placeholder="Enter Email"/>
+                </div>
+                <div className="mb-3">
+                    <CFormLabel htmlFor="InputPassword">Password</CFormLabel>
+                    <CFormInput type="password" id="InputPassword" className="input-field" placeholder="Enter password"/>
                 </div>
 
-                <div className="last-name-field">
-                    <label for="last">Last Name</label>
-                    <input type="text" id="last-name" required placeholder="Enter your last name" name="last" />
-                </div>
 
-                <div className="email-field">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" required placeholder="Enter your email" name="username" />
-                </div>
-
-                <div class="password-field">
-                    <label for="password">Password: </label>
-                    <input type="password" id="password" required placeholder="Enter your password" name="password" />
-                </div>
-                
-                <button type="submit" id="login">Login</button>
-
-            </form>
+                <CButton type="submit" color="primary">
+                    Submit
+                </CButton>
+            </CForm>
 
         </div>
     

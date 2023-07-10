@@ -4,6 +4,8 @@ import './css/shopping.css';
 import './css/add-form.css';
 import './css/login.css';
 import './css/register.css';
+import './css/transaction.css';
+import './css/dashboard.css';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 
