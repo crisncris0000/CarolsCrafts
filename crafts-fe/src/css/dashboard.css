@@ -1,55 +1,81 @@
 .sales-container {
-    background-color: #CE84AD;
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-}
-
-.sales-container .alltime-sales {
-    height: 250px;
-    width: 250px;
-    border: 2px solid black;
-    border-radius: 5%;
-    display: flex;
-    flex-direction: column;
-    background-color: #53B3CB;
-}
-
-.sales-container .alltime-sales  h4{
     margin-top: 50px;
+    width: 800px;
+    height: 700px;
+    float: right;
 }
 
 .sales-container .monthly-sales {
     height: 250px;
-    width: 250px;
+    width: 350px;
     border: 2px solid black;
     border-radius: 5%;
     display: flex;
     flex-direction: column;
-    background-color: #E0F2E9;
+    justify-content: center;
+    background-image: url('../images/blue-background.jpg');
+    box-shadow: 0px 0px 10px 2px black;
 }
 
 .sales-container .monthly-sales  h4{
-    margin-top: 50px;
+    margin: 20px;
 }
 
 .sales-container .daily-sales {
     height: 250px;
-    width: 250px;
+    width: 350px;
     border: 2px solid black;
     border-radius: 5%;
     display: flex;
     flex-direction: column;
-    background-color: #F686BD;
+    justify-content: center;
+    background-image: url('../images/gray-background.jpg');
+    box-shadow: 0px 0px 10px 2px black;
 }
 
 .sales-container .daily-sales  h4{
-    margin-top: 50px;
+    margin: 20px;
+}
+
+.sales-container .monthly-orders {
+    height: 250px;
+    width: 350px;
+    border: 2px solid black;
+    border-radius: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url("../images/cloudy-background.jpeg");
+    box-shadow: 0px 0px 10px 2px black;
+}
+
+.sales-container .monthly-orders  h4{
+    margin: 20px;
+}
+
+.sales-container .daily-orders {
+    height: 250px;
+    width: 350px;
+    border: 2px solid black;
+    border-radius: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url("../images/cloudy-background.jpeg");
+    box-shadow: 0px 0px 10px 2px black;
+}
+
+
+.sales-container .daily-orders  h4{
+    margin: 20px;
 }
 
 .modal-button {
     width: 150px;
-    margin-left: 50px;
+    margin-left: 100px;
     margin-top: 50px;
 }
