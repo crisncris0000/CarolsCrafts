@@ -29,9 +29,11 @@ export default function Dashboard() {
                 <OrderSummary />
             </div>
         </div>
-
-        <Transaction tableStyle="dashboard-table" />
-
+        
+        <div className="recent-transactions">
+            <h5>Recent Transactions</h5>
+            <Transaction tableStyle="dashboard-table" />
+        </div>
         <OrderAttention />
     </>
   )

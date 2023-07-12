@@ -45,16 +45,18 @@
   .sales-container .daily-orders h4 {
     margin: 20px;
   }
+
   
 .recent-transactions {
-  background-color: black;
-}
-  
-.dashboard-table {
   margin-left: 0px !important;
   position: absolute;
   top: 70px;
   left: 50px;
+}
+
+.recent-transactions h5 {
+  position: absolute;
+  top: 70px;
 }
 
 .order-attention {
@@ -64,21 +66,31 @@
   margin-left: auto;
   margin-right: auto;
   border: 2px solid black;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent wrapping of items to a new line */
+  display: flex; /* Add flex display to enable horizontal scrolling */
+  padding-bottom: 10px; /* Add some bottom padding to create space for scrollbar */
+}
+
+.order-attention h4{
+  position: absolute;
 }
 
 .order-container {
-  height: 150px;
-  width: 100%;
-  margin-top: 30px;
   display: flex;
-  justify-content: space-around;
+  margin-top: 70px;
+  flex-wrap: wrap;
 }
 
 .order-container .order-item {
-  height: 189px;
+  flex-shrink: 0; /* Prevent items from shrinking to fit container */
+  height: 190px;
   width: 230px;
   border: 1px solid black;
+  background-image: url("../images/cool-background.jpg");
+  margin-right: 10px; /* Add some spacing between items */
 }
+
 
 .order-container .order-item .btn-container {
   width: 100%;
@@ -98,9 +110,12 @@
     margin-left: auto;
     margin-right: auto;
   }
-  .dashboard-table {
+  .recent-transactions {
       position: static;
       margin-right: 10vw;
+  }
+  .recent-transactions h5 {
+    position: relative;
   }
 }
   
@@ -108,10 +123,13 @@
   .sales-container {
     margin-left: auto;
     margin-right: auto;
-}
-  .dashboard-table {
+  }
+  .recent-transactions {
     position: static;
     margin-left: auto !important;
     margin-right: auto !important;
+  }
+  .recent-transactions h5 {
+    position: relative;
   }
 }
