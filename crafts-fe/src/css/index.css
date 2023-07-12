@@ -72,7 +72,7 @@ code {
 .footer {
   background-color: #8D89A6;
   padding: 20px 0;
-  margin-top: 100px;
+  margin-top: 20vw;
 }
 
 .footer h5 {
@@ -98,13 +98,4 @@ code {
   font-size: 14px;
   line-height: 1.5;
   margin-bottom: 5px;
-}
-
-
-.nav-link {
-  margin-top: 10px;
-}
-
-.dropdown {
-  color: black;
 }

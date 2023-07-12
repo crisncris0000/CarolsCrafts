@@ -2,10 +2,11 @@ import React from 'react'
 import { CTable, CTableHead, CTableRow, CTableHeaderCell, CTableBody, CTableDataCell } from '@coreui/react';
 import Button from 'react-bootstrap/esm/Button';
 
-export default function Transaction() {
+export default function TransactionHistory({tableStyle}) {
+    const tableClass = `table-container ${tableStyle}`
   return (
     <>
-        <div className="table-container">
+        <div className={tableClass}>
             <CTable striped hover>
                 <CTableHead>
                     <CTableRow>

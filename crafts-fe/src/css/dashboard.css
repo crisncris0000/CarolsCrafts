@@ -1,15 +1,17 @@
 .sales-container {
+    position: relative; /* Add positioning */
     display: flex;
-    align-items: center;
-    justify-content: space-around;
     flex-wrap: wrap;
+    justify-content: center;
     margin-top: 50px;
-    width: 800px;
-    height: 700px;
-    float: right;
-}
-
-.sales-container .monthly-sales {
+    width: 60vw;
+    margin-left: 40vw;
+  }
+  
+  .sales-container .monthly-sales,
+  .sales-container .daily-sales,
+  .sales-container .monthly-orders,
+  .sales-container .daily-orders {
     height: 250px;
     width: 350px;
     border: 2px solid black;
@@ -17,65 +19,64 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-image: url('../images/blue-background.jpg');
+    margin: 10px;
     box-shadow: 0px 0px 10px 2px black;
-}
-
-.sales-container .monthly-sales  h4{
-    margin: 20px;
-}
-
-.sales-container .daily-sales {
-    height: 250px;
-    width: 350px;
-    border: 2px solid black;
-    border-radius: 5%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-image: url('../images/gray-background.jpg');
-    box-shadow: 0px 0px 10px 2px black;
-}
-
-.sales-container .daily-sales  h4{
-    margin: 20px;
-}
-
-.sales-container .monthly-orders {
-    height: 250px;
-    width: 350px;
-    border: 2px solid black;
-    border-radius: 5%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  }
+  
+  .monthly-sales {
+    background-image: url("../images/gray-background.jpg");
+  }
+  
+  .daily-sales {
+    background-image: url("../images/green-background.jpg");
+  }
+  
+  .monthly-orders {
     background-image: url("../images/cloudy-background.jpeg");
-    box-shadow: 0px 0px 10px 2px black;
-}
-
-.sales-container .monthly-orders  h4{
+  }
+  
+  .daily-orders {
+    background-image: url("../images/blue-background.jpg");
+  }
+  
+  .sales-container .monthly-sales h4,
+  .sales-container .daily-sales h4,
+  .sales-container .monthly-orders h4,
+  .sales-container .daily-orders h4 {
     margin: 20px;
-}
+  }
+  
+  .recent-transactions {
+    background-color: black;
+  }
+  
+  .dashboard-table {
+    margin-left: 0px !important;
+    position: absolute;
+    top: 70px;
+    left: 50px;
+  }
 
-.sales-container .daily-orders {
-    height: 250px;
-    width: 350px;
-    border: 2px solid black;
-    border-radius: 5%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-image: url("../images/cloudy-background.jpeg");
-    box-shadow: 0px 0px 10px 2px black;
-}
-
-
-.sales-container .daily-orders  h4{
-    margin: 20px;
-}
-
-.modal-button {
-    width: 150px;
-    margin-left: 100px;
-    margin-top: 50px;
-}
+  @media (max-width: 1268px) {
+    .sales-container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .dashboard-table {
+          position: static;
+          margin-right: 10vw;
+      }
+  }
+  
+  @media (max-width: 1100px) {
+    .sales-container {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .dashboard-table {
+          position: static;
+          margin-left: auto !important;
+          margin-right: auto !important;
+      }
+  }

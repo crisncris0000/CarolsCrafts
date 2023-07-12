@@ -1,5 +1,7 @@
 import React from 'react';
 import OrderSummary from './OrderSummary';
+import Transaction from '../Transaction/TransactionHistory';
+
 
 export default function Dashboard() {
   return (
@@ -26,6 +28,8 @@ export default function Dashboard() {
                 <OrderSummary />
             </div>
         </div>
+
+        <Transaction tableStyle="dashboard-table" />
     </>
   )
 }

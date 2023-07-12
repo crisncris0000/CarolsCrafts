@@ -8,7 +8,7 @@ import Shopping from './Shop/Shopping';
 import AddForm from '../components/Shop/AddForm';
 import LoginForm from './Login/LoginForm';
 import RegisterForm from './Register/RegisterForm';
-import Transaction from './Transaction/Transaction';
+import Transaction from './Transaction/TransactionHistory';
 import Dashboard from './Dashboard/Dashboard';
 
 export default function Navigation() {
