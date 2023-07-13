@@ -1,14 +1,14 @@
 import { React, useState } from 'react';
 import { CButton, CModal, CModalHeader, CModalTitle, CModalBody, CModalFooter } from '@coreui/react';
 
-export default function OrderSummary() {
+export default function OrderSummary({ buttonName, modalTitle }) {
     const [visible, setVisible] = useState(false)
     return (
         <>
-            <CButton onClick={() => setVisible(!visible)} className= 'modal-button'>Summary</CButton>
+            <CButton onClick={() => setVisible(!visible)} className= 'modal-button'>{buttonName}</CButton>
             <CModal alignment="center" visible={visible} onClose={() => setVisible(false)}>
                 <CModalHeader>
-                    <CModalTitle>Summary of Transactions</CModalTitle>
+                    <CModalTitle>{modalTitle}</CModalTitle>
                 </CModalHeader>
                 <CModalBody>
                     Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,

@@ -1,5 +1,6 @@
 import React from 'react';
 import { CButton } from '@coreui/react';
+import OrderSummary from './OrderSummary';
 
 export default function OrderAttention() {
   return (
@@ -10,7 +11,7 @@ export default function OrderAttention() {
                 <div className="order-item">
                     <p>Transaction# 1</p>
                     <div className="btn-container">
-                        <CButton type="submit" color="primary" className="btn">View</CButton>
+                        <OrderSummary buttonName="View"/>
                         <CButton type="submit" color="primary" className="btn">Completed</CButton>
                     </div>
                 </div>

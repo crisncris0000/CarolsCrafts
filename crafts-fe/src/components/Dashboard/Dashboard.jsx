@@ -11,22 +11,22 @@ export default function Dashboard() {
             <div className="monthly-sales">
                 <h3>Monthly Sales</h3>
                 <h4>300000</h4>
-                <OrderSummary />
+                <OrderSummary buttonName="Summary" modalTitle="Summary of Sales"/>
             </div>
             <div className="daily-sales">
                 <h3>Daily Sales</h3>
                 <h4>300000</h4>
-                <OrderSummary />
+                <OrderSummary buttonName="Summary" modalTitle="Summary of Sales"/>
             </div>
             <div className="monthly-orders">
                 <h3>Monthly Orders</h3>
                 <h4>300000</h4>
-                <OrderSummary />
+                <OrderSummary buttonName="Summary" modalTitle="Summary of Sales"/>
             </div>
             <div className="daily-orders">
                 <h3>Daily Orders</h3>
                 <h4>300000</h4>
-                <OrderSummary />
+                <OrderSummary buttonName="Summary" modalTitle="Summary of Sales"/>
             </div>
         </div>
         
@@ -34,6 +34,7 @@ export default function Dashboard() {
             <h5>Recent Transactions</h5>
             <Transaction tableStyle="dashboard-table" />
         </div>
+        
         <OrderAttention />
     </>
   )

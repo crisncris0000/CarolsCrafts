@@ -28,8 +28,8 @@ export default function Navigation() {
               <Nav.Link as={Link} to="/shop" className="nav-item">
                 Shop
               </Nav.Link>
-              <Nav.Link as={Link} to="/blog" className="nav-item">
-                Blog
+              <Nav.Link as={Link} to="/portfolio" className="nav-item">
+                Portfolio
               </Nav.Link>
               <NavDropdown title="Account" id="basic-nav-dropdown" className="dropdown">
                 <NavDropdown.Item as={Link} to="/login">Login</NavDropdown.Item>
@@ -49,7 +49,7 @@ export default function Navigation() {
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shopping />} />
         <Route path="/add-form" element={<AddForm />} />
-        <Route path="/blog" element={""} />
+        <Route path="/portfolio" element={""} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/transaction-history" element={<Transaction />} />
