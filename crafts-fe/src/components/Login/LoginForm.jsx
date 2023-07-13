@@ -23,12 +23,12 @@ export default function LoginForm() {
             </div>
 
             <Link to={"/register"}>
-              <button type="button" id="login">Register</button>
+              <button type="button" id="register">Register</button>
             </Link>
             <button type="submit" id="login">Login</button>
 
         </form>
-
+        <Link to={"/reset-password"} id="pass-reset">Forgot password</Link>
       </div>
     </>
   )

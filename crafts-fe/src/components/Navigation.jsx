@@ -10,6 +10,8 @@ import LoginForm from './Login/LoginForm';
 import RegisterForm from './Register/RegisterForm';
 import Transaction from './Transaction/TransactionHistory';
 import Dashboard from './Dashboard/Dashboard';
+import ResetPassword from './Login/ResetPassword';
+import Portfolio from './Portfolio/Portfolio';
 
 export default function Navigation() {
   return (
@@ -49,11 +51,12 @@ export default function Navigation() {
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shopping />} />
         <Route path="/add-form" element={<AddForm />} />
-        <Route path="/portfolio" element={""} />
+        <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/transaction-history" element={<Transaction />} />
         <Route path="/dashboard" element={<Dashboard />}/>
+        <Route path="/reset-password" element={<ResetPassword />}/>
       </Routes>
     </Router>
   );

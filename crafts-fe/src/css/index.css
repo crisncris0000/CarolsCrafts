@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #ECCFC3 !important;
+  background-color: #C880B7 !important;
 }
 
 code {
@@ -42,7 +42,7 @@ code {
 }
 
 .custom-navbar {
-  background-color: #8D89A6;
+  background-image: url('../images/pink-texture.jpg');
 }
 
 .custom-navbar .nav-item {
@@ -69,10 +69,16 @@ code {
   width: 200px;
 }
 
+.contact-me {
+  width: 50vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .footer {
-  background-color: #8D89A6;
+  background-image: url('../images/pink-texture.jpg');
   padding: 20px 0;
-  margin-top: 20vw;
+  margin-top: 10vw;
 }
 
 .footer h5 {

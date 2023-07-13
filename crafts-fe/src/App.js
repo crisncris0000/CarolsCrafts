@@ -6,6 +6,7 @@ import './css/login.css';
 import './css/register.css';
 import './css/transaction.css';
 import './css/dashboard.css';
+import './css/portfolio.css';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 

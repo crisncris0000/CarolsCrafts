@@ -8,8 +8,8 @@
   margin-right: auto;
   margin-top: 150px;
   
-  height: 600px;
-  width: 50rem;
+  height: 650px;
+  width: 70vw;
 
   background-color: rgba(211, 211, 211, 0.623);
 
@@ -56,4 +56,15 @@ a:hover{
 
 .login-container button:active{
   background-color: rgb(179, 148, 153);
+}
+
+#pass-reset {
+  margin-top: 50px;
+}
+
+.reset-pass-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50vw;
+  margin-top: 150px;
 }

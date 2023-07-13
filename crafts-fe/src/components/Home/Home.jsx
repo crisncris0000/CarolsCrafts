@@ -1,5 +1,6 @@
 import React from 'react'
 import Categories from './Categories'
+import Contact from './Contact'
 import Featured from './Featured'
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
     <>
         <Featured />
         <Categories />
+        <Contact />
     </>
   )
 }

@@ -1,25 +1,23 @@
-.register-container .header-container {
-  position: absolute;
-  border-bottom: 2px solid black;
-  width: 50rem;
-  padding-bottom: 10px;
-  padding-top: 10px;
-}
-
 .register-container{
     margin-left: auto;
     margin-right: auto;
     margin-top: 150px;
     
     height: 600px;
-    width: 50rem;
+    width: 70vw;
   
     background-color: rgba(211, 211, 211, 0.623);
   
     border: 2px solid black;
-    
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register-container .header-container {
+  width: 50rem;
+  padding-top: 10px;
 }
 
 .register-container .register-form {
