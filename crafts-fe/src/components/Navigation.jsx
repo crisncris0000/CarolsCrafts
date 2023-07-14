@@ -18,7 +18,7 @@ export default function Navigation() {
     <Router>
       <Navbar expand="md" className="custom-navbar">
         <Container>
-          <Navbar.Brand as={Link} to="/">
+          <Navbar.Brand>
             <img src={Logo} id="logo" alt="Logo saying Mckcreations" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />

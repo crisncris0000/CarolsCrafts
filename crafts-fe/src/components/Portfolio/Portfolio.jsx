@@ -1,16 +1,16 @@
-import React from 'react'
-import Image from '../../images/cake-topper.png'
-export default function () {
+import React from 'react';
+import PortfolioPost from './PortfolioPost';
+
+export default function Portfolio() {
   return (
     <>
-      <h1 style={{float: "left", marginLeft: "10vw", marginTop: "5vw"}}>Work</h1>
-        <div className="portfolio-container">
-          <img src={Image}/>
-          <img src={Image}/>
-          <img src={Image}/>
-          <img src={Image}/>
-          <img src={Image}/>
-        </div>
+      <div className="portfolio-header">
+        <h1>Work</h1>
+      </div>
+      <div className="portfolio-container">
+        <PortfolioPost />
+      </div>
     </>
-  )
+  );
 }
+

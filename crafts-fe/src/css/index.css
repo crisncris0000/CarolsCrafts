@@ -22,6 +22,12 @@ code {
   margin-left: 50px;
 }
 
+.nav-item:hover {
+  background-color: white;
+  border-radius: 10%;
+  transition: 0.3s;
+}
+
 .carousel-img {
   height: 500px;
   width: 10%;
