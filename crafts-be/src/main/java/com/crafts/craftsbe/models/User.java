@@ -2,7 +2,6 @@ package com.crafts.craftsbe.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 import java.util.Date;
 
 @Entity
@@ -13,8 +12,9 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 public class User {
-    @Column(name = "id")
+
     @Id
+    @Column(name = "id")
     private long id;
 
     @Column(name = "first_name")
