@@ -8,8 +8,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "Roles")
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

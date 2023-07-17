@@ -6,10 +6,9 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Users")
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Builder
 public class User {
 

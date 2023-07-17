@@ -43,3 +43,7 @@ CREATE TABLE "Cart" (
     FOREIGN KEY (user_id) REFERENCES "Users" (id),
     FOREIGN KEY (item_id) REFERENCES "Item" (id)
 );
+
+INSERT INTO "Roles" (role_name) VALUES
+    ('user'),
+    ('admin');
