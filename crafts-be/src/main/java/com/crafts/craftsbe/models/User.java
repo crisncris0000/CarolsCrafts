@@ -1,6 +1,6 @@
 package com.crafts.craftsbe.models;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 import java.util.Date;
 
@@ -14,6 +14,7 @@ public class User {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "first_name")

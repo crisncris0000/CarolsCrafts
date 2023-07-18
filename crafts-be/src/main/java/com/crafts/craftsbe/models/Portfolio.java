@@ -1,12 +1,9 @@
 package com.crafts.craftsbe.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.*;
 
 import java.util.Date;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Portfolio")
@@ -18,6 +15,7 @@ public class Portfolio {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "image_data")

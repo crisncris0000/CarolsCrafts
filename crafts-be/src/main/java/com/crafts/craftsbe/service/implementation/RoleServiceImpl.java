@@ -3,7 +3,7 @@ package com.crafts.craftsbe.service.implementation;
 import com.crafts.craftsbe.models.Role;
 import com.crafts.craftsbe.repository.RoleRepository;
 import com.crafts.craftsbe.service.RoleService;
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

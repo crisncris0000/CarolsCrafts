@@ -4,7 +4,7 @@ import com.crafts.craftsbe.models.Role;
 import com.crafts.craftsbe.models.User;
 import com.crafts.craftsbe.repository.UserRepository;
 import com.crafts.craftsbe.service.UserService;
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

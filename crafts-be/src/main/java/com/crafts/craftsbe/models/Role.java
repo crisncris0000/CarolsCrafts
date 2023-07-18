@@ -1,10 +1,6 @@
 package com.crafts.craftsbe.models;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Roles")
@@ -14,8 +10,9 @@ import lombok.*;
 @Builder
 public class Role {
 
-    @Column(name = "id")
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "role_name")
