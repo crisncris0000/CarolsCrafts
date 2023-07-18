@@ -26,6 +26,9 @@ public class UserController {
     @PostMapping("/create-user")
     public String createUser(@RequestBody UserDTO userDTO) {
 
+        System.out.printf("First name: %s Last name: %s email: %s password: %s", userDTO.getFirstName(),
+                userDTO.getLastName(), userDTO.getEmail(), userDTO.getPassword());
+
         System.out.println(userDetailsService.cryptPassword(userDTO.getPassword(), 12));
 
         return "Success";
