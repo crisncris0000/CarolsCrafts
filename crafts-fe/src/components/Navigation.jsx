@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Logo from '../images/Logo.png';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './Home/Home';
 import Shopping from './Shop/Shopping';
@@ -18,8 +17,8 @@ export default function Navigation() {
     <Router>
       <Navbar expand="md" className="custom-navbar">
         <Container>
-          <Navbar.Brand>
-            <img src={Logo} id="logo" alt="Logo saying Mckcreations" />
+          <Navbar.Brand as={Link} to="/" className="brand-item">
+            Carol Mckenna
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">

@@ -26,10 +26,13 @@ public class UserController {
     @PostMapping("/create-user")
     public String createUser(@RequestBody UserDTO userDTO) {
 
-        System.out.printf("First name: %s Last name: %s email: %s password: %s", userDTO.getFirstName(),
-                userDTO.getLastName(), userDTO.getEmail(), userDTO.getPassword());
+        String cryptPassword = userDetailsService.cryptPassword(userDTO.getPassword(), 12);
 
-        System.out.println(userDetailsService.cryptPassword(userDTO.getPassword(), 12));
+        User user = User.builder()
+                .firstName(userDTO.getFirstName())
+                .lastName(userDTO.getLastName())
+                .email(userDTO.getEmail())
+                .password(cryptPassword).build();
 
         return "Success";
     }
