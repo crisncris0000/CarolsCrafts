@@ -81,19 +81,21 @@ code {
   position: absolute;
 }
 
-.recommended-container {
-  margin-top: 50px;
+.sample-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  height: 200px;
-  align-items: center;
   justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 50px;
 }
 
-.recommended-container img {
-  height: 150px;
-  width: 200px;
+.sample-container img {
+  height: auto;
+  width: 100%;
+  max-width: 450px;
+  margin-top: 1vw;
 }
 
 .contact-me {

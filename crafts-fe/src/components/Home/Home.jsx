@@ -1,14 +1,14 @@
 import React from 'react';
-import Categories from './Categories';
 import Contact from './Contact';
 import AboutMe from './AboutMe';
+import SampleItems from './SampleItems';
 
 export default function Home() {
 
   return (
     <>
       <AboutMe />
-      <Categories />
+      <SampleItems />
       <Contact />
     </>
   )
