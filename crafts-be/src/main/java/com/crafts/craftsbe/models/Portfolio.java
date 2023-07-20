@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Portfolio")
+@Table(name = "portfolio")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

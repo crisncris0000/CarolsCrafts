@@ -35,7 +35,7 @@ export default function Navigation() {
               <NavDropdown title="Account" id="basic-nav-dropdown" className="dropdown">
                 <NavDropdown.Item as={Link} to="/login">Login</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Logout</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Manage Account</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">Shopping Cart</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/transaction-history">
                   Transaction History
                 </NavDropdown.Item>

@@ -1,17 +1,17 @@
-DROP TABLE IF EXISTS "Cart";
-DROP TABLE IF EXISTS "Portfolio";
-DROP TABLE IF EXISTS "Item";
-DROP TABLE IF EXISTS "Users";
-DROP TABLE IF EXISTS "Roles";
+DROP TABLE IF EXISTS cart;
+DROP TABLE IF EXISTS portfolio;
+DROP TABLE IF EXISTS items;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS roles;
 
-CREATE TABLE "Portfolio" (
+CREATE TABLE portfolio (
     id SERIAL PRIMARY KEY,
     image_data BYTEA NOT NULL,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL
 );
 
-CREATE TABLE "Item" (
+CREATE TABLE items (
     id SERIAL PRIMARY KEY,
     image_data BYTEA NOT NULL,
     item_title VARCHAR(255) NOT NULL,
@@ -20,12 +20,12 @@ CREATE TABLE "Item" (
     updated_at TIMESTAMP NOT NULL
 );
 
-CREATE TABLE "Roles" (
+CREATE TABLE roles (
     id SERIAL PRIMARY KEY,
     role_name VARCHAR(100)
 );
 
-CREATE TABLE "Users" (
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
@@ -37,13 +37,15 @@ CREATE TABLE "Users" (
     FOREIGN KEY (role_id) REFERENCES "Roles" (id)
 );
 
-CREATE TABLE "Cart" (
+CREATE TABLE cart (
     user_id INT NOT NULL,
     item_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES "Users" (id),
     FOREIGN KEY (item_id) REFERENCES "Item" (id)
 );
 
-INSERT INTO "Roles" (role_name) VALUES
+INSERT INTO roles (role_name) VALUES
     ('user'),
     ('admin');
+
+SELECT * FROM users;

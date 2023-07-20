@@ -20,14 +20,18 @@
     margin-top: 50px;
 }
   
-.portfolio-container img {
-    height: auto;
+.portfolio-container .post-container img {
     width: 100%;
     max-width: 450px;
     margin-top: 1vw;
 }
 
-.portfolio-container .img-container {
+.portfolio-container .post-container .img-container img {
+    height: 500px;
+    width: 500px;
+}
+
+.portfolio-container .post-container {
     position: relative;
 }
   

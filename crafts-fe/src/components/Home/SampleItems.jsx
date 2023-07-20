@@ -9,9 +9,7 @@ import { Link } from 'react-router-dom';
 
 export default function SampleItems() {
   return (
-    <>
-        <h3 id="header-3">Recommended Items</h3>
-        
+    <>  
         <div className="sample-container">
           <img src={CakeTopper} alt="Cake Topper"/>
           <img src={Cups} alt="Cups"/>

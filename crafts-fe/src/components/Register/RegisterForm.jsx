@@ -53,14 +53,15 @@ export default function RegisterForm() {
                 </div>
 
 
-                <CButton type="submit" color="primary" onClick={() => {
+                <CButton type="submit" color="primary" onClick={(e) => {
                     const user = {
                         firstName,
                         lastName,
                         email,
                         password
                     }
-
+                    
+                    e.preventDefault();
                     sendUser(user);
                 }}>
                     Submit
