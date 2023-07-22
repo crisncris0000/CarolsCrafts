@@ -1,7 +1,7 @@
 package com.crafts.craftsbe.models;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity

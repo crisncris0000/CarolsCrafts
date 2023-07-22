@@ -1,7 +1,6 @@
 package com.crafts.craftsbe.models;
 
-import javax.persistence.*;
-import lombok.*;
+import jakarta.persistence.*;
 
 public class Cart {
 }

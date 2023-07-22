@@ -3,7 +3,7 @@ package com.crafts.craftsbe.models;
 import lombok.*;
 
 import java.util.Date;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "portfolio")

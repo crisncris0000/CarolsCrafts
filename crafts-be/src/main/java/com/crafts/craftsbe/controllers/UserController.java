@@ -44,7 +44,7 @@ public class UserController {
                 .lastName(userDTO.getLastName())
                 .email(userDTO.getEmail())
                 .password(cryptPassword)
-                .role(roleService.getRoleByName("user"))
+                .role(roleService.getRoleByName("USER"))
                 .createdAt(timestamp)
                 .updatedAt(timestamp)
                 .build();

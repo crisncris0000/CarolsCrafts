@@ -4,7 +4,7 @@ import com.crafts.craftsbe.models.Role;
 import com.crafts.craftsbe.models.User;
 import com.crafts.craftsbe.repository.UserRepository;
 import com.crafts.craftsbe.service.UserService;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;

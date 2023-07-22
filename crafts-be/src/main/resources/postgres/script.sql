@@ -34,18 +34,18 @@ CREATE TABLE users (
     role_id INT NOT NULL,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL,
-    FOREIGN KEY (role_id) REFERENCES "Roles" (id)
+    FOREIGN KEY (role_id) REFERENCES roles (id)
 );
 
 CREATE TABLE cart (
     user_id INT NOT NULL,
     item_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES "Users" (id),
-    FOREIGN KEY (item_id) REFERENCES "Item" (id)
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (item_id) REFERENCES items (id)
 );
 
 INSERT INTO roles (role_name) VALUES
-    ('user'),
-    ('admin');
+    ('USER'),
+    ('ADMIN');
 
 SELECT * FROM users;

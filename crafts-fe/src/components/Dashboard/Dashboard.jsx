@@ -1,7 +1,6 @@
 import React from 'react';
 import OrderSummary from './OrderSummary';
 import Transaction from '../Transaction/TransactionHistory';
-import OrderAttention from './OrderAttention';
 
 
 export default function Dashboard() {
@@ -34,8 +33,6 @@ export default function Dashboard() {
             <h5>Recent Transactions</h5>
             <Transaction tableStyle="dashboard-table" />
         </div>
-        
-        <OrderAttention />
     </>
   )
 }
