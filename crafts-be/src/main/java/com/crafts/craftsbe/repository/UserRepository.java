@@ -1,5 +1,6 @@
 package com.crafts.craftsbe.repository;
 
+import com.crafts.craftsbe.models.Role;
 import com.crafts.craftsbe.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,6 +14,9 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("SELECT user FROM User user WHERE user.email = :username")
     Optional<User> findByUsername(@Param("username") String username);
+
+
+    Optional<Role> findUserRole(@Param("") String username);
 
 }
 

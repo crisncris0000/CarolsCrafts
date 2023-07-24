@@ -41,13 +41,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Role getUserRoleByName(String username) {
-        return null;
-    }
-
-    @Override
-    public Role getUserRoleById(int id) {
-        return null;
+    public Role getUserRole(User user) {
+        return user.getRole();
     }
 
     @Override

@@ -13,9 +13,7 @@ public interface UserService {
 
     User getUserByUsername(String username);
 
-    Role getUserRoleByName(String username);
-
-    Role getUserRoleById(int id);
+    Role getUserRole(User user);
 
     void saveUser(User user);
 }

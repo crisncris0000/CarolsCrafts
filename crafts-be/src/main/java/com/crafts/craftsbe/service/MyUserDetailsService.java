@@ -9,20 +9,23 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.*;
+
+import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> res = userRepository.findByUsername(username);
-        User user = res.orElseThrow(() -> new EntityNotFoundException("User not found"));
+        User user = userService.getUserByUsername(username);
 
         return new MyUserDetails(user);
     }
