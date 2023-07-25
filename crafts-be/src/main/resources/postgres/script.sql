@@ -48,4 +48,8 @@ INSERT INTO roles (role_name) VALUES
     ('USER'),
     ('ADMIN');
 
+INSERT INTO users (first_name, last_name, email, password, role_id, created_at, updated_at) VALUES
+    ('Admin', 'Admin', 'demo@gmail.com', '$2a$10$s2BSJPDLgImvF7AgYf/Ueuduh7q8ctyYwtdZCwswKxuMsJa3Y/V7u', 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+
 SELECT * FROM users;

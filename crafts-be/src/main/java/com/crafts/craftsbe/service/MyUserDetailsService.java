@@ -1,21 +1,13 @@
 package com.crafts.craftsbe.service;
 
 import com.crafts.craftsbe.models.User;
-import com.crafts.craftsbe.repository.UserRepository;
 import com.crafts.craftsbe.service.implementation.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import jakarta.persistence.*;
-
-import javax.swing.text.html.Option;
-import java.util.Optional;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {

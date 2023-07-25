@@ -47,7 +47,7 @@ public class UserController {
         User user = User.builder()
                 .firstName(userDTO.getFirstName())
                 .lastName(userDTO.getLastName())
-                .email(userDTO.getEmail())
+                .email(userDTO.getEmail().toLowerCase())
                 .password(cryptPassword)
                 .role(roleService.getRoleByName("USER"))
                 .createdAt(timestamp)
@@ -59,13 +59,11 @@ public class UserController {
                 .status(HttpStatus.ACCEPTED)
                 .build();
 
-
         userService.saveUser(user);
-
         return jsonResponse;
     }
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UserDTO userDTO) {
         return authService.login(userDTO.getEmail(), userDTO.getPassword());
     }

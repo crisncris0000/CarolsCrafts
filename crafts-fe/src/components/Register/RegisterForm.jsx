@@ -9,9 +9,9 @@ export default function RegisterForm() {
     const [password, setPassword] = useState('');
 
     const sendUser = (user) => {
-        axios.post("http://localhost:8080/api/create-user", user)
+        axios.post("http://localhost:8080/api/users/create-user", user)
         .then((response) => {
-          console.log(response.data);
+           console.log(response.data);
         }).catch((error) => {
           console.log(error);
         })

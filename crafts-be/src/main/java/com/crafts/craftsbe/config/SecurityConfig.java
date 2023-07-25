@@ -31,14 +31,11 @@ public class SecurityConfig {
         http
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests((auth) -> {
-                    auth.requestMatchers("/api/create-user").permitAll()
-                            .requestMatchers("/api/login-user").permitAll();
+                    auth.requestMatchers("/api/users/create-user").permitAll()
+                            .requestMatchers("/api/users/login").permitAll();
 
                 }).csrf((csrf) -> csrf.disable())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests((auth) -> {
-                    auth.requestMatchers("/api/users").permitAll();
-                });
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();
     }

@@ -11,8 +11,18 @@ import Transaction from './Transaction/TransactionHistory';
 import Dashboard from './Dashboard/Dashboard';
 import ResetPassword from './Login/ResetPassword';
 import Portfolio from './Portfolio/Portfolio';
+import { useSelector } from 'react-redux';
 
 export default function Navigation() {
+
+  const user = useSelector((states) => states.user.value);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); 
+  }
+
+  console.log(user.role);
+
   return (
     <Router>
       <Navbar expand="md" className="custom-navbar">
@@ -32,14 +42,15 @@ export default function Navigation() {
               <Nav.Link as={Link} to="/portfolio" className="nav-item">
                 Portfolio
               </Nav.Link>
-              <NavDropdown title="Account" id="basic-nav-dropdown" className="dropdown">
-                <NavDropdown.Item as={Link} to="/login">Login</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Logout</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Shopping Cart</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/transaction-history">
+              <NavDropdown title = {user.firstName === "" ? "Account" : user.firstName} id="basic-nav-dropdown" className="dropdown">
+                {user.email === "" ? <NavDropdown.Item as={Link} to="/login">Login</NavDropdown.Item> : null}
+                {user.email !== "" ? <NavDropdown.Item href="/" onClick={handleLogout}>Logout</NavDropdown.Item> : null}
+                <NavDropdown.Item href="#">Shopping Cart</NavDropdown.Item>
+                {user.email !== "" ?<NavDropdown.Item as={Link} to="/transaction-history">
                   Transaction History
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/dashboard"}>Dashboard</NavDropdown.Item>
+                </NavDropdown.Item> : null}
+
+                {user.role === 'ADMIN' ? <NavDropdown.Item as={Link} to={"/dashboard"}>Dashboard</NavDropdown.Item> : null}
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
