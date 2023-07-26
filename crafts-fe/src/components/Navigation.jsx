@@ -43,14 +43,14 @@ export default function Navigation() {
                 Portfolio
               </Nav.Link>
               <NavDropdown title = {user.firstName === "" ? "Account" : user.firstName} id="basic-nav-dropdown" className="dropdown">
-                {user.email === "" ? <NavDropdown.Item as={Link} to="/login">Login</NavDropdown.Item> : null}
-                {user.email !== "" ? <NavDropdown.Item href="/" onClick={handleLogout}>Logout</NavDropdown.Item> : null}
+                {user.email === '' ? <NavDropdown.Item as={Link} to="/login">Login</NavDropdown.Item> : null}
+                {user.email !== '' ? <NavDropdown.Item href="/" onClick={handleLogout}>Logout</NavDropdown.Item> : null}
                 <NavDropdown.Item href="#">Shopping Cart</NavDropdown.Item>
-                {user.email !== "" ?<NavDropdown.Item as={Link} to="/transaction-history">
+                {user.email !== '' ?<NavDropdown.Item as={Link} to="/transaction-history">
                   Transaction History
                 </NavDropdown.Item> : null}
-
-                {user.role === 'ADMIN' ? <NavDropdown.Item as={Link} to={"/dashboard"}>Dashboard</NavDropdown.Item> : null}
+                {user.role === 'ADMIN' ? <NavDropdown.Item as={Link} to={"/dashboard"}>Dashboard
+                </NavDropdown.Item> : null}
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>

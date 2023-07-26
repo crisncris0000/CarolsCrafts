@@ -1,9 +1,11 @@
 import React from 'react'
 import { CTable, CTableHead, CTableRow, CTableHeaderCell, CTableBody, CTableDataCell } from '@coreui/react';
 import OrderSummary from '../Dashboard/OrderSummary';
+import { useSelector } from 'react-redux';
 
 export default function TransactionHistory({tableStyle}) {
     const tableClass = `table-container ${tableStyle}`
+    const user = useSelector((states) => states.user.value);
   return (
     <>
         <div className={tableClass}>

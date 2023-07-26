@@ -20,8 +20,7 @@ export default function Footer() {
           <div className="col-md-4">
             <h5>Contact Us</h5>
             <ul className="contact-info">
-              <li>Email: example@example.com</li>
-              <li>Phone: +1 123 456 7890</li>
+              <li>Email: motame@outlook.com</li>
             </ul>
 
             <div className="social-icons">
