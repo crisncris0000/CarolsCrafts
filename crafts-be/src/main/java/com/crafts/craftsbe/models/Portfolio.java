@@ -21,6 +21,9 @@ public class Portfolio {
     @Column(name = "image_data")
     private byte[] imageData;
 
+    @Column(name = "mime_type")
+    private String mimeType;
+
     @Column(name = "created_at")
     private Date createdAt;
 

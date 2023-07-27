@@ -30,11 +30,14 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception{
         http
                 .cors(Customizer.withDefaults())
+                .csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((auth) -> {
                     auth.requestMatchers("/api/users/create-user").permitAll()
-                            .requestMatchers("/api/users/login").permitAll();
+                            .requestMatchers("/api/users/login").permitAll()
+                             .requestMatchers("/api/portfolio/get-posts").permitAll()
+                            .requestMatchers("/api/portfolio/create-post").permitAll();
 
-                }).csrf((csrf) -> csrf.disable())
+                })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();
@@ -54,6 +57,7 @@ public class SecurityConfig {
         return source;
     }
 
+    @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
 

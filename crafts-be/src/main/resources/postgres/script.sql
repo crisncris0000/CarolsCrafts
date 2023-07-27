@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS roles;
 CREATE TABLE portfolio (
     id SERIAL PRIMARY KEY,
     image_data BYTEA NOT NULL,
+    mime_type VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL
 );
@@ -53,3 +54,5 @@ INSERT INTO users (first_name, last_name, email, password, role_id, created_at, 
 
 
 SELECT * FROM users;
+
+SELECT * FROM portfolio;

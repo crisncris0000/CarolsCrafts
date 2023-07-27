@@ -10,6 +10,20 @@
     float: left;
 }
 
+.portfolio-header button {
+    float: right;
+    background-color: #FF928B;
+    height: 70px;
+}
+
+.portfolio-header button:hover {
+    background-color: #d1756e;
+}
+  
+.portfolio-header button:active {
+    background-color: #a35c57;
+}
+
 .portfolio-container {
     width: 100%;
     margin-left: auto;
@@ -45,3 +59,18 @@
     background-color: rgba(255, 255, 255, 0.781);
 }
 
+#file-upload {
+    display: none;
+}
+
+.custom-file-upload label {
+    padding: 10px;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.custom-file-upload label:hover {
+    background-color: #45a049;
+}

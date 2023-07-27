@@ -1,5 +1,6 @@
 .form-container {
   border: 1px solid black;
+  background-image: radial-gradient(farthest-side, #e092b1, #E0B7B7);
   border-radius: 5px;
   width: 700px;
   height: 600px;
