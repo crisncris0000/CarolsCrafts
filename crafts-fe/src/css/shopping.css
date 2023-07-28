@@ -1,5 +1,6 @@
 .shopping-items {
-    background-color: #f1dede58;
+    margin-top: 50px;
+    background-color: #f1dede1f;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -21,4 +22,13 @@
 #submit {
     margin-top: 50px;
     width: 150px;
+}
+
+.add-link {
+    margin-top: 50px;
+}
+
+.add-link button{
+    height: 60px;
+    background-color: #f1dede1f;
 }

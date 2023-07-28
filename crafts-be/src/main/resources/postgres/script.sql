@@ -15,6 +15,7 @@ CREATE TABLE portfolio (
 CREATE TABLE items (
     id SERIAL PRIMARY KEY,
     image_data BYTEA NOT NULL,
+    mime_type VARCHAR(255) NOT NULL,
     item_title VARCHAR(255) NOT NULL,
     item_description TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL,

@@ -7,6 +7,7 @@ export default function Portfolio() {
     <>
       <div className="portfolio-header">
         <h1>Work</h1>
+        
         <Link to={'/new-post'}><button>Add new Post</button></Link>
       </div>
       <div className="portfolio-container">
