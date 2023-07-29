@@ -1,3 +1,5 @@
+\c CarolsCrafts;
+
 DROP TABLE IF EXISTS cart;
 DROP TABLE IF EXISTS portfolio;
 DROP TABLE IF EXISTS items;
@@ -56,4 +58,4 @@ INSERT INTO users (first_name, last_name, email, password, role_id, created_at, 
 
 SELECT * FROM users;
 
-SELECT * FROM portfolio;
+SELECT * FROM items;

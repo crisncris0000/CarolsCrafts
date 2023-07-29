@@ -34,8 +34,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests((auth) -> {
                     auth.requestMatchers("/api/users/create-user").permitAll()
                             .requestMatchers("/api/users/login").permitAll()
-                             .requestMatchers("/api/portfolio/get-posts").permitAll()
-                            .requestMatchers("/api/portfolio/create-post").permitAll();
+                            .requestMatchers("/api/portfolio/get-posts").permitAll()
+                            .requestMatchers("/api/portfolio/create-post").permitAll()
+                            .requestMatchers("/api/shop/add-item").permitAll();
+
 
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

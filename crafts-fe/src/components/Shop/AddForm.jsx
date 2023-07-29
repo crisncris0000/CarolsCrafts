@@ -5,7 +5,7 @@ import axios from 'axios';
 export default function AddForm() {
   const [label, setLabel] = useState('Select your image');
   const [previewSrc, setPreviewSrc] = useState('');
-  const [setItemTitle, itemTitle] = useState('');
+  const [itemTitle, setItemTitle] = useState('');
   const [description, setDescription] = useState('');
   const [selectedFile, setSelectedFile] = useState('');
   
@@ -26,14 +26,19 @@ export default function AddForm() {
     return () => URL.revokeObjectURL(objectURL);
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async () => {
     const data = {
       imageData: selectedFile,
       itemTitle,
       itemDescription: description,
     }
 
-    axios.post('http://localhost:8080/api/shop/add-items', data).then((response) => {
+    axios.post('http://localhost:8080/api/shop/add-item', data, {
+      headers: {
+        'Content-Type' : 'multipart/form-data'
+      }
+    })
+    .then((response) => {
       console.log(response.data);
     }).catch((error) => {
       console.log(error);
@@ -48,7 +53,7 @@ export default function AddForm() {
             
             <Form.Group className="mb-3">
               <Form.Label>Craft Title</Form.Label>
-              <Form.Control type="title" placeholder="Example: Holiday Cups" onChange={(e) => {setItemTitle(e.target.value)}}/>
+              <Form.Control type="title" placeholder="Example: Holiday Cups" onChange={(e) => setItemTitle(e.target.value)}/>
             </Form.Group>
             
             <Form.Group className="mb-3">
@@ -64,7 +69,7 @@ export default function AddForm() {
               </div>
             </Form.Group>
 
-            <CButton type="submit" color="primary" id="submit" onSubmit={handleSubmit}>Submit</CButton>
+            <CButton type="button" color="primary" id="submit" onClick={handleSubmit}>Submit</CButton>
           </Form>
       </div>
 
