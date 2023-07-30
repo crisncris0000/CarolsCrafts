@@ -13,6 +13,7 @@ import ResetPassword from './Login/ResetPassword';
 import Portfolio from './Portfolio/Portfolio';
 import { useSelector } from 'react-redux';
 import NewPost from './Portfolio/NewPost';
+import ShoppingCart from './Cart/ShoppingCart';
 
 export default function Navigation() {
 
@@ -44,7 +45,7 @@ export default function Navigation() {
               <NavDropdown title = "Account"id="basic-nav-dropdown" className="dropdown">
                 {user.email === '' ? <NavDropdown.Item as={Link} to="/login">Login</NavDropdown.Item> : null}
                 {user.email !== '' ? <NavDropdown.Item href="/" onClick={handleLogout}>Logout</NavDropdown.Item> : null}
-                <NavDropdown.Item href="#">Shopping Cart</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/my-cart">Shopping Cart</NavDropdown.Item>
                 {user.email !== '' ?<NavDropdown.Item as={Link} to="/transaction-history">
                   Transaction History
                 </NavDropdown.Item> : null}
@@ -67,6 +68,7 @@ export default function Navigation() {
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/reset-password" element={<ResetPassword />}/>
         <Route path="/new-post" element={<NewPost />} />
+        <Route path="/my-cart" element={<ShoppingCart />} />
       </Routes>
     </Router>
   );
