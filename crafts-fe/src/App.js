@@ -7,6 +7,7 @@ import './css/register.css';
 import './css/transaction.css';
 import './css/dashboard.css';
 import './css/portfolio.css';
+import './css/my-cart.css';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 
