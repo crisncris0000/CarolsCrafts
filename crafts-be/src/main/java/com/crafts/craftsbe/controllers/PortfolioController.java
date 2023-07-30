@@ -1,15 +1,12 @@
 package com.crafts.craftsbe.controllers;
 
 import com.crafts.craftsbe.models.Portfolio;
-import com.crafts.craftsbe.response.JsonResponse;
 import com.crafts.craftsbe.service.PortfolioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.sound.sampled.Port;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -23,11 +20,7 @@ public class PortfolioController {
     PortfolioService portfolioService;
 
     @PostMapping("/create-post")
-    public JsonResponse newPost(@RequestParam("myImage") MultipartFile multipartFile) throws IOException {
-        JsonResponse jsonResponse = JsonResponse.builder()
-                .response("Accepted")
-                .status(HttpStatus.ACCEPTED)
-                .build();
+    public ResponseEntity<String> newPost(@RequestParam("myImage") MultipartFile multipartFile) throws IOException {
 
         byte[] fileBytes = multipartFile.getBytes();
         String mimeType = multipartFile.getContentType();
@@ -46,7 +39,7 @@ public class PortfolioController {
 
         portfolioService.savePost(portfolio);
 
-        return jsonResponse;
+        return new ResponseEntity<>("Accepted", HttpStatus.OK);
     }
 
     @GetMapping("/get-posts")
@@ -57,17 +50,11 @@ public class PortfolioController {
     }
 
     @DeleteMapping("/delete-post/{id}")
-    public JsonResponse deleteImage(@PathVariable("id") int id) {
+    public ResponseEntity<String> deleteImage(@PathVariable("id") int id) {
         Portfolio portfolio = portfolioService.findByID(id);
-
-        JsonResponse jsonResponse = JsonResponse.builder()
-                .response("Accepted")
-                .status(HttpStatus.ACCEPTED)
-                .build();
-
         portfolioService.deletePost(portfolio);
 
-        return jsonResponse;
+        return new ResponseEntity<>("Accepted", HttpStatus.OK);
     }
 
     @GetMapping("/get-post/{id}")

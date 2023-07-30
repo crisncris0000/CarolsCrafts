@@ -6,6 +6,18 @@
     flex-wrap: wrap;
 }
 
+.shopping-items .delete-btn {
+    width: 7rem;
+    height: 50px;
+    background-color: #FF928B;
+}
+
+.shopping-items .delete-btn:active {
+    width: 7rem;
+    height: 50px;
+    background-color: #b06863;
+}
+
 .card-img {
     height: 200px;
 }

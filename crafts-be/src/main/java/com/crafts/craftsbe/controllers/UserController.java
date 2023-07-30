@@ -1,7 +1,6 @@
 package com.crafts.craftsbe.controllers;
 import com.crafts.craftsbe.dto.UserDTO;
 import com.crafts.craftsbe.models.User;
-import com.crafts.craftsbe.response.JsonResponse;
 import com.crafts.craftsbe.service.AuthService;
 import com.crafts.craftsbe.service.MyUserDetailsService;
 import com.crafts.craftsbe.service.RoleService;
@@ -37,7 +36,7 @@ public class UserController {
     }
 
     @PostMapping("/create-user")
-    public JsonResponse createUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<String> createUser(@RequestBody UserDTO userDTO) {
 
         String cryptPassword = userDetailsService.cryptPassword(userDTO.getPassword(), 12);
 
@@ -54,13 +53,8 @@ public class UserController {
                 .updatedAt(timestamp)
                 .build();
 
-        JsonResponse jsonResponse = JsonResponse.builder()
-                .response("Success")
-                .status(HttpStatus.ACCEPTED)
-                .build();
-
         userService.saveUser(user);
-        return jsonResponse;
+        return new ResponseEntity<>("Accepted", HttpStatus.OK);
     }
 
     @PostMapping("/login")

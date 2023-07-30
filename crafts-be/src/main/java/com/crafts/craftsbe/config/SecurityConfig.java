@@ -36,8 +36,8 @@ public class SecurityConfig {
                             .requestMatchers("/api/users/login").permitAll()
                             .requestMatchers("/api/portfolio/get-posts").permitAll()
                             .requestMatchers("/api/portfolio/create-post").permitAll()
-                            .requestMatchers("/api/shop/add-item").permitAll();
-
+                            .requestMatchers("/api/shop/add-item").permitAll()
+                            .requestMatchers("/api/shop/get-items").permitAll();
 
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

@@ -3,6 +3,7 @@ package com.crafts.craftsbe.service.implementation;
 import com.crafts.craftsbe.models.Item;
 import com.crafts.craftsbe.repository.ItemRepository;
 import com.crafts.craftsbe.service.ItemService;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,18 @@ public class ItemServiceImpl implements ItemService {
         Item item = res.orElseThrow(() -> new EntityNotFoundException("Item not found"));
 
         itemRepository.delete(item);
+    }
+
+    @Override
+    public void saveItem(Item item) {
+        itemRepository.save(item);
+    }
+
+    @Override
+    public Item getItemById(int id) {
+
+        Optional<Item> res = itemRepository.findById(id);
+
+        return res.orElseThrow(() -> new EntityNotFoundException("Item not found"));
     }
 }
