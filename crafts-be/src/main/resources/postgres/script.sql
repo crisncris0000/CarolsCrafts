@@ -42,6 +42,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE cart (
+    id SERIAL NOT NULL,
     user_id INT NOT NULL,
     item_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id),
