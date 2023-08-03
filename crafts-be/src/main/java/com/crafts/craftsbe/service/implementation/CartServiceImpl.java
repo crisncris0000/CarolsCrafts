@@ -2,34 +2,30 @@ package com.crafts.craftsbe.service.implementation;
 
 import com.crafts.craftsbe.models.Cart;
 import com.crafts.craftsbe.models.Item;
-import com.crafts.craftsbe.repository.CartRepostiory;
+import com.crafts.craftsbe.repository.CartRepository;
 import com.crafts.craftsbe.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 import java.util.List;
 
+@Service
 public class CartServiceImpl implements CartService {
 
     @Autowired
-    CartRepostiory cartRepostiory;
+    CartRepository cartRepository;
 
     @Override
-    public List<Item> getUserItems(String username) {
-        return null;
+    public List<Cart> getUserItems(int id) {
+        return cartRepository.findUserItems(id);
     }
 
     @Override
-    public void removeItem(Item item) {
-
+    public void removeCart(Cart cart) {
+        cartRepository.delete(cart);
     }
 
     @Override
-    public void removeCart(int id) {
-
-    }
-
-    @Override
-    public Cart findByUserAndItem(int userId, int itemId) {
-        return null;
+    public void saveCart(Cart cart) {
+        cartRepository.save(cart);
     }
 }

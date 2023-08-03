@@ -29,17 +29,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception{
         http
-                .cors(Customizer.withDefaults())
-                .csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((auth) -> {
                     auth.requestMatchers("/api/users/create-user").permitAll()
                             .requestMatchers("/api/users/login").permitAll()
+                            .requestMatchers("/api/users/cart/add-to-cart").permitAll()
                             .requestMatchers("/api/portfolio/get-posts").permitAll()
                             .requestMatchers("/api/portfolio/create-post").permitAll()
                             .requestMatchers("/api/shop/add-item").permitAll()
                             .requestMatchers("/api/shop/get-items").permitAll();
 
                 })
+                .cors(Customizer.withDefaults())
+                .csrf((csrf) -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();

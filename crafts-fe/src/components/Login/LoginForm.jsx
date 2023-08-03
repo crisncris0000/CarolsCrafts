@@ -18,6 +18,7 @@ export default function LoginForm() {
     try{
       const response = await axios.post("http://localhost:8080/api/users/login", user)
       localStorage.removeItem('guestId');
+      localStorage.removeItem('guestCart');
       return response.data;
     } catch(error) {
       console.log(error);

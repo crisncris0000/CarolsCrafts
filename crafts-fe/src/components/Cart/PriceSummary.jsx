@@ -4,11 +4,13 @@ import { useSelector } from 'react-redux'
 export default function PriceSummary() {
   const guestId = localStorage.getItem('guestId');
   const cart = useSelector((state) => state.cart);
-  const [guestTotal, setGuestTotal] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
   
   useEffect(() => {
     if(guestId) {
       calculateGuestTotal(cart);
+      getGuestItemCount(cart);
     }
   }, [cart])
 
@@ -17,7 +19,18 @@ export default function PriceSummary() {
     cart.items.forEach((item) => {
         total += item.itemObject.itemPrice * item.quantity;
     });
-    setGuestTotal(total);
+    setTotalPrice(total);
+  }
+
+  function getGuestItemCount(cart) {
+    let num = 0;
+    cart.items.forEach((item) => {
+      num++;
+      if(item.quantity > 1) {
+        num += item.quantity - 1;
+      }
+    })
+    setTotalItems(num);
   }
 
   return (
@@ -26,8 +39,8 @@ export default function PriceSummary() {
             <h4>Summary</h4>
 
             <div className="summary-body">
-              <h5>Items total: {null}</h5>
-              <h5>Total Price: {guestTotal}</h5>
+              <h5>Items total: {totalItems}</h5>
+              <h5>Total Price: {totalPrice}</h5>
               <button className=''>Order</button>
             </div>
         </div>

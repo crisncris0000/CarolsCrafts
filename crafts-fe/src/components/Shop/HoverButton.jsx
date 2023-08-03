@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addItemToCart } from '../../features/cart';
@@ -5,14 +6,24 @@ import { addItemToCart } from '../../features/cart';
 export default function HoverButton({ defaultText, hoveredText, itemObject }) {
   const [isHovered, setIsHovered] = useState(false);
   const dispatch = useDispatch();
+  
   const cart = useSelector(state => state.cart);
-
+  const user = useSelector(state => state.user.value);
+  const guest = localStorage.getItem('guestId');
+  
   useEffect(() => {
     localStorage.setItem('guestCart', JSON.stringify(cart.items));
   }, [cart]);
 
   const handleAddToCart = () => {
-    dispatch(addItemToCart({itemObject, quantity: 1}));
+    if(guest) {
+      dispatch(addItemToCart({itemObject, quantity: 1}));
+    } else {
+        axios.post(`http://localhost:8080/api/users/cart/add-to-cart/${user.id}/${itemObject.id}`)
+        .then((response) => {
+            console.log(response);
+        }).catch((error) => console.log(error));
+    }
   }
 
   return (

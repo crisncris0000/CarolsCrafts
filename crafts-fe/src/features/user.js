@@ -12,7 +12,7 @@ let guestId = localStorage.getItem('guestId');
 if(storedToken) {
     const decodedToken = jwtDecode(storedToken);
     userObject = {
-        userId: decodedToken.userId,
+        id: decodedToken.userId,
         firstName: decodedToken.firstName,
         lastName: decodedToken.lastName,
         email: decodedToken.sub,
@@ -26,6 +26,7 @@ if(storedToken) {
 
 } else {
     userObject = {
+        id: -1,
         firstName: '',
         lastName: '',
         email: '',

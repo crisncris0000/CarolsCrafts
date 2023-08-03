@@ -7,12 +7,13 @@ import java.util.List;
 
 public interface CartService {
 
-    List<Item> getUserItems(String username);
+    List<Cart> getUserItems(int id);
 
-    void removeItem(Item item);
+    void removeCart(Cart cart);
 
-    void removeCart(int id);
+    void saveCart(Cart cart);
 
-    Cart findByUserAndItem(int userId, int itemId);
+
+
 
 }
