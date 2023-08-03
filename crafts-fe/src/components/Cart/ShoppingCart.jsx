@@ -1,13 +1,18 @@
 import React from 'react';
-import CakeTopper from '../../images/cake-topper.png'
+import { useSelector } from 'react-redux';
+import GuestHeader from './GuestHeader';
 import ItemList from './ItemList';
-import Summary from './Summary';
+import PriceSummary from './PriceSummary';
 
 export default function ShoppingCart() {
+  const user = useSelector((state) => state.user.value);
+  const cart = useSelector((state) => state.cart);
   return (
     <div className="cart-container">
+        <GuestHeader />
         <ItemList />
-        <Summary />
+
+        <PriceSummary />
     </div>
   )
 }

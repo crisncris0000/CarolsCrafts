@@ -6,12 +6,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {configureStore} from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import userReducer from './features/user';
-
+import cartReducer from './features/cart';
 const store = configureStore({
   reducer: {
     user: userReducer,
+    cart: cartReducer,
   },
-
 });
 
 

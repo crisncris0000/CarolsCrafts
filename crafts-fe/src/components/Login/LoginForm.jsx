@@ -17,6 +17,7 @@ export default function LoginForm() {
   const sendUser = async (user) => {
     try{
       const response = await axios.post("http://localhost:8080/api/users/login", user)
+      localStorage.removeItem('guestId');
       return response.data;
     } catch(error) {
       console.log(error);

@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/shop")
-public class ShoppingContainer {
+public class ShoppingController {
 
     @Autowired
     ItemService itemService;

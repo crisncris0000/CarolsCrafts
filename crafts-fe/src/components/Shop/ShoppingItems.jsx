@@ -14,7 +14,7 @@ export default function ShoppingItems() {
       .then((response) => setItems(response.data))
       .catch(error => console.log(error));
       
-  }, [])
+  }, []);
 
   return (
     <>
@@ -27,13 +27,12 @@ export default function ShoppingItems() {
             <CCardText>
               {item.itemDescription}
             </CCardText>
-            <HoverButton defaultText={`$${item.itemPrice}`} hoveredText='Add to cart'/>
+            <HoverButton defaultText={`$${item.itemPrice}`} hoveredText='Add to cart' itemObject={item}/>
             {user.role === 'ADMIN' ? <button className='delete-btn'><img src={Delete} alt="delete icon" id="delete"/></button> : null}
           </CCardBody>
         </CCard>
         ))}
       </div>
-      
     </>
   )
 }

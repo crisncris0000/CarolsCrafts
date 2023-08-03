@@ -1,4 +1,4 @@
-\c CarolsCrafts;
+\connect CarolsCrafts;
 
 DROP TABLE IF EXISTS cart;
 DROP TABLE IF EXISTS portfolio;
@@ -20,6 +20,7 @@ CREATE TABLE items (
     mime_type VARCHAR(255) NOT NULL,
     item_title VARCHAR(255) NOT NULL,
     item_description TEXT NOT NULL,
+    item_price FLOAT NOT NULL,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL
 );
@@ -45,6 +46,7 @@ CREATE TABLE cart (
     id SERIAL NOT NULL,
     user_id INT NOT NULL,
     item_id INT NOT NULL,
+    quantity INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id),
     FOREIGN KEY (item_id) REFERENCES items (id)
 );

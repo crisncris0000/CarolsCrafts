@@ -6,7 +6,7 @@ import Home from './Home/Home';
 import Shopping from './Shop/Shopping';
 import AddForm from '../components/Shop/AddForm';
 import LoginForm from './Login/LoginForm';
-import RegisterForm from './Register/RegisterForm';
+import RegisterForm from './Login/RegisterForm';
 import Transaction from './Transaction/TransactionHistory';
 import Dashboard from './Dashboard/Dashboard';
 import ResetPassword from './Login/ResetPassword';

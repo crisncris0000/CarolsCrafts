@@ -1,6 +1,6 @@
 import React from 'react'
-import CakeTopper from '../../images/cake-topper.png';
-import {CTable, CTableRow, CTableHeaderCell, CTableHead, CTableBody, CTableDataCell} from '@coreui/react';
+import { CTable, CTableRow, CTableHeaderCell, CTableHead, CTableBody } from '@coreui/react';
+import GuestView from './GuestView';
 
 export default function ItemList() {
   return (
@@ -20,24 +20,7 @@ export default function ItemList() {
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
-                    <CTableRow active>
-                      <CTableHeaderCell scope="row">
-                        <img src={CakeTopper} className="cart-img"/>
-                      </CTableHeaderCell>
-                      <CTableDataCell>Item Name</CTableDataCell>
-                      <CTableDataCell>$55.90</CTableDataCell>
-                      <CTableDataCell>3</CTableDataCell>
-                      <CTableDataCell><button>Delete</button></CTableDataCell>
-                    </CTableRow>
-                    <CTableRow active>
-                      <CTableHeaderCell scope="row">
-                        <img src={CakeTopper} className="cart-img"/>
-                      </CTableHeaderCell>
-                      <CTableDataCell>Item Name</CTableDataCell>
-                      <CTableDataCell>$55.90</CTableDataCell>
-                      <CTableDataCell>3</CTableDataCell>
-                      <CTableDataCell><button>Delete</button></CTableDataCell>
-                    </CTableRow>
+                    <GuestView />
                   </CTableBody>
                 </CTable>
                 </div>

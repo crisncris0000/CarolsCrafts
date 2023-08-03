@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { CButton } from '@coreui/react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 export default function AddForm() {
   const [label, setLabel] = useState('Select your image');
   const [previewSrc, setPreviewSrc] = useState('');
@@ -9,6 +11,7 @@ export default function AddForm() {
   const [description, setDescription] = useState('');
   const [selectedFile, setSelectedFile] = useState('');
   const [price, setPrice] = useState(0);
+  const navigate = useNavigate();
   
   const fileChangedHandler = (event) => {
     const file = event.target.files[0];
@@ -42,6 +45,7 @@ export default function AddForm() {
     })
     .then((response) => {
       console.log(response.data);
+      navigate('/shop');
     }).catch((error) => {
       console.log(error);
     })
