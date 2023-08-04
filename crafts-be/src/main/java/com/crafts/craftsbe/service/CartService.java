@@ -13,6 +13,8 @@ public interface CartService {
 
     void saveCart(Cart cart);
 
+    Cart getCartById(int id);
+
 
 
 

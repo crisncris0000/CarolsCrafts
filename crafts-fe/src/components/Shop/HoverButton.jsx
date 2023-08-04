@@ -16,15 +16,20 @@ export default function HoverButton({ defaultText, hoveredText, itemObject }) {
   }, [cart]);
 
   const handleAddToCart = () => {
-    if(guest) {
-      dispatch(addItemToCart({itemObject, quantity: 1}));
+    if (guest) {
+      dispatch(addItemToCart({ itemObject, quantity: 1 }));
     } else {
-        axios.post(`http://localhost:8080/api/users/cart/add-to-cart/${user.id}/${itemObject.id}`)
+      axios
+        .post(
+          "http://localhost:8080/api/users/cart/add-to-cart",
+          { userId: user.id, itemId: itemObject.id }
+        )
         .then((response) => {
-            console.log(response);
+          console.log(response);
         }).catch((error) => console.log(error));
     }
-  }
+  };
+  
 
   return (
     <>

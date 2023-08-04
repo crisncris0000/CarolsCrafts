@@ -33,6 +33,8 @@ public class SecurityConfig {
                     auth.requestMatchers("/api/users/create-user").permitAll()
                             .requestMatchers("/api/users/login").permitAll()
                             .requestMatchers("/api/users/cart/add-to-cart").permitAll()
+                            .requestMatchers("/api/users/cart/user-cart").permitAll()
+                            .requestMatchers("/api/users/cart/remove-cart").permitAll()
                             .requestMatchers("/api/portfolio/get-posts").permitAll()
                             .requestMatchers("/api/portfolio/create-post").permitAll()
                             .requestMatchers("/api/shop/add-item").permitAll()

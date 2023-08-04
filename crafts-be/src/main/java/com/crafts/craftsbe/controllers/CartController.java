@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users/cart")
@@ -26,29 +27,43 @@ public class CartController {
     @Autowired
     ItemService itemService;
 
-    @GetMapping("/user-cart/{id}")
+    @GetMapping("/user-cart")
     public ResponseEntity<List<Cart>> getUserCart(@RequestParam("id") int id) {
         List<Cart> cartList = cartService.getUserItems(id);
 
         return new ResponseEntity<>(cartList, HttpStatus.OK);
     }
 
-    @PostMapping("/add-to-cart/{userId}/{itemId}")
-    public ResponseEntity<String> saveCart(@RequestParam int userId, @RequestParam int itemId) {
+    @PostMapping("/add-to-cart")
+    public ResponseEntity<String> saveCart(@RequestBody Map<String, Integer> ids) {
+
+        int userId = ids.get("userId");
+        int itemId = ids.get("itemId");
 
         User user = userService.getUserById(userId);
         Item item = itemService.getItemById(itemId);
 
         Cart cart = Cart.builder().
-                        user(user).
-                        item(item).
-                        quantity(1).
-                        build();
+                user(user).
+                item(item).
+                quantity(1).
+                build();
 
         cartService.saveCart(cart);
 
         return new ResponseEntity<>("Accepted", HttpStatus.OK);
     }
+
+    @DeleteMapping("/remove-cart")
+    public ResponseEntity<String> removeCart(@RequestParam("id") int id) {
+
+        Cart cart = cartService.getCartById(id);
+
+        cartService.removeCart(cart);
+
+        return new ResponseEntity<>("Accepted", HttpStatus.OK);
+    }
+
 
 
 }

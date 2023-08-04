@@ -1,8 +1,18 @@
 import React from 'react'
 import { CTable, CTableRow, CTableHeaderCell, CTableHead, CTableBody } from '@coreui/react';
 import GuestView from './GuestView';
+import UserView from './UserView';
+import { useSelector } from 'react-redux';
 
 export default function ItemList() {
+
+  const view = {
+    userView: <UserView />,
+    guestView: <GuestView />
+  }
+
+  const user = useSelector(state => state.user.value);
+
   return (
         <div className="my-cart">
             <h3>Cart - 0 items</h3>
@@ -20,7 +30,7 @@ export default function ItemList() {
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
-                    <GuestView />
+                    {user.isGuest ? view.guestView : view.userView}
                   </CTableBody>
                 </CTable>
                 </div>

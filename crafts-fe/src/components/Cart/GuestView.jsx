@@ -10,14 +10,6 @@ export default function GuestView() {
     const handleRemove = (itemToRemove) => {
         dispatch(removeItemFromCart(itemToRemove));
     }
-
-    function calculateTotal() {
-        let total = 0;
-        cart.items.forEach((item) => {
-            total += item.itemObject.itemPrice * item.quantity;
-        });
-        return total;
-    }
     
     return (
         <>
