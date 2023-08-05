@@ -15,7 +15,7 @@ public interface CartService {
 
     Cart getCartById(int id);
 
-
+    Cart getCart(int userId, int itemId);
 
 
 }

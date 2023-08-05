@@ -18,7 +18,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<Cart> getUserItems(int id) {
-        return cartRepository.findUserItems(id);
+        return cartRepository.getUserItems(id);
     }
 
     @Override
@@ -36,5 +36,11 @@ public class CartServiceImpl implements CartService {
         Optional<Cart> res = cartRepository.findById(id);
 
         return res.orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+    }
+
+    @Override
+    public Cart getCart(int userId, int itemId) {
+
+        return cartRepository.getCartByUserAndItemId(userId, itemId);
     }
 }

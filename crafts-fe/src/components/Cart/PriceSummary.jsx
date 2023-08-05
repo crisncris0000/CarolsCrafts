@@ -1,8 +1,10 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 export default function PriceSummary() {
   const guestId = localStorage.getItem('guestId');
+  const user = useSelector(state => state.user.value);
   const cart = useSelector((state) => state.cart);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
@@ -11,6 +13,8 @@ export default function PriceSummary() {
     if(guestId) {
       calculateGuestTotal(cart);
       getGuestItemCount(cart);
+    } else {
+      getUserTotal(user);
     }
   }, [cart])
 
@@ -33,14 +37,19 @@ export default function PriceSummary() {
     setTotalItems(num);
   }
 
+  function getUserTotal(user) {
+    axios.get(`http://localhost:8080/api/users/cart/get-total?id=${user.id}`)
+        .then(response => setTotalPrice(response.data))
+        .catch(error => console.log(error));
+  }
+
   return (
     <>
         <div className="summary-container">
             <h4>Summary</h4>
-
             <div className="summary-body">
               <h5>Items total: {totalItems}</h5>
-              <h5>Total Price: {totalPrice}</h5>
+              <h5>Total Price: ${totalPrice}</h5>
               <button className=''>Order</button>
             </div>
         </div>

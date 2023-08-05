@@ -34,6 +34,20 @@ public class CartController {
         return new ResponseEntity<>(cartList, HttpStatus.OK);
     }
 
+    @GetMapping("/get-total")
+    public ResponseEntity<Float> getUserTotal(@RequestParam("id") int id) {
+        float total = 0;
+
+        List<Cart> cartList = cartService.getUserItems(id);
+
+        for (Cart cart : cartList) {
+            float price = cart.getItem().getItemPrice() * cart.getQuantity();
+            total += price;
+        }
+
+        return new ResponseEntity<>(total, HttpStatus.OK);
+    }
+
     @PostMapping("/add-to-cart")
     public ResponseEntity<String> saveCart(@RequestBody Map<String, Integer> ids) {
 
@@ -43,15 +57,21 @@ public class CartController {
         User user = userService.getUserById(userId);
         Item item = itemService.getItemById(itemId);
 
-        Cart cart = Cart.builder().
-                user(user).
-                item(item).
-                quantity(1).
-                build();
+        Cart cart = cartService.getCart(userId, itemId);
+
+        if(cart == null) {
+            cart = Cart.builder()
+                    .user(user)
+                    .item(item)
+                    .quantity(1)
+                    .build();
+        } else {
+            int quantity = cart.getQuantity();
+            cart.setQuantity(quantity + 1);
+        }
 
         cartService.saveCart(cart);
-
-        return new ResponseEntity<>("Accepted", HttpStatus.OK);
+        return new ResponseEntity<>("Added new Cart", HttpStatus.OK);
     }
 
     @DeleteMapping("/remove-cart")
@@ -59,10 +79,18 @@ public class CartController {
 
         Cart cart = cartService.getCartById(id);
 
-        cartService.removeCart(cart);
+        if(cart.getQuantity() > 1) {
+            int quantity = cart.getQuantity();
+            cart.setQuantity(quantity - 1);
+            cartService.saveCart(cart);
+        } else {
+            cartService.removeCart(cart);
+        }
 
         return new ResponseEntity<>("Accepted", HttpStatus.OK);
     }
+
+
 
 
 
