@@ -2,7 +2,7 @@ import React from 'react';
 import OrderSummary from './OrderSummary';
 import Transaction from '../Transaction/TransactionHistory';
 import { useSelector } from 'react-redux';
-import Unauthorized from '../Unauthorized/Unauthorized';
+import Unauthorized from '../Messages/Unauthorized';
 
 
 export default function Dashboard() {

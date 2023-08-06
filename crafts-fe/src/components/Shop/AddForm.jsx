@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { CButton } from '@coreui/react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import Success from '../Messages/Success';
 
 export default function AddForm() {
   const [label, setLabel] = useState('Select your image');
@@ -11,10 +11,11 @@ export default function AddForm() {
   const [description, setDescription] = useState('');
   const [selectedFile, setSelectedFile] = useState('');
   const [price, setPrice] = useState(0);
-  const navigate = useNavigate();
+  const [success, setSuccess] = useState(false);
   
   const fileChangedHandler = (event) => {
     const file = event.target.files[0];
+
 
     if (!file) {
         return;
@@ -45,14 +46,25 @@ export default function AddForm() {
     })
     .then((response) => {
       console.log(response.data);
-      navigate('/shop');
+      setSuccess(true);
     }).catch((error) => {
       console.log(error);
     })
   }
 
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => {
+        setSuccess(false);
+      }, 300);
+
+      return () => clearTimeout(timer); 
+    }
+  }, [success]);
+
   return (
     <>
+      {success ? <Success message={"Successfully added a new item"}/> : null}
       <div className="form-container">
         <h3 id="form-header">Add new Item</h3>
           <Form className="add-form">

@@ -2,34 +2,41 @@ import React, { useEffect, useState } from 'react';
 
 export default function PriceSummary( {cart, user} ) {
 
-  const [total, setTotal] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
 
   useEffect(() => {
     if(!user.isGuest) {
-      handleUserPrice();
+      handleUserCart();
     } else {
-      handleGuestPrice();
+      handleGuestCart();
     }
 
   }, [cart])
 
 
-  function handleUserPrice() {
+  function handleUserCart() {
     let price = 0;
+    let count = 0;
     cart.map((cart) => {
       price += cart.item.itemPrice * cart.quantity;
+      count += cart.quantity;
     })
-    setTotal(price);
+    setTotalPrice(price);
+    setTotalItems(count);
   }
 
-  function handleGuestPrice() {
+  function handleGuestCart() {
     let price = 0;
+    let count = 0;
   
     cart.items.forEach(item => {
       price += item.itemObject.itemPrice * item.quantity;
+      count += item.quantity;
     });
     
-    setTotal(price);
+    setTotalPrice(price);
+    setTotalItems(count);
   }
 
   return (
@@ -37,8 +44,8 @@ export default function PriceSummary( {cart, user} ) {
       <div className="summary-container">
           <h4>Summary</h4>
           <div className="summary-body">
-            <h5>Items total: {0}</h5>
-            <h5>Total Price: ${total}</h5>
+            <h5>Items total: {totalItems}</h5>
+            <h5>Total Price: ${totalPrice}</h5>
             <button className=''>Order</button>
           </div>
       </div>
