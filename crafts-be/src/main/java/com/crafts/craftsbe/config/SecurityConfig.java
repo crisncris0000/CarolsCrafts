@@ -34,7 +34,6 @@ public class SecurityConfig {
                             .requestMatchers("/api/users/login").permitAll()
                             .requestMatchers("/api/users/cart/add-to-cart").permitAll()
                             .requestMatchers("/api/users/cart/user-cart").permitAll()
-                            .requestMatchers("/api/users/cart/get-total").permitAll()
                             .requestMatchers("/api/users/cart/remove-cart").permitAll()
                             .requestMatchers("/api/portfolio/get-posts").permitAll()
                             .requestMatchers("/api/portfolio/create-post").permitAll()

@@ -34,20 +34,6 @@ public class CartController {
         return new ResponseEntity<>(cartList, HttpStatus.OK);
     }
 
-    @GetMapping("/get-total")
-    public ResponseEntity<Float> getUserTotal(@RequestParam("id") int id) {
-        float total = 0;
-
-        List<Cart> cartList = cartService.getUserItems(id);
-
-        for (Cart cart : cartList) {
-            float price = cart.getItem().getItemPrice() * cart.getQuantity();
-            total += price;
-        }
-
-        return new ResponseEntity<>(total, HttpStatus.OK);
-    }
-
     @PostMapping("/add-to-cart")
     public ResponseEntity<String> saveCart(@RequestBody Map<String, Integer> ids) {
 

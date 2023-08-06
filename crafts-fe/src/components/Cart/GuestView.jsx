@@ -1,11 +1,10 @@
 import React from 'react';
 import { CTableRow, CTableHeaderCell, CTableDataCell } from '@coreui/react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { removeItemFromCart } from '../../features/cart';
 
-export default function GuestView() {
+export default function GuestView( {guestCart} ) {
     const dispatch = useDispatch();
-    const cart = useSelector((state) => state.cart);
 
     const handleRemove = (itemToRemove) => {
         dispatch(removeItemFromCart(itemToRemove));
@@ -13,7 +12,7 @@ export default function GuestView() {
     
     return (
         <>
-            {cart.items.map((item) => (
+            {guestCart.items.map((item) => (
                 <CTableRow active key={item.itemObject.id}>
                 <CTableHeaderCell scope="row">
                     <img src={`data:${item.itemObject.mimeType};base64,${item.itemObject.imageData}`} className="cart-img"/>

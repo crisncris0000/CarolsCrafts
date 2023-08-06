@@ -1,7 +1,6 @@
 package com.crafts.craftsbe.service.implementation;
 
 import com.crafts.craftsbe.models.Cart;
-import com.crafts.craftsbe.models.Item;
 import com.crafts.craftsbe.repository.CartRepository;
 import com.crafts.craftsbe.service.CartService;
 import jakarta.persistence.EntityNotFoundException;

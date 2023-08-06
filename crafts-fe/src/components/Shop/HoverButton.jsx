@@ -10,7 +10,7 @@ export default function HoverButton({ defaultText, hoveredText, itemObject }) {
   const cart = useSelector(state => state.cart);
   const user = useSelector(state => state.user.value);
   const guest = localStorage.getItem('guestId');
-  
+
   useEffect(() => {
     localStorage.setItem('guestCart', JSON.stringify(cart.items));
   }, [cart]);
