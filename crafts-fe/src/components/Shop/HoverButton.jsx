@@ -15,6 +15,8 @@ export default function HoverButton({ defaultText, hoveredText, itemObject }) {
     localStorage.setItem('guestCart', JSON.stringify(cart.items));
   }, [cart]);
 
+  console.log(cart);
+
   const handleAddToCart = () => {
     if (guest) {
       dispatch(addItemToCart({ itemObject, quantity: 1 }));

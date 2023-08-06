@@ -21,7 +21,7 @@ export default function ShoppingCart() {
         }).catch((error) => {
             console.log(error);
         })
-    }, [userCart]);
+    }, [user, userCart, guestCart]);
 
 
 
@@ -56,7 +56,7 @@ export default function ShoppingCart() {
             </div>
         </div>
 
-        <PriceSummary cart={userCart}/>
+        <PriceSummary cart={user.isGuest ? guestCart : userCart} user={user}/>
     </div>
   )
 }

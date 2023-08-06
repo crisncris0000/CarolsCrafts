@@ -7,13 +7,12 @@ const cartSlice = createSlice({
     },
     reducers: {
         addItemToCart(state, action) {
+          const existingItem = state.items.find(item => item.itemObject.id === action.payload.itemObject.id);
 
-            const existingItem = state.items.find(item => item.itemObject.id === action.payload.itemObject.id);
-
-            if(existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                state.items.push(action.payload);
+          if(existingItem) {
+            existingItem.quantity += 1;
+          } else {
+            state.items.push(action.payload);
             }
 
             localStorage.setItem('guestCart', JSON.stringify(state.items));
