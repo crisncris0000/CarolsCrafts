@@ -16,4 +16,6 @@ public interface UserService {
     Role getUserRole(User user);
 
     void saveUser(User user);
+
+    boolean userExist(String username);
 }

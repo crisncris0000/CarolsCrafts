@@ -1,25 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CForm, CFormLabel, CFormInput, CButton } from '@coreui/react';
 import axios from 'axios';
+import Error from '../Messages/Error';
 
 export default function RegisterForm() {
     const [firstName, setFirstname] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [displayError, setDisplayError] = useState(false);
 
     const sendUser = (user) => {
         axios.post("http://localhost:8080/api/users/create-user", user)
         .then((response) => {
            console.log(response.data);
         }).catch((error) => {
-          console.log(error);
+          setError(error.response.data);
+          setDisplayError(true);
         })
     }
 
+    useEffect(() => {
+        if (displayError) {
+          const timer = setTimeout(() => {
+            setDisplayError(false);
+          }, 2000);
+    
+          return () => clearTimeout(timer); 
+        }
+      }, [displayError]);
+
   return (
 
-    <>        
+    <>
+        {displayError ? <Error message={error}/> : null}
         <div className="register-container">
 
             <div className="header-container">

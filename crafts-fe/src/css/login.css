@@ -6,15 +6,12 @@
 .login-container{
   margin-left: auto;
   margin-right: auto;
-  margin-top: 150px;
-  
+  margin-top: 100px;
   height: 650px;
   width: 70vw;
 
   background-color: rgba(211, 211, 211, 0.623);
-
   border: 2px solid black;
-  
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -26,7 +23,6 @@
 
 .login-container input {
   background-color: rgb(211, 211, 211);
-
   height: 30px;
   margin-top: 50px;
 }
@@ -34,7 +30,6 @@
 .login-container label img{
   height: 40px;
   width: 40px;
-
   margin-right: 20px;
   margin-top: -15px;
 }
@@ -46,10 +41,8 @@ a:hover{
 .login-container button{
   width: 100px;
   height: 30px;
-
   margin-top: 70px;
   margin-left: 30px;
-
   background-color: pink;
 }
 

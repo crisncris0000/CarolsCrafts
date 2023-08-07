@@ -11,10 +11,15 @@ export default function ShoppingItems() {
 
   useEffect(() => {
       axios.get('http://localhost:8080/api/shop/get-items')
-      .then((response) => setItems(response.data))
-      .catch(error => console.log(error));
-      
-  }, []);
+        .then((response) => setItems(response.data))
+        .catch(error => console.log(error));
+  }, [items]);
+
+  function handleDelete(itemId) {
+    axios.delete(`http://localhost:8080/api/shop/delete-item?id=${itemId}`)
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error));
+  }
 
   return (
     <>
@@ -28,7 +33,7 @@ export default function ShoppingItems() {
               {item.itemDescription}
             </CCardText>
             <HoverButton defaultText={`$${item.itemPrice}`} hoveredText='Add to cart' itemObject={item}/>
-            {user.role === 'ADMIN' ? <button className='delete-btn'><img src={Delete} alt="delete icon" id="delete"/></button> : null}
+            {user.role === 'ADMIN' ? <button type="button" className='delete-btn' onClick={() => handleDelete(item.id)}><img src={Delete} alt="delete icon" id="delete"/></button> : null}
           </CCardBody>
         </CCard>
         ))}

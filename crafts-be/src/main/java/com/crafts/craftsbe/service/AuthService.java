@@ -1,6 +1,7 @@
 package com.crafts.craftsbe.service;
 
 import com.crafts.craftsbe.models.User;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ public class AuthService {
     public ResponseEntity<?> login(String username, String password) {
 
         User user = userService.getUserByUsername(username);
+
         Boolean loginSuccessful = validateCredentials(password, user.getPassword());
 
         if(loginSuccessful) {
@@ -26,7 +28,7 @@ public class AuthService {
             return ResponseEntity.ok(jwt);
         }
 
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Password is not valid");
     }
 
 

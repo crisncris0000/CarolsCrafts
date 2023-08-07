@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
         Optional<User> res = userRepository.findByUsername(username);
 
         return res.orElseThrow(() ->
-                new EntityNotFoundException("User with the username " + username + " not found"));
+                new EntityNotFoundException("User with the email " + username + " not found"));
     }
 
     @Override
@@ -48,5 +48,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(User user) {
         userRepository.save(user);
+    }
+
+    @Override
+    public boolean userExist(String username) {
+
+        Optional<User> user = userRepository.findByUsername(username);
+
+        return user.isPresent();
     }
 }
