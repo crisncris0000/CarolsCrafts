@@ -39,7 +39,7 @@ public class PortfolioController {
 
         portfolioService.savePost(portfolio);
 
-        return new ResponseEntity<>("Accepted", HttpStatus.OK);
+        return new ResponseEntity<>("Added new post", HttpStatus.OK);
     }
 
     @GetMapping("/get-posts")
