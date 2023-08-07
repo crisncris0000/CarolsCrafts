@@ -74,3 +74,12 @@
 .custom-file-upload label:hover {
     background-color: #45a049;
 }
+
+.form-container button {
+    background-color: #FF928B;
+}
+
+.preview-img {
+    height: 50vw;
+    width: 50vw;
+}

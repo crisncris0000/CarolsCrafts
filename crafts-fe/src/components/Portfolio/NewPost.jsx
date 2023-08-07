@@ -48,13 +48,13 @@ export default function NewPost() {
                         <label htmlFor="file-upload">{label}</label>
                     </div>
 
-                <button type="button" className="submit" onClick={submitHandler}>Submit</button>
+                <button type="button" className="submit" onClick={submitHandler} id="submit">Submit</button>
                 </form> 
             </div>
             
             <div className="preview-container" style={{marginTop: "100px"}}>
                 <h3>Image preview</h3>
-                {previewSrc !== null ? <img src={previewSrc} /> : null}
+                {previewSrc !== null ? <img src={previewSrc} className="preview-img"/> : null}
             </div>
       </>
     )

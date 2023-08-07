@@ -96,7 +96,7 @@ export default function AddForm() {
 
       <div className="preview-container" style={{marginTop: "100px"}}>
                 <h3>Image preview</h3>
-                {previewSrc !== null ? <img src={previewSrc} alt="Preview image"/> : null}
+                {previewSrc !== null ? <img src={previewSrc} alt="Preview image" className="preview-img"/> : null}
       </div>
     </>
   )
