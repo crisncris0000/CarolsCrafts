@@ -2,12 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 400px;
-  margin: 0 auto;
+  max-width: 60em;
+  margin: 5rem auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  background-color: #f7f7f7;
 }
 
 .payment-form input {
@@ -36,7 +35,18 @@
   background-color: #0062cc;
 }
 
+.payment-form button:active {
+  background-color: #06478d;
+}
+
 .payment-form button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+.card-payment-container {
+  background-color: #f8f9fa; 
+  padding: 10px; 
+  margin: 10px 0;
+  width: 100%;
 }
