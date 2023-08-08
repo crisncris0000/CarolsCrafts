@@ -40,7 +40,7 @@ public class SecurityConfig {
                             .requestMatchers("/api/portfolio/delete-post").permitAll()
                             .requestMatchers("/api/shop/add-item").permitAll()
                             .requestMatchers("/api/shop/get-items").permitAll()
-                            .requestMatchers("/api/shop/delete-item").permitAll();
+                            .requestMatchers("/api/shop/delete-item").permitAll()
                             .requestMatchers("/api/stripe/create-customer").permitAll();
                 })
                 .cors(Customizer.withDefaults())
@@ -53,9 +53,10 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000/"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+        configuration.setExposedHeaders(Arrays.asList("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -73,6 +74,4 @@ public class SecurityConfig {
 
         return provider;
     }
-
 }
-

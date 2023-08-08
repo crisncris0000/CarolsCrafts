@@ -41,7 +41,15 @@ export default function PriceSummary( {cart, user} ) {
   }
 
   function hanldeOrder() {
-    axios.get("http://localhost:8080/api/stripe/create-customer")
+    const userObj = {
+      firstName: user.firstName,
+      lastName: user.lastName, 
+      email: user.email,
+      password: null, 
+    }
+
+
+    axios.post("http://localhost:8080/api/stripe/create-customer", userObj)
         .then(response => console.log(response))
         .catch(error => console.log(error))
   }
@@ -53,7 +61,7 @@ export default function PriceSummary( {cart, user} ) {
           <div className="summary-body">
             <h5>Items total: {totalItems}</h5>
             <h5>Total Price: ${totalPrice}</h5>
-            <button onClick={() => hanldeOrder}>Order</button>
+            <button onClick={hanldeOrder}>Order</button>
           </div>
       </div>
     </>
