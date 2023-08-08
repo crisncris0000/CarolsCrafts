@@ -1,6 +1,7 @@
 package com.crafts.craftsbe.controllers;
 
 import com.crafts.craftsbe.dto.UserDTO;
+import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Customer;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,9 +25,10 @@ public class StripePaymentControllerAPI {
         params.put("name", userDTO.getFirstName() + " " + userDTO.getLastName());
         params.put("email", userDTO.getEmail());
 
+        Stripe.apiKey = API_KEY;
         Customer customer = Customer.create(params);
 
-        System.out.println(customer.getId());
+        System.out.println(customer);
 
         return new ResponseEntity<>("Test", HttpStatus.OK);
     }

@@ -25,7 +25,7 @@ export default function NewPost() {
         return () => URL.revokeObjectURL(objectURL);
     }
 
-    const submitHandler = async (e) => {
+    const submitHandler = async () => {
         try {
             const formData = new FormData();
             formData.append('myImage', selectedFile);

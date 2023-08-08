@@ -1,10 +1,11 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import PaymentProcess from '../Payment/PaymentProcess';
 
 export default function PriceSummary( {cart, user} ) {
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     if(!user.isGuest) {
@@ -40,18 +41,12 @@ export default function PriceSummary( {cart, user} ) {
     setTotalItems(count);
   }
 
-  function hanldeOrder() {
-    const userObj = {
-      firstName: user.firstName,
-      lastName: user.lastName, 
-      email: user.email,
-      password: null, 
-    }
+  function handleOpen() {
+    setModalOpen(true);
+  }
 
-
-    axios.post("http://localhost:8080/api/stripe/create-customer", userObj)
-        .then(response => console.log(response))
-        .catch(error => console.log(error))
+  function handleClose() {
+    setModalOpen(false);
   }
 
   return (
@@ -61,7 +56,8 @@ export default function PriceSummary( {cart, user} ) {
           <div className="summary-body">
             <h5>Items total: {totalItems}</h5>
             <h5>Total Price: ${totalPrice}</h5>
-            <button onClick={hanldeOrder}>Order</button>
+            <button onClick={handleOpen}>Order</button>
+            {isModalOpen && <PaymentProcess isOpen={isModalOpen} onClose={handleClose}/>}
           </div>
       </div>
     </>
