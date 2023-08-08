@@ -56,7 +56,7 @@ export default function AddForm() {
     if (success) {
       const timer = setTimeout(() => {
         setSuccess(false);
-      }, 300);
+      }, 1000);
 
       return () => clearTimeout(timer); 
     }

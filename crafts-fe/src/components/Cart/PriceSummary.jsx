@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 export default function PriceSummary( {cart, user} ) {
@@ -39,6 +40,12 @@ export default function PriceSummary( {cart, user} ) {
     setTotalItems(count);
   }
 
+  function hanldeOrder() {
+    axios.get("http://localhost:8080/api/stripe/create-customer")
+        .then(response => console.log(response))
+        .catch(error => console.log(error))
+  }
+
   return (
     <>
       <div className="summary-container">
@@ -46,7 +53,7 @@ export default function PriceSummary( {cart, user} ) {
           <div className="summary-body">
             <h5>Items total: {totalItems}</h5>
             <h5>Total Price: ${totalPrice}</h5>
-            <button className=''>Order</button>
+            <button onClick={() => hanldeOrder}>Order</button>
           </div>
       </div>
     </>

@@ -58,9 +58,9 @@ public class ShoppingController {
 
     @DeleteMapping("/delete-item")
     public ResponseEntity<String> deleteItem(@RequestParam("id") int id) {
-
-
         return new ResponseEntity<>("Accepted", HttpStatus.OK);
     }
+
+
 
 }
