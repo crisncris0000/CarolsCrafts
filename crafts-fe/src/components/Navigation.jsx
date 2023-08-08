@@ -14,6 +14,7 @@ import Portfolio from './Portfolio/Portfolio';
 import { useSelector } from 'react-redux';
 import NewPost from './Portfolio/NewPost';
 import ShoppingCart from './Cart/ShoppingCart';
+import PaymentProcess from './Payment/PaymentProcess';
 
 export default function Navigation() {
 
@@ -69,6 +70,7 @@ export default function Navigation() {
         <Route path="/reset-password" element={<ResetPassword />}/>
         <Route path="/new-post" element={<NewPost />} />
         <Route path="/my-cart" element={<ShoppingCart />} />
+        <Route path="/checkout" element={<PaymentProcess />} />
       </Routes>
     </Router>
   );

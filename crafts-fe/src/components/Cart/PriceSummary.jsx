@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import PaymentProcess from '../Payment/PaymentProcess';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function PriceSummary( {cart, user} ) {
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
-  const [isModalOpen, setModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if(!user.isGuest) {
@@ -41,12 +41,8 @@ export default function PriceSummary( {cart, user} ) {
     setTotalItems(count);
   }
 
-  function handleOpen() {
-    setModalOpen(true);
-  }
-
-  function handleClose() {
-    setModalOpen(false);
+  const goToCheckout = () => {
+    navigate("/checkout", {state: {totalPrice}})
   }
 
   return (
@@ -56,8 +52,7 @@ export default function PriceSummary( {cart, user} ) {
           <div className="summary-body">
             <h5>Items total: {totalItems}</h5>
             <h5>Total Price: ${totalPrice}</h5>
-            <button onClick={handleOpen}>Order</button>
-            {isModalOpen && <PaymentProcess isOpen={isModalOpen} onClose={handleClose}/>}
+            <button onClick={goToCheckout}>Order</button>
           </div>
       </div>
     </>

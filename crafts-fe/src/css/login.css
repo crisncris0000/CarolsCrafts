@@ -8,7 +8,7 @@
   margin-right: auto;
   margin-top: 100px;
   height: 650px;
-  width: 70vw;
+  width: 85vw;
 
   background-color: rgba(211, 211, 211, 0.623);
   border: 2px solid black;
@@ -60,4 +60,8 @@ a:hover{
   margin-right: auto;
   width: 50vw;
   margin-top: 150px;
+}
+
+@media screen {
+  
 }

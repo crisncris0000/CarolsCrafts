@@ -13,7 +13,7 @@
 
 .my-cart {
   height: 500px;
-  width: 65rem;
+  width: 100%;
   background-color: aliceblue;
   margin-left: 3rem;
   margin-top: 50px;
@@ -54,7 +54,7 @@
 
 .cart-body button {
   height: 80px;
-  width: 100px;
+  width: 20vw;
   background-color: rgb(188, 45, 45);
 }
 
