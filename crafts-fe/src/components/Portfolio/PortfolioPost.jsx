@@ -11,20 +11,25 @@ export default function PortfolioPost() {
     axios.get('http://localhost:8080/api/portfolio/get-posts')
           .then((response) => {
             setPosts(response.data);
-            console.log(response.data);
           }).catch((error) => {
             console.log(error);
           })
-  }, [])
+  }, [posts])
+
+  function handleDelete(itemId) {
+    axios.delete(`http://localhost:8080/api/portfolio/delete-post?id=${itemId}`)
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error));
+  }
 
   return (
     <>
-        {posts.map((post) => (
-        <div className="post-container" key={post.id}>  
-          {user.role === 'ADMIN' ? <button className="delete-icon"> <img src={TrashIcon} alt="Delete" /> </button> : null}
-          <div className="img-container">
-            <img src={`data:${post.mimeType};base64,${post.imageData}`} className="main-image" alt="Main" />
-          </div>
+      {posts.map((post) => (
+      <div className="post-container" key={post.id}>  
+        {user.role === 'ADMIN' ? <button className="delete-icon" onClick={() => handleDelete(post.id)}> <img src={TrashIcon} alt="Delete" /> </button> : null}
+      <div className="img-container">
+        <img src={`data:${post.mimeType};base64,${post.imageData}`} className="main-image" alt="Main" />
+      </div>
         </div>
         
         ))}

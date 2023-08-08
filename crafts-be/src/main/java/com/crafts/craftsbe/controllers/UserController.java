@@ -1,6 +1,5 @@
 package com.crafts.craftsbe.controllers;
 import com.crafts.craftsbe.dto.UserDTO;
-import com.crafts.craftsbe.models.Cart;
 import com.crafts.craftsbe.models.User;
 import com.crafts.craftsbe.service.AuthService;
 import com.crafts.craftsbe.service.MyUserDetailsService;
@@ -44,6 +43,10 @@ public class UserController {
         Date date = new Date();
         Timestamp timestamp = new Timestamp(date.getTime());
 
+        if(userService.userExist(userDTO.getEmail())) {
+            return new ResponseEntity<>("User already exist", HttpStatus.NOT_ACCEPTABLE);
+        }
+
         User user = User.builder()
                 .firstName(userDTO.getFirstName())
                 .lastName(userDTO.getLastName())
@@ -55,7 +58,7 @@ public class UserController {
                 .build();
 
         userService.saveUser(user);
-        return new ResponseEntity<>("Accepted", HttpStatus.OK);
+        return new ResponseEntity<>("Accepted", HttpStatus.CREATED);
     }
 
     @PostMapping("/login")

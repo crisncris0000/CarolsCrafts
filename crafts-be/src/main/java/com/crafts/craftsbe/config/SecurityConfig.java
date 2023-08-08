@@ -37,10 +37,11 @@ public class SecurityConfig {
                             .requestMatchers("/api/users/cart/remove-cart").permitAll()
                             .requestMatchers("/api/portfolio/get-posts").permitAll()
                             .requestMatchers("/api/portfolio/create-post").permitAll()
+                            .requestMatchers("/api/portfolio/delete-post").permitAll()
                             .requestMatchers("/api/shop/add-item").permitAll()
                             .requestMatchers("/api/shop/get-items").permitAll()
+                            .requestMatchers("/api/shop/delete-item").permitAll();
                             .requestMatchers("/api/stripe/create-customer").permitAll();
-
                 })
                 .cors(Customizer.withDefaults())
                 .csrf((csrf) -> csrf.disable())

@@ -39,7 +39,7 @@ public class PortfolioController {
 
         portfolioService.savePost(portfolio);
 
-        return new ResponseEntity<>("Accepted", HttpStatus.OK);
+        return new ResponseEntity<>("Added new post", HttpStatus.OK);
     }
 
     @GetMapping("/get-posts")
@@ -49,12 +49,12 @@ public class PortfolioController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete-post/{id}")
-    public ResponseEntity<String> deleteImage(@PathVariable("id") int id) {
+    @DeleteMapping("/delete-post")
+    public ResponseEntity<String> deleteImage(@RequestParam("id") int id) {
         Portfolio portfolio = portfolioService.findByID(id);
         portfolioService.deletePost(portfolio);
 
-        return new ResponseEntity<>("Accepted", HttpStatus.OK);
+        return new ResponseEntity<>("Deleted post", HttpStatus.OK);
     }
 
     @GetMapping("/get-post/{id}")

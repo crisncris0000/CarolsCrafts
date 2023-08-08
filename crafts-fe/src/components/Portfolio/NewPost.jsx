@@ -1,10 +1,13 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import Success from '../Messages/Success';
 
 export default function NewPost() {
     const [label, setLabel] = useState('Select your image');
     const [previewSrc, setPreviewSrc] = useState(null);
     const [selectedFile, setSelectedFile] = useState(null);
+    const [success, setSuccess] = useState(false);
+    const [successMsg, setSuccessMsg] = useState('');
     const fileChangedHandler = (event) => {
         const file = event.target.files[0];
 
@@ -32,15 +35,27 @@ export default function NewPost() {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log(response);
+            setSuccessMsg(response.data);
+            setSuccess(true);
         } catch (error) {
             console.log(error);
         }
-        e.preventDefault();
     }
+
+    useEffect(() => {
+        if (success) {
+          const timer = setTimeout(() => {
+            setSuccess(false);
+          }, 1500);
+    
+          return () => clearTimeout(timer); 
+        }
+      }, [success]);
+    
 
     return (
         <>
+            {success ? <Success message={successMsg} /> : null}
             <div className="form-container">
                 <form>
                     <div className="custom-file-upload">
@@ -48,13 +63,13 @@ export default function NewPost() {
                         <label htmlFor="file-upload">{label}</label>
                     </div>
 
-                <button type="button" className="submit" onClick={submitHandler}>Submit</button>
+                <button type="button" className="submit" onClick={submitHandler} id="submit">Submit</button>
                 </form> 
             </div>
             
             <div className="preview-container" style={{marginTop: "100px"}}>
                 <h3>Image preview</h3>
-                {previewSrc !== null ? <img src={previewSrc} /> : null}
+                {previewSrc !== null ? <img src={previewSrc} className="preview-img"/> : null}
             </div>
       </>
     )

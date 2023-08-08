@@ -53,12 +53,17 @@ public class ShoppingController {
 
         itemService.saveItem(item);
 
-        return new ResponseEntity<>("Accepted", HttpStatus.OK);
+        return new ResponseEntity<>("Successfully added a new item", HttpStatus.OK);
     }
 
     @DeleteMapping("/delete-item")
     public ResponseEntity<String> deleteItem(@RequestParam("id") int id) {
-        return new ResponseEntity<>("Accepted", HttpStatus.OK);
+
+        Item item = itemService.getItemById(id);
+
+        itemService.deleteItem(item);
+
+        return new ResponseEntity<>("Deleted item", HttpStatus.OK);
     }
 
 
