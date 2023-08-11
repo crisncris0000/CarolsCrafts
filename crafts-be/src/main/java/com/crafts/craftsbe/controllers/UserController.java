@@ -66,4 +66,9 @@ public class UserController {
         return authService.login(userDTO.getEmail(), userDTO.getPassword());
     }
 
+    @PostMapping("/reset-password")
+    public ResponseEntity<String> resetPassword(){
+        return null;
+    }
+
 }

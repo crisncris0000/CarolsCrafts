@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function PriceSummary( {cart, user} ) {
 
@@ -52,7 +52,7 @@ export default function PriceSummary( {cart, user} ) {
           <div className="summary-body">
             <h5>Items total: {totalItems}</h5>
             <h5>Total Price: ${totalPrice}</h5>
-            <button onClick={goToCheckout}>Order</button>
+            {totalPrice !== 0 ? <button onClick={goToCheckout}>Order</button> : null}
           </div>
       </div>
     </>

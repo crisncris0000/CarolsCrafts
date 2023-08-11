@@ -4,6 +4,7 @@ import com.crafts.craftsbe.dto.UserDTO;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Customer;
+import com.stripe.model.PaymentIntent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,18 +20,18 @@ public class StripePaymentControllerAPI {
     @Value("${app.stripe.apikey}")
     String API_KEY;
 
-    @PostMapping("/create-customer")
-    public ResponseEntity<?> createCustomer(@RequestBody UserDTO userDTO) throws StripeException {
+    @PostMapping("/create-payment")
+    public ResponseEntity<String> createPayment(@RequestBody UserDTO userDTO) throws StripeException {
         Map<String, Object> params = new HashMap<>();
-        params.put("name", userDTO.getFirstName() + " " + userDTO.getLastName());
-        params.put("email", userDTO.getEmail());
-
         Stripe.apiKey = API_KEY;
-        Customer customer = Customer.create(params);
 
-        System.out.println(customer);
+        params.put("currency", "usd");
 
-        return new ResponseEntity<>("Test", HttpStatus.OK);
+
+        PaymentIntent paymentIntent = PaymentIntent.create(params);
+
+
+        return new ResponseEntity<>("Payment Successful",HttpStatus.OK);
     }
 
 

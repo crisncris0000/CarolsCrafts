@@ -9,6 +9,7 @@
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  background-color: #51537c;
 }
 
 .my-cart {
