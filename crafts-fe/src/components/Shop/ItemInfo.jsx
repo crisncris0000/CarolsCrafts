@@ -4,7 +4,7 @@ import { Modal, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart } from '../../features/cart';
 
-export default function ItemInfo( {itemPrice, itemDescription, itemObject} ) {
+export default function ItemInfo( {itemObject} ) {
     
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -45,9 +45,9 @@ export default function ItemInfo( {itemPrice, itemDescription, itemObject} ) {
             <Modal.Title>Item Details</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-            <h5>Item Price: ${itemPrice}</h5>
+            <h5>Item Price: ${itemObject.itemPrice}</h5>
             <h5 style={{marginTop: "20px"}}>Description:</h5>
-            <p>{itemDescription}</p>
+            <p>{itemObject.itemDescription}</p>
             <h5>Personal customization</h5>
             <textarea className="user-description" placeholder="Please enter the size if applicable and what you would like on it"></textarea>
             </Modal.Body>
