@@ -71,7 +71,7 @@ export default function Customerinfo({
                             id="address"
                             type="text" 
                             placeholder="Address"
-                            value={email}
+                            value={address}
                             onChange={(e) => setAddress(e.target.value)}
                         />
                     </div>
@@ -124,7 +124,7 @@ export default function Customerinfo({
                         <label htmlFor="address">City</label>
                         <input 
                             id="city"
-                            type="email" 
+                            type="text" 
                             placeholder="City" 
                             value={city}
                             onChange={(e) => setCity(e.target.value)}

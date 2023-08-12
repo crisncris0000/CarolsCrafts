@@ -3,7 +3,7 @@ import { CCard, CCardImage, CCardTitle, CCardText, CCardBody} from '@coreui/reac
 import Delete from '../../images/delete-icon.png';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import HoverButton from './HoverButton';
+import ItemInfo from './ItemInfo';
 
 export default function ShoppingItems() {
   const user = useSelector((states) => states.user.value);
@@ -28,11 +28,8 @@ export default function ShoppingItems() {
           <CCard style={{ width: '15rem' }} key={item.id}>
           <CCardImage orientation="top" src={`data:${item.mimeType};base64,${item.imageData}`} className="card-img" alt={item.title}/>
           <CCardBody>
-            <CCardTitle>{item.itemTitle}</CCardTitle>
-            <CCardText>
-              {item.itemDescription}
-            </CCardText>
-            <HoverButton defaultText={`$${item.itemPrice}`} hoveredText='Add to cart' itemObject={item}/>
+            <CCardTitle><h3>{item.itemTitle}</h3></CCardTitle>
+            <ItemInfo itemPrice={item.itemPrice} itemDescription={item.itemDescription} itemObject={item}/>
             {user.role === 'ADMIN' ? <button type="button" className='delete-btn' onClick={() => handleDelete(item.id)}><img src={Delete} alt="delete icon" id="delete"/></button> : null}
           </CCardBody>
         </CCard>

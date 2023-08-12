@@ -24,7 +24,7 @@ export default function PriceSummary( {cart, user} ) {
       price += cart.item.itemPrice * cart.quantity;
       count += cart.quantity;
     })
-    setTotalPrice(price);
+    setTotalPrice(price.toFixed(2));
     setTotalItems(count);
   }
 

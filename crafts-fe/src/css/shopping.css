@@ -10,12 +10,23 @@
     width: 7rem;
     height: 50px;
     background-color: #FF928B;
+    margin-top: 10px;
 }
 
 .shopping-items .delete-btn:active {
     width: 7rem;
     height: 50px;
     background-color: #b06863;
+}
+
+.custom-modal-button {
+    height: 60px;
+    background-color: #FF928B !important;
+}
+
+.user-description {
+    resize: none;
+    width: 70%;
 }
 
 .card-img {
