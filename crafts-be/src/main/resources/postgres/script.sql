@@ -46,6 +46,7 @@ CREATE TABLE cart (
     id SERIAL NOT NULL,
     user_id INT NOT NULL,
     item_id INT NOT NULL,
+    user_customization TEXT,
     quantity INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id),
     FOREIGN KEY (item_id) REFERENCES items (id)

@@ -35,13 +35,15 @@ public class CartController {
     }
 
     @PostMapping("/add-to-cart")
-    public ResponseEntity<String> saveCart(@RequestBody Map<String, Integer> ids) {
+    public ResponseEntity<String> saveCart(@RequestBody Map<String, String> cartInfo) {
 
-        int userId = ids.get("userId");
-        int itemId = ids.get("itemId");
+        int userId = Integer.parseInt(cartInfo.get("userId"));
+        int itemId = Integer.parseInt(cartInfo.get("itemId"));
+        String customDescription = cartInfo.get("customDescription");
 
         User user = userService.getUserById(userId);
         Item item = itemService.getItemById(itemId);
+
 
         Cart cart = cartService.getCart(userId, itemId);
 
@@ -49,6 +51,7 @@ public class CartController {
             cart = Cart.builder()
                     .user(user)
                     .item(item)
+                    .userCustomization(customDescription)
                     .quantity(1)
                     .build();
         } else {

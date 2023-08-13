@@ -25,6 +25,9 @@ public class Cart {
     @JoinColumn(name = "item_id", referencedColumnName = "id")
     private Item item;
 
+    @Column(name = "user_customization")
+    private String userCustomization;
+
     @Column(name = "quantity")
     private int quantity;
 
