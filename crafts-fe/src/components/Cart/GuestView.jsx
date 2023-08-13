@@ -2,6 +2,7 @@ import React from 'react';
 import { CTableRow, CTableHeaderCell, CTableDataCell } from '@coreui/react';
 import { useDispatch } from 'react-redux';
 import { removeItemFromCart } from '../../features/cart';
+import MoreInfo from './MoreInfo';
 
 export default function GuestView( {guestCart} ) {
     const dispatch = useDispatch();
@@ -18,6 +19,7 @@ export default function GuestView( {guestCart} ) {
                     <img src={`data:${item.itemObject.mimeType};base64,${item.itemObject.imageData}`} className="cart-img"/>
                 </CTableHeaderCell>
                 <CTableDataCell>{item.itemObject.itemTitle}</CTableDataCell>
+                <CTableDataCell><MoreInfo cart={item}/></CTableDataCell>
                 <CTableDataCell>{`$${item.itemObject.itemPrice}`}</CTableDataCell>
                 <CTableDataCell>{item.quantity}</CTableDataCell>
                 <CTableDataCell><button onClick={() => handleRemove(item)}>Remove</button></CTableDataCell>

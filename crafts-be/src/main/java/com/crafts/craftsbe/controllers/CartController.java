@@ -39,7 +39,7 @@ public class CartController {
 
         int userId = Integer.parseInt(cartInfo.get("userId"));
         int itemId = Integer.parseInt(cartInfo.get("itemId"));
-        String customDescription = cartInfo.get("customDescription");
+        String customDescription = cartInfo.get("userCustomization");
 
         User user = userService.getUserById(userId);
         Item item = itemService.getItemById(itemId);

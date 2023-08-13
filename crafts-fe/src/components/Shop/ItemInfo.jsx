@@ -16,7 +16,7 @@ export default function ItemInfo( {itemObject} ) {
   const user = useSelector(state => state.user.value);
   const guest = localStorage.getItem('guestId');
 
-  const [customDescription, setCustomDescription] = useState('');
+  const [userCustomization, setUserCustomization] = useState('');
 
   useEffect(() => {
     localStorage.setItem('guestCart', JSON.stringify(cart.items));
@@ -24,12 +24,12 @@ export default function ItemInfo( {itemObject} ) {
 
     const handleAddToCart = () => {
       if (guest) {
-        dispatch(addItemToCart({ itemObject, quantity: 1 }));
+        dispatch(addItemToCart({ itemObject, userCustomization, quantity: 1 }));
       } else {
           axios
             .post(
               "http://localhost:8080/api/users/cart/add-to-cart",
-              { userId: user.id, itemId: itemObject.id, customDescription }
+              { userId: user.id, itemId: itemObject.id, userCustomization }
             )
             .then((response) => console.log(response))
             .catch((error) => console.log(error));
@@ -53,7 +53,7 @@ export default function ItemInfo( {itemObject} ) {
           <h5>Personal customization</h5>
           <textarea className="user-description" 
           placeholder="Please enter the size if applicable and what you would like on it" 
-          onChange={(e) => setCustomDescription(e.target.value)}/>
+          onChange={(e) => setUserCustomization(e.target.value)}/>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
