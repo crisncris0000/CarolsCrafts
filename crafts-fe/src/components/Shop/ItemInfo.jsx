@@ -31,7 +31,6 @@ export default function ItemInfo( {itemObject} ) {
               "http://localhost:8080/api/users/cart/add-to-cart",
               { userId: user.id, itemId: itemObject.id, userCustomization }
             )
-            .then((response) => console.log(response))
             .catch((error) => console.log(error));
         }
       };

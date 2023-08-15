@@ -46,21 +46,20 @@ public class CartController {
 
 
         Cart cart = cartService.getCart(userId, itemId);
-
-        if(cart == null) {
+        if(cart != null && cart.getUserCustomization().equals(customDescription)){
+            int quantity = cart.getQuantity();
+            cart.setQuantity(quantity + 1);
+        } else {
             cart = Cart.builder()
                     .user(user)
                     .item(item)
                     .userCustomization(customDescription)
                     .quantity(1)
                     .build();
-        } else {
-            int quantity = cart.getQuantity();
-            cart.setQuantity(quantity + 1);
         }
 
         cartService.saveCart(cart);
-        return new ResponseEntity<>("Added new Cart", HttpStatus.OK);
+        return new ResponseEntity<>("Added to Cart", HttpStatus.OK);
     }
 
     @DeleteMapping("/remove-cart")

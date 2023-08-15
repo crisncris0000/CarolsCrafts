@@ -1,6 +1,7 @@
 import React from 'react';
 import { Country, State } from 'country-state-city';
 import Select from 'react-select';
+import { useSelector } from 'react-redux';
 
 export default function Customerinfo({
     firstName, setFirstName,
@@ -27,6 +28,8 @@ export default function Customerinfo({
         setStateCode(selectedOption.value);
     }
 
+    const user = useSelector((state) => state.user.value);
+
     return (
         <>
             <div className="customer-info-container">
@@ -34,35 +37,73 @@ export default function Customerinfo({
                 <div className="input-container">
                     <div className="input-group">
                         <label htmlFor="firstName">First Name</label>
-                        <input 
+                        {user.isGuest ? <input 
                             id="firstName"
                             type="text" 
                             placeholder="First Name" 
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
+                            required
+                        /> : 
+                        
+                        <input 
+                            id="firstName"
+                            type="text" 
+                            placeholder={user.firstName}
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            disabled
                         />
+                        } 
                     </div>
         
                     <div className="input-group">
                         <label htmlFor="lastName">Last Name</label>
-                        <input 
+                        {user.isGuest ? <input 
                             id="lastName"
                             type="text" 
                             placeholder="Last Name" 
                             value={lastName}
                             onChange={(e) => setLastName(e.target.value)}
+                            required
                         />
+                            
+                        :
+                        
+                        <input 
+                            id="lastName"
+                            type="text" 
+                            placeholder={user.lastName}
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            disabled
+                        />
+
+                        }
                     </div>
         
                     <div className="input-group">
                         <label htmlFor="email">Email</label>
-                        <input 
+                        {user.isGuest ? <input 
                             id="email"
                             type="email" 
                             placeholder="Email" 
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            required
                         />
+                    
+                        :
+
+                        <input 
+                            id="email"
+                            type="email" 
+                            placeholder={user.email}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            disabled
+                        />
+                        }
                     </div>
                     
                     <div className="input-group">
@@ -73,6 +114,7 @@ export default function Customerinfo({
                             placeholder="Address"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
+                            required
                         />
                     </div>
 
@@ -97,6 +139,7 @@ export default function Customerinfo({
                                     minHeight: 43,
                                 })
                             }}
+                            required
                         />
                     </div>
 
@@ -128,6 +171,7 @@ export default function Customerinfo({
                             placeholder="City" 
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
+                            required
                         />
                     </div>
 

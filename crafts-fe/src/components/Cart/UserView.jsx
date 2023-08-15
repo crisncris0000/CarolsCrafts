@@ -13,8 +13,8 @@ export default function UserView( {userCart} ) {
 
     return (
         <>
-            {userCart.map((cart) => (
-                <CTableRow active key={cart.item.id}>
+            {userCart.map((cart, index) => (
+                <CTableRow active key={`${cart.item.id}-${index}`}>
                 <CTableHeaderCell scope="row">
                     <img src={`data:${cart.item.mimeType};base64,${cart.item.imageData}`} className="cart-img"/>
                 </CTableHeaderCell>

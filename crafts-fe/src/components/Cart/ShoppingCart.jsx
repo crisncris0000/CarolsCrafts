@@ -44,6 +44,7 @@ export default function ShoppingCart() {
                     <CTableHeaderCell scope="col">Item</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Item Name</CTableHeaderCell>
                     <CTableHeaderCell scope="col">More Info</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Price</CTableHeaderCell>
                     <CTableHeaderCell scope="col">Action</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>

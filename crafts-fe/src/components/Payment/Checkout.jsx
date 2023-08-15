@@ -1,10 +1,11 @@
-import { useStripe, useElements, CardElement, CardNumberElement } from '@stripe/react-stripe-js';
+import { useStripe, useElements, CardNumberElement } from '@stripe/react-stripe-js';
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import CardInfo from './CardInfo';
 import CartSummary from './CartSummary';
-import Customerinfo from './Customerinfo'
+import Customerinfo from './Customerinfo';
+import Error from '../Messages/Error';
 
 export default function Checkout() {
 
@@ -23,42 +24,69 @@ export default function Checkout() {
   const stripe = useStripe();
   const elements = useElements();
 
-  async function handleSubmitForm(event) {
-    event.preventDefault();
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [clientSecret, setClientSecret] = useState(null);
 
-    if (!stripe || !elements) {
-        console.error("Stripe has not loaded yet.");
-        return;
-    }
-    const cardNumberEleement = elements.getElement(CardNumberElement);
-    const result = await stripe.createToken(cardNumberEleement);
-    
-    if (result.error) {
-        console.error(result.error);
-        return;
-    }
-
-    const token = result.token.id;
-
+  useEffect(() => {
     const formData = {
-      firstName,
-      lastName,
-      email,
-      address,
-      countryCode,
-      state,
-      city,
-      totalPrice,
-      token,
+        firstName,
+        lastName,
+        email,
+        address,
+        countryCode,
+        state,
+        city,
+        totalPrice,
     };
 
     axios.post('http://localhost:8080/api/stripe/create-payment', formData)
-        .then(response => console.log(response.data))
-        .catch(error => console.log(error));
-}
+        .then(response => setClientSecret(response.data))
+        .catch(error => {
+            setError(true);
+            setErrorMessage(error.data);
+        });
+
+    if (error) {
+        const timer = setTimeout(() => {
+            setError(false);
+        }, 1500);
+        return () => clearTimeout(timer); 
+    }
+  }, []);
+
+  async function handleSubmitForm(event) {
+    event.preventDefault();
+
+    if (!stripe || !elements || !clientSecret) {
+        return;
+    }
+
+    const cardNumberElement = elements.getElement(CardNumberElement);
+    
+    const result = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+            card: cardNumberElement,
+            billing_details: {
+                name: `${firstName} ${lastName}`,
+                email: email
+            }
+        }
+    });
+
+    if (result.error) {
+        setError(true);
+        setErrorMessage(result.error.message);
+        return;
+    }
+
+    console.log(result);
+  }
 
 
   return (
+    <>
+    {error ? <Error message={errorMessage}/> : null}
     <div className="checkout-container">
         <form onSubmit={handleSubmitForm}>
           <Customerinfo 
@@ -86,8 +114,9 @@ export default function Checkout() {
 
           <CartSummary />
 
-          <button type="submit">Submit</button>
+          <button type="submit" id="submit" className="submit-btn">Submit</button>
         </form>
     </div>
+    </>
   )
 }
