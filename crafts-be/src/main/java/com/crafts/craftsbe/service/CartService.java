@@ -1,7 +1,6 @@
 package com.crafts.craftsbe.service;
 
 import com.crafts.craftsbe.models.Cart;
-import com.crafts.craftsbe.models.Item;
 
 import java.util.List;
 
@@ -16,6 +15,8 @@ public interface CartService {
     Cart getCartById(int id);
 
     Cart getCart(int userId, int itemId);
+
+    void clearUserCart(int userId);
 
 
 }

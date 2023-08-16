@@ -44,14 +44,15 @@ export default function Customerinfo({
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
                             required
-                        /> : 
+                        /> 
+                        
+                        : 
                         
                         <input 
                             id="firstName"
                             type="text" 
                             placeholder={user.firstName}
-                            value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)}
+                            value={user.firstName}
                             disabled
                         />
                         } 
@@ -74,8 +75,7 @@ export default function Customerinfo({
                             id="lastName"
                             type="text" 
                             placeholder={user.lastName}
-                            value={lastName}
-                            onChange={(e) => setLastName(e.target.value)}
+                            value={user.lastName}
                             disabled
                         />
 
@@ -99,8 +99,7 @@ export default function Customerinfo({
                             id="email"
                             type="email" 
                             placeholder={user.email}
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={user.email}
                             disabled
                         />
                         }

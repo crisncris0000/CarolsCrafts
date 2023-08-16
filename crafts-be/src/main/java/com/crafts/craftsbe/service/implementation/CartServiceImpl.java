@@ -4,6 +4,7 @@ import com.crafts.craftsbe.models.Cart;
 import com.crafts.craftsbe.repository.CartRepository;
 import com.crafts.craftsbe.service.CartService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -41,5 +42,11 @@ public class CartServiceImpl implements CartService {
     public Cart getCart(int userId, int itemId) {
 
         return cartRepository.getCartByUserAndItemId(userId, itemId);
+    }
+
+    @Transactional
+    @Override
+    public void clearUserCart(int userId) {
+        cartRepository.clearCartByUserId(userId);
     }
 }

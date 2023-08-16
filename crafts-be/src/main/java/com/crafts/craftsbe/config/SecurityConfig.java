@@ -41,7 +41,7 @@ public class SecurityConfig {
                             .requestMatchers("/api/shop/add-item").permitAll()
                             .requestMatchers("/api/shop/get-items").permitAll()
                             .requestMatchers("/api/shop/delete-item").permitAll()
-                            .requestMatchers("/api/stripe/create-payment").permitAll();
+                            .requestMatchers("/api/stripe/process-payment").permitAll();
                 })
                 .cors(Customizer.withDefaults())
                 .csrf((csrf) -> csrf.disable())

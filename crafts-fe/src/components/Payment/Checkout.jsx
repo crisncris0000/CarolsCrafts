@@ -1,122 +1,136 @@
-import { useStripe, useElements, CardNumberElement } from '@stripe/react-stripe-js';
+import {useStripe, useElements, CardNumberElement} from '@stripe/react-stripe-js';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {useLocation, useNavigate} from 'react-router-dom';
 import CardInfo from './CardInfo';
 import CartSummary from './CartSummary';
 import Customerinfo from './Customerinfo';
 import Error from '../Messages/Error';
+import {useDispatch, useSelector} from 'react-redux';
+import { clearCart } from '../../features/cart';
+
 
 export default function Checkout() {
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [address, setAddress] = useState('');
-  const [country, setCountry] = useState('');
-  const [countryCode, setCountryCode] = useState('');
-  const [state, setState] = useState('');
-  const [stateCode, setStateCode] = useState('');
-  const [city, setCity] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [address, setAddress] = useState('');
+    const [country, setCountry] = useState('');
+    const [countryCode, setCountryCode] = useState('');
+    const [state, setState] = useState('');
+    const [stateCode, setStateCode] = useState('');
+    const [city, setCity] = useState('');
 
-  const location = useLocation();
-  const totalPrice = location.state.totalPrice;
-  const stripe = useStripe();
-  const elements = useElements();
+    const location = useLocation();
+    const totalPrice = location.state.totalPrice;
+    const stripe = useStripe();
+    const elements = useElements();
 
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [clientSecret, setClientSecret] = useState(null);
+    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [clientSecret, setClientSecret] = useState(null);
+    const [formCompletion, setFormCompletion] = useState(false);
+    const user = useSelector((state) => state.user.value);
 
-  useEffect(() => {
-    const formData = {
-        firstName,
-        lastName,
-        email,
-        address,
-        countryCode,
-        state,
-        city,
-        totalPrice,
-    };
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    axios.post('http://localhost:8080/api/stripe/create-payment', formData)
-        .then(response => setClientSecret(response.data))
-        .catch(error => {
-            setError(true);
-            setErrorMessage(error.data);
-        });
-
-    if (error) {
-        const timer = setTimeout(() => {
-            setError(false);
-        }, 1500);
-        return () => clearTimeout(timer); 
-    }
-  }, []);
-
-  async function handleSubmitForm(event) {
-    event.preventDefault();
-
-    if (!stripe || !elements || !clientSecret) {
-        return;
-    }
-
-    const cardNumberElement = elements.getElement(CardNumberElement);
+    useEffect(() => {
+        if (formCompletion) {
+            const formData = {
+                id: user.id,
+                firstName,
+                lastName,
+                email,
+                address,
+                countryCode,
+                state,
+                city,
+                totalPrice
+            };
     
-    const result = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-            card: cardNumberElement,
-            billing_details: {
-                name: `${firstName} ${lastName}`,
-                email: email
-            }
+            axios.post('http://localhost:8080/api/stripe/process-payment', formData)
+                .then(response => {
+                    setClientSecret(response.data);
+                
+                    const cardNumberElement = elements.getElement(CardNumberElement);
+                    
+                    return stripe.confirmCardPayment(response.data, {
+                        payment_method: {
+                            card: cardNumberElement,
+                            billing_details: {
+                                name: `${firstName} ${lastName}`,
+                                email: email
+                            }
+                        }
+                    });
+                })
+                .then(result => {
+                    if (result.error) {
+                        setError(true);
+                        setErrorMessage(result.error.message);
+                    } else {
+                        if(user.isGuest) {
+                            dispatch(clearCart());
+                        }
+                        navigate('/');
+                    }
+                })
+                .catch(error => {
+                    setError(true);
+                    setErrorMessage(error.data);
+                });
+    
+            setFormCompletion(false);
         }
-    });
+    }, [formCompletion]);
+    
+    useEffect(() => {
+        if (error) {
+            const timer = setTimeout(() => {
+                setError(false);
+            }, 1500);
+            return() => clearTimeout(timer);
+        }
+    }, [error]);
 
-    if (result.error) {
-        setError(true);
-        setErrorMessage(result.error.message);
-        return;
-    }
+    function handleSubmitForm(event) {
+        event.preventDefault();
+        setFormCompletion(true);
+    }    
 
-    console.log(result);
-  }
+    return (
+    <> 
+      {error ? <Error message={errorMessage}/> : null}
+        <div className="checkout-container">
+            <form onSubmit={handleSubmitForm}>
+                <Customerinfo firstName={firstName}
+                    setFirstName={setFirstName}
+                    lastName={lastName}
+                    setLastName={setLastName}
+                    email={email}
+                    address={address}
+                    setAddress={setAddress}
+                    setEmail={setEmail}
+                    country={country}
+                    setCountry={setCountry}
+                    countryCode={countryCode}
+                    setCountryCode={setCountryCode}
+                    state={state}
+                    setState={setState}
+                    stateCode={stateCode}
+                    setStateCode={setStateCode}
+                    city={city}
+                    setCity={setCity}/>
 
+                <CardInfo/>
 
-  return (
-    <>
-    {error ? <Error message={errorMessage}/> : null}
-    <div className="checkout-container">
-        <form onSubmit={handleSubmitForm}>
-          <Customerinfo 
-            firstName={firstName}
-            setFirstName={setFirstName}
-            lastName={lastName}
-            setLastName={setLastName}
-            email={email}
-            address={address}
-            setAddress={setAddress}
-            setEmail={setEmail}
-            country={country}            
-            setCountry={setCountry}
-            countryCode={countryCode}
-            setCountryCode={setCountryCode}
-            state={state}
-            setState={setState}
-            stateCode={stateCode}
-            setStateCode={setStateCode}
-            city={city}
-            setCity={setCity}
-          />
+                <CartSummary/>
 
-          <CardInfo />
-
-          <CartSummary />
-
-          <button type="submit" id="submit" className="submit-btn">Submit</button>
-        </form>
-    </div>
+                <button type="submit" id="submit" className="submit-btn">Submit</button>
+            </form>
+        </div>
     </>
-  )
+    )
 }
