@@ -44,7 +44,9 @@ public class UserController {
         Date date = new Date();
         Timestamp timestamp = new Timestamp(date.getTime());
 
-        if(userService.userExist(userDTO.getEmail())) {
+        boolean exists = userService.userExist(userDTO.getEmail());
+        
+        if(exists) {
             return new ResponseEntity<>("User already exist", HttpStatus.NOT_ACCEPTABLE);
         }
 
@@ -73,9 +75,15 @@ public class UserController {
 
         String email = body.get("email");
 
+        boolean exist = userService.userExist(email);
+
+        if(!exist) {
+            return new ResponseEntity<>("No user with that email", HttpStatus.NOT_ACCEPTABLE);
+        }
+
         emailService.sendEmail(email, "Verification Token",
                                 "Here is the requested token that you asked for token: " + token +
-                                " please note that it will expire within 15 minutes");
+                                "\nPlease note that it will expire within 15 minutes");
 
         return new ResponseEntity<>("Email sent successfully", HttpStatus.OK);
     }

@@ -1,5 +1,7 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import Success from '../Messages/Success';
+import Error from '../Messages/Error';
 
 const ResetForm = () => {
     const [email, setEmail] = useState('');
@@ -7,44 +9,70 @@ const ResetForm = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [tokenSent, setTokenSent] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [successMsg, setSuccessMsg] = useState('');
+    const [error, setError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
 
     const handleSendToken = (e) => {
         e.preventDefault();
         
         axios.post('http://localhost:8080/api/users/send-token', {email}).then((response) => {
-            console.log(response.data);
+            setSuccessMsg(response.data);
             setTokenSent(true);
-        }
-        ).catch ((error) => {
-            console.log(error);
+            setSuccess(true);
+        }).catch ((error) => {
+            setErrorMsg(error.response.data);
+            setError(true);
         })
     };
 
     const handleResetPassword = (e) => {
         e.preventDefault();
-        // Logic to reset the password using the token goes here.
     };
+
+    useEffect(() => {
+        if(success) {
+          const timer = setTimeout(() => {
+            setSuccess(false);
+          }, 2000);
+    
+          return () => clearTimeout(timer); 
+        }
+
+        if(error) {
+            const timer = setTimeout(() => {
+                setError(false);
+              }, 2000);
+        
+              return () => clearTimeout(timer); 
+        }
+      }, [success, error]);
 
     if (!tokenSent) {
         return (
-            <div className="reset-container">
-                <h2>Reset Password</h2>
-                <form onSubmit={handleSendToken}>
-                    <div className="input-group">
-                        <label>Email</label>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <button type="submit">Send Token</button>
-                </form>
-            </div>
+            <>
+                {error ? <Error message={errorMsg}/> : null}
+                <div className="reset-container">
+                    <h2>Reset Password</h2>
+                    <form onSubmit={handleSendToken}>
+                        <div className="input-group">
+                            <label>Email</label>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <button type="submit">Send Token</button>
+                    </form>
+                </div>
+            </>
         );
     } else {
         return (
+            
             <div className="reset-container">
                 <h2>Enter Token and New Password</h2>
                 <form onSubmit={handleResetPassword}>
