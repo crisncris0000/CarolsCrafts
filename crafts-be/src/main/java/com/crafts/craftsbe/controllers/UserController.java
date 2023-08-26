@@ -1,10 +1,7 @@
 package com.crafts.craftsbe.controllers;
 import com.crafts.craftsbe.dto.UserDTO;
 import com.crafts.craftsbe.models.User;
-import com.crafts.craftsbe.service.AuthService;
-import com.crafts.craftsbe.service.MyUserDetailsService;
-import com.crafts.craftsbe.service.RoleService;
-import com.crafts.craftsbe.service.UserService;
+import com.crafts.craftsbe.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
@@ -29,6 +27,9 @@ public class UserController {
 
     @Autowired
     AuthService authService;
+
+    @Autowired
+    EmailService emailService;
 
     @GetMapping("/get-users")
     public List<User> getUsers(){
@@ -66,9 +67,17 @@ public class UserController {
         return authService.login(userDTO.getEmail(), userDTO.getPassword());
     }
 
-    @PostMapping("/reset-password")
-    public ResponseEntity<String> resetPassword(){
-        return null;
+    @PostMapping("/send-token")
+    public ResponseEntity<String> sendToken(@RequestBody Map<String, String> body){
+        String token = userService.generateToken();
+
+        String email = body.get("email");
+
+        emailService.sendEmail(email, "Verification Token",
+                                "Here is the requested token that you asked for token: " + token +
+                                " please note that it will expire within 15 minutes");
+
+        return new ResponseEntity<>("Email sent successfully", HttpStatus.OK);
     }
 
 }

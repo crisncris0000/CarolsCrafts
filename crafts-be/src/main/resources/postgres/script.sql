@@ -52,6 +52,11 @@ CREATE TABLE cart (
     FOREIGN KEY (item_id) REFERENCES items (id)
 );
 
+CREATE TABLE token (
+    id SERIAL NOT NULL,
+    reset_token VARCHAR(255)
+);
+
 INSERT INTO roles (role_name) VALUES
     ('USER'),
     ('ADMIN');

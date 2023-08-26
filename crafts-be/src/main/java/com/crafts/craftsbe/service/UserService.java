@@ -23,4 +23,6 @@ public interface UserService {
     boolean userExist(String username);
 
     PaymentIntent proccessUserPayment(CheckoutFormDTO checkoutFormDTO) throws StripeException;
+
+    String generateToken();
 }
