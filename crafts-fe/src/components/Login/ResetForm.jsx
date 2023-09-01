@@ -29,6 +29,26 @@ const ResetForm = () => {
 
     const handleResetPassword = (e) => {
         e.preventDefault();
+
+        if(password !== confirmPassword) {
+            setErrorMsg('Passwords do not match');
+            setError(true);
+            return;
+        }
+
+        const data = {
+            email,
+            token,
+            password
+        }
+
+        axios.post('http://localhost:8080/api/users/reset-password', data).then((response) => {
+            setSuccess(true);
+            setSuccessMsg(response.data);
+        }).catch((error) => {
+            setError(true);
+            setErrorMsg(error.response.data);
+        })
     };
 
     useEffect(() => {
@@ -72,40 +92,43 @@ const ResetForm = () => {
         );
     } else {
         return (
-            
-            <div className="reset-container">
-                <h2>Enter Token and New Password</h2>
-                <form onSubmit={handleResetPassword}>
-                    <div className="input-group">
-                        <label>Token</label>
-                        <input
-                            type="text"
-                            value={token}
-                            onChange={(e) => setToken(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="input-group">
-                        <label>New Password</label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="input-group">
-                        <label>Confirm Password</label>
-                        <input
-                            type="password"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <button type="submit">Reset Password</button>
-                </form>
-            </div>
+            <>
+                {error ? <Error message={errorMsg}/> : null}
+                {success ? <Success message={successMsg} /> : null}
+                <div className="reset-container">
+                    <h2>Enter Token and New Password</h2>
+                    <form onSubmit={handleResetPassword}>
+                        <div className="input-group">
+                            <label>Token</label>
+                            <input
+                                type="text"
+                                value={token}
+                                onChange={(e) => setToken(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="input-group">
+                            <label>New Password</label>
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="input-group">
+                            <label>Confirm Password</label>
+                            <input
+                                type="password"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <button type="submit">Reset Password</button>
+                    </form>
+                </div>
+            </>
         );
     }
 };

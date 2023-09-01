@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS portfolio;
 DROP TABLE IF EXISTS items;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS password_reset_token;
 
 CREATE TABLE portfolio (
     id SERIAL PRIMARY KEY,
@@ -52,9 +53,11 @@ CREATE TABLE cart (
     FOREIGN KEY (item_id) REFERENCES items (id)
 );
 
-CREATE TABLE token (
+CREATE TABLE password_reset_token (
     id SERIAL NOT NULL,
-    reset_token VARCHAR(255)
+    reset_token VARCHAR(255),
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL
 );
 
 INSERT INTO roles (role_name) VALUES
@@ -66,5 +69,3 @@ INSERT INTO users (first_name, last_name, email, password, role_id, created_at, 
 
 
 SELECT * FROM users;
-
-SELECT * FROM cart;
