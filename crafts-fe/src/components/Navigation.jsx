@@ -8,7 +8,6 @@ import AddForm from '../components/Shop/AddForm';
 import LoginForm from './Login/LoginForm';
 import RegisterForm from './Login/RegisterForm';
 import Transaction from './Transaction/TransactionHistory';
-import Dashboard from './Dashboard/Dashboard';
 import ResetForm from './Login/ResetForm';
 import Portfolio from './Portfolio/Portfolio';
 import { useSelector } from 'react-redux';
@@ -50,8 +49,6 @@ export default function Navigation() {
                 {user.email !== '' ?<NavDropdown.Item as={Link} to="/transaction-history">
                   Transaction History
                 </NavDropdown.Item> : null}
-                {user.role === 'ADMIN' ? <NavDropdown.Item as={Link} to={"/dashboard"}>Dashboard
-                </NavDropdown.Item> : null}
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
@@ -66,7 +63,6 @@ export default function Navigation() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/transaction-history" element={<Transaction />} />
-        <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/reset-password" element={<ResetForm />}/>
         <Route path="/new-post" element={<NewPost />} />
         <Route path="/my-cart" element={<ShoppingCart />} />
