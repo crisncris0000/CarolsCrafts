@@ -1,11 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CTable, CTableHead, CTableRow, CTableHeaderCell, CTableBody, CTableDataCell } from '@coreui/react';
 import { useSelector } from 'react-redux';
 import TransactionInfo from './TransactionInfo';
+import axios from 'axios';
 
 export default function TransactionHistory({tableStyle}) {
     const tableClass = `table-container ${tableStyle}`
     const user = useSelector((states) => states.user.value);
+
+    const [paymentHistory, setPaymentHistory] = useState([]);
+    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+
+
+    useEffect(() => {
+        axios.get(`http://localhost:8080/api/payment/payment-history?id=${user.id}`)
+            .then((response) => {
+                setPaymentHistory(response.data);
+            }).catch((error) => {
+                setErrorMessage(error.response ? error.response.data : error.message);
+                setError(true);
+            })
+    }, [paymentHistory, error])
+
+    function formatDate(inputDate) {
+        const date = new Date(inputDate);
+    
+        let month = date.getMonth() + 1; // getMonth() is zero-based
+        let day = date.getDate();
+        let year = date.getFullYear().toString().substr(-2); // get last 2 digits of year
+    
+        month = month < 10 ? '0' + month : month; // prepend 0 if less than 10
+        day = day < 10 ? '0' + day : day;
+    
+        return month + '/' + day + '/' + year;
+    }
+    
+
   return (
     <>
         <div className={tableClass}>
@@ -19,17 +50,16 @@ export default function TransactionHistory({tableStyle}) {
                     </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                    <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                        <CTableDataCell>$200.55</CTableDataCell>
-                        <CTableDataCell>7/23/23</CTableDataCell>
-                        <CTableDataCell>
-                            <TransactionInfo />
-                        </CTableDataCell>
-                    </CTableRow>
-                    
-                    <CTableRow>
-                    </CTableRow>
+                    {paymentHistory.map((previousPayment) => (
+                        <CTableRow>
+                            <CTableHeaderCell scope="row">{previousPayment.id}</CTableHeaderCell>
+                            <CTableDataCell>${previousPayment.totalPrice}</CTableDataCell>
+                            <CTableDataCell>{formatDate(previousPayment.createdAt)}</CTableDataCell>
+                            <CTableDataCell>
+                                <TransactionInfo transactionId={previousPayment.transactionId} description={previousPayment.description} />
+                            </CTableDataCell>
+                        </CTableRow>
+                    ))}
                 </CTableBody>
             </CTable>
         </div>

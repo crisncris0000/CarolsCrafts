@@ -3,6 +3,7 @@
 DROP TABLE IF EXISTS cart;
 DROP TABLE IF EXISTS portfolio;
 DROP TABLE IF EXISTS items;
+DROP TABLE IF EXISTS payment_history;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS password_reset_token;
@@ -44,7 +45,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE cart (
-    id SERIAL NOT NULL,
+    id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     item_id INT NOT NULL,
     user_customization TEXT,
@@ -54,10 +55,21 @@ CREATE TABLE cart (
 );
 
 CREATE TABLE password_reset_token (
-    id SERIAL NOT NULL,
+    id SERIAL PRIMARY KEY,
     reset_token VARCHAR(255),
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL
+);
+
+CREATE TABLE payment_history (
+    id SERIAL PRIMARY KEY,
+    transaction_id VARCHAR(255) NOT NULL,
+    total_price FLOAT NOT NULL,
+    description TEXT NOT NULL,
+    user_id INT NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 INSERT INTO roles (role_name) VALUES
@@ -68,6 +80,4 @@ INSERT INTO users (first_name, last_name, email, password, role_id, created_at, 
     ('Admin', 'Admin', 'demo@gmail.com', '$2a$10$s2BSJPDLgImvF7AgYf/Ueuduh7q8ctyYwtdZCwswKxuMsJa3Y/V7u', 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
-SELECT * FROM users;
-
-SELECT * FROM cart
+SELECT * FROM payment_history;

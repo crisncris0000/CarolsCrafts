@@ -34,7 +34,7 @@ public class SecurityConfig {
                             .requestMatchers("/api/users/**").permitAll()
                             .requestMatchers("/api/portfolio/**").permitAll()
                             .requestMatchers("/api/shop/**").permitAll()
-                            .requestMatchers("/api/stripe/**").permitAll();
+                            .requestMatchers("/api/payment/**").permitAll();
                 })
                 .cors(Customizer.withDefaults())
                 .csrf((csrf) -> csrf.disable())

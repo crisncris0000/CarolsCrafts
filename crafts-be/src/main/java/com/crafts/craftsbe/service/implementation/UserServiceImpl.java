@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
         Map<String, Object> params = new HashMap<>();
         params.put("currency", "usd");
         params.put("amount", amountInCents);
-        params.put("receipt_email", "Christopherrivera384@gmail.com");
+        params.put("receipt_email", "christopherrivera384@gmail.com");
         params.put("shipping", shippingMap);
 
         PaymentIntent intent = PaymentIntent.create(params);

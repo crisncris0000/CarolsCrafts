@@ -50,7 +50,7 @@ export default function Checkout() {
                 totalPrice
             };
     
-            axios.post('http://localhost:8080/api/stripe/process-payment', formData)
+            axios.post('http://localhost:8080/api/payment/process-payment', formData)
                 .then(response => {
                     setClientSecret(response.data);
                 
@@ -79,7 +79,7 @@ export default function Checkout() {
                 })
                 .catch(error => {
                     setError(true);
-                    setErrorMessage(error.data);
+                    setErrorMessage(error.response ? error.response.data : error.message);
                 });
     
             setFormCompletion(false);
