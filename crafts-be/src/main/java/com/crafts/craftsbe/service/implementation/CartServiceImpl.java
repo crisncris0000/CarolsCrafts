@@ -40,8 +40,12 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart getCart(int userId, int itemId) {
-
         return cartRepository.getCartByUserAndItemId(userId, itemId);
+    }
+
+    @Override
+    public Cart getCartByCustomization(int userId, String userCustomization) {
+        return cartRepository.getCartItemsByCustomization(userId, userCustomization);
     }
 
     @Transactional

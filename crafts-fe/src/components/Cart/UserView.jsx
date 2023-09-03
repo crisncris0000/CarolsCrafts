@@ -20,6 +20,7 @@ export default function UserView( {userCart} ) {
                 </CTableHeaderCell>
                 <CTableDataCell>{cart.item.itemTitle}</CTableDataCell>
                 <CTableDataCell><MoreInfo cart={cart}/></CTableDataCell>
+                <CTableDataCell>{cart.item.itemPrice * cart.quantity}</CTableDataCell>
                 <CTableDataCell><button type="button" onClick={() => handleRemove(cart)}>Remove</button></CTableDataCell>
                 </CTableRow>
             ))}

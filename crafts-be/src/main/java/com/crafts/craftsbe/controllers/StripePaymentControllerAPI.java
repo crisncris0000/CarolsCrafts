@@ -43,9 +43,10 @@ public class StripePaymentControllerAPI {
 
         String description = cartList.stream()
                 .map(cart -> {
-                    return cart.getQuantity() + "x " +cart.getUserCustomization();
+                    return "Item: \n" + cart.getQuantity() + "x " + cart.getItem().getItemTitle() + "\nDescription:\n"
+                            + cart.getUserCustomization();
                 })
-                .collect(Collectors.joining(",\n"));
+                .collect(Collectors.joining(",\n\n"));
 
         Date date = new Date();
 

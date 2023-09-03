@@ -45,7 +45,7 @@ public class CartController {
         Item item = itemService.getItemById(itemId);
 
 
-        Cart cart = cartService.getCart(userId, itemId);
+        Cart cart = cartService.getCartByCustomization(userId, customDescription);
         if(cart != null && cart.getUserCustomization().equals(customDescription)){
             int quantity = cart.getQuantity();
             cart.setQuantity(quantity + 1);

@@ -16,8 +16,7 @@ export default function TransactionInfo( {transactionId, description} ) {
           <Modal.Title>Transaction ID: {transactionId}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h5>Item List</h5>
-          <h5 style={{marginTop: "20px"}}>Description:</h5>
+          <h4 style={{marginTop: "20px"}}>Summary:</h4>
           <p className="line-break">{description}</p>
         </Modal.Body>
         <Modal.Footer>

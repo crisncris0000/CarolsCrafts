@@ -16,6 +16,8 @@ public interface CartService {
 
     Cart getCart(int userId, int itemId);
 
+     Cart getCartByCustomization(int userId, String userCustomization);
+
     void clearUserCart(int userId);
 
 

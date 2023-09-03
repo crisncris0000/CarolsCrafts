@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CartRepository extends JpaRepository<Cart, Integer> {
@@ -21,5 +22,8 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
     @Modifying
     @Query("DELETE Cart c WHERE c.user.id = :userId")
     void clearCartByUserId(int userId);
+
+    @Query("SELECT c FROM Cart c WHERE c.user.id = :userId AND c.userCustomization LIKE :customizationText")
+    Cart getCartItemsByCustomization(@Param("userId") int userId, @Param("customizationText") String customizationText);
 
 }
