@@ -12,6 +12,9 @@ export default function AddForm() {
   const [selectedFile, setSelectedFile] = useState('');
   const [price, setPrice] = useState(0);
   const [success, setSuccess] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   
   const fileChangedHandler = (event) => {
     const file = event.target.files[0];
@@ -45,10 +48,11 @@ export default function AddForm() {
       }
     })
     .then((response) => {
-      console.log(response.data);
+      setSuccessMessage(response.data);
       setSuccess(true);
     }).catch((error) => {
-      console.log(error);
+      setError(true);
+      setErrorMessage(error.response.data);
     })
   }
 
@@ -60,7 +64,15 @@ export default function AddForm() {
 
       return () => clearTimeout(timer); 
     }
-  }, [success]);
+
+    if (error) {
+      const timer = setTimeout(() => {
+        setError(false);
+      }, 1500);
+
+      return () => clearTimeout(timer); 
+    }
+  }, [success, error]);
 
   return (
     <>

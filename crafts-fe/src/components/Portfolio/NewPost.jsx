@@ -1,13 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Success from '../Messages/Success';
+import Error from '../Messages/Error';
 
 export default function NewPost() {
     const [label, setLabel] = useState('Select your image');
     const [previewSrc, setPreviewSrc] = useState(null);
     const [selectedFile, setSelectedFile] = useState(null);
     const [success, setSuccess] = useState(false);
-    const [successMsg, setSuccessMsg] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+    const [error, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const fileChangedHandler = (event) => {
         const file = event.target.files[0];
 
@@ -35,14 +38,16 @@ export default function NewPost() {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            setSuccessMsg(response.data);
+            setSuccessMessage(response.data);
             setSuccess(true);
         } catch (error) {
-            console.log(error);
+            setError(true)
+            setErrorMessage('Error adding a post');
         }
     }
 
     useEffect(() => {
+        
         if (success) {
           const timer = setTimeout(() => {
             setSuccess(false);
@@ -50,12 +55,21 @@ export default function NewPost() {
     
           return () => clearTimeout(timer); 
         }
-      }, [success]);
-    
+
+        if (error) {
+            const timer = setTimeout(() => {
+              setError(false);
+            }, 1500);
+      
+            return () => clearTimeout(timer); 
+        }
+      }, [success, error]);
 
     return (
         <>
-            {success ? <Success message={successMsg} /> : null}
+            {success ? <Success message={successMessage} /> : null}
+            {error ? <Error message={errorMessage} /> : null}
+            
             <div className="form-container">
                 <form>
                     <div className="custom-file-upload">
