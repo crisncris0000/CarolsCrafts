@@ -22,7 +22,7 @@ public interface UserService {
 
     boolean userExist(String username);
 
-    PaymentIntent proccessUserPayment(CheckoutFormDTO checkoutFormDTO) throws StripeException;
+    PaymentIntent proccessUserPayment(CheckoutFormDTO checkoutFormDTO, String description) throws StripeException;
 
     String generateToken();
 }

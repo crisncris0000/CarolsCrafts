@@ -25,7 +25,7 @@ export default function ShoppingItems() {
       })
       .catch((error) => {
         setError(true);
-        setErrorMessage(error.response.data);
+        setErrorMessage(error.response ? error.response.data : "Server not active please come back later");
       })
   }
 
@@ -34,7 +34,7 @@ export default function ShoppingItems() {
       .then((response) => setItems(response.data))
       .catch(error => {
         setError(true);
-        setErrorMessage(error.response.data);
+        setErrorMessage(error.response ? error.response.data : "Server not active please come back later");
       });
 
       if (success) {
@@ -55,8 +55,9 @@ export default function ShoppingItems() {
 
   return (
     <>
-    {error ? <Error message={errorMessage}/> : null}
-    {success ? <Success message={successMessage}/> : null}
+      {error ? <Error message={errorMessage}/> : null}
+      {success ? <Success message={successMessage}/> : null}
+    
       <div className="shopping-items">
         {items.map((item) => (
           <CCard style={{ width: '15rem' }} key={item.id}>

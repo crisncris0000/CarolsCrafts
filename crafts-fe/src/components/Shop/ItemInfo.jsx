@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart } from '../../features/cart';
+import Error from '../Messages/Error';
+import Success from '../Messages/Success';
 
 export default function ItemInfo( {itemObject} ) {
     
@@ -64,7 +66,9 @@ export default function ItemInfo( {itemObject} ) {
 
   return (
     <>
-    
+      {error ? <Error message={errorMessage}/> : null}
+      {success ? <Success message={successMessage} /> : null}
+      
       <Button onClick={handleShow} className="custom-modal-button">
         <b>More Info</b>
       </Button>

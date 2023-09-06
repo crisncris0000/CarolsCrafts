@@ -1,9 +1,11 @@
 package com.crafts.craftsbe.service.implementation;
 
 import com.crafts.craftsbe.dto.CheckoutFormDTO;
+import com.crafts.craftsbe.models.Cart;
 import com.crafts.craftsbe.models.Role;
 import com.crafts.craftsbe.models.User;
 import com.crafts.craftsbe.repository.UserRepository;
+import com.crafts.craftsbe.service.CartService;
 import com.crafts.craftsbe.service.UserService;
 import com.stripe.Stripe;
 import com.stripe.exception.InvalidRequestException;
@@ -15,12 +17,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private CartService cartService;
 
     @Value("${app.stripe.apikey}")
     String API_KEY;
@@ -65,9 +71,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PaymentIntent proccessUserPayment(CheckoutFormDTO checkoutFormDTO) throws StripeException {
+    public PaymentIntent proccessUserPayment(CheckoutFormDTO checkoutFormDTO, String description) throws StripeException {
         Stripe.apiKey = API_KEY;
-
         long amountInCents = (long) (checkoutFormDTO.getTotalPrice() * 100);
 
         Map<String, Object> addressMap = new HashMap<>();
@@ -83,6 +88,7 @@ public class UserServiceImpl implements UserService {
         Map<String, Object> params = new HashMap<>();
         params.put("currency", "usd");
         params.put("amount", amountInCents);
+        params.put("description", description);
         params.put("receipt_email", "christopherrivera384@gmail.com");
         params.put("shipping", shippingMap);
 

@@ -3,6 +3,7 @@ import { CTable, CTableHead, CTableRow, CTableHeaderCell, CTableBody, CTableData
 import { useSelector } from 'react-redux';
 import TransactionInfo from './TransactionInfo';
 import axios from 'axios';
+import Error from '../Messages/Error';
 
 export default function TransactionHistory({tableStyle}) {
     const tableClass = `table-container ${tableStyle}`
@@ -17,8 +18,8 @@ export default function TransactionHistory({tableStyle}) {
         axios.get(`http://localhost:8080/api/payment/payment-history?id=${user.id}`)
             .then((response) => {
                 setPaymentHistory(response.data);
-            }).catch((error) => {
-                setErrorMessage(error.response ? error.response.data : error.message);
+            }).catch(() => {
+                setErrorMessage("Error retrieving payment history");
                 setError(true);
             })
     }, [paymentHistory, error])
@@ -39,6 +40,7 @@ export default function TransactionHistory({tableStyle}) {
 
   return (
     <>
+        {error ? <Error message={errorMessage}/> : null}
         <div className={tableClass}>
             <CTable striped hover>
                 <CTableHead>

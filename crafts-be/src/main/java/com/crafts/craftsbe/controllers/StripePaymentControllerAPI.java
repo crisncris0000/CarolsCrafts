@@ -1,6 +1,7 @@
 package com.crafts.craftsbe.controllers;
 
 import com.crafts.craftsbe.dto.CheckoutFormDTO;
+import com.crafts.craftsbe.dto.GuestCartDTO;
 import com.crafts.craftsbe.models.Cart;
 import com.crafts.craftsbe.models.PaymentHistory;
 import com.crafts.craftsbe.models.User;
@@ -9,12 +10,14 @@ import com.crafts.craftsbe.service.PaymentHistoryService;
 import com.crafts.craftsbe.service.UserService;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
+import org.hibernate.annotations.Check;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,7 +40,6 @@ public class StripePaymentControllerAPI {
     @PostMapping("/process-payment")
     public ResponseEntity<?> createPayment(@RequestBody CheckoutFormDTO checkoutFormDTO) throws StripeException {
 
-        PaymentIntent intent = userService.proccessUserPayment(checkoutFormDTO);
 
         List<Cart> cartList = cartService.getUserItems(checkoutFormDTO.getId());
 
@@ -54,6 +56,8 @@ public class StripePaymentControllerAPI {
 
         User user = userService.getUserById(checkoutFormDTO.getId());
 
+        PaymentIntent intent = userService.proccessUserPayment(checkoutFormDTO, description);
+
 
         PaymentHistory paymentHistory = PaymentHistory.builder()
                 .transactionId(intent.getId())
@@ -67,6 +71,24 @@ public class StripePaymentControllerAPI {
         paymentHistoryService.savePayment(paymentHistory);
         cartService.clearUserCart(checkoutFormDTO.getId());
         return new ResponseEntity<>(intent.getClientSecret(), HttpStatus.OK);
+    }
+
+    @PostMapping("/process-payment/guest")
+    public ResponseEntity<?> processGuestPayment(@RequestBody CheckoutFormDTO checkoutFormDTO) throws StripeException {
+
+        List<GuestCartDTO> guestCart = checkoutFormDTO.getGuestCartDTO();
+
+
+        String description = guestCart.stream()
+                .map(cart -> {
+                    return "Item: \n" + cart.getQuantity() + "x " + cart.getItemObject().getItemTitle() + "\nDescription:\n"
+                            + cart.getUserCustomization();
+                })
+                .collect(Collectors.joining(",\n\n"));
+
+        PaymentIntent intent = userService.proccessUserPayment(checkoutFormDTO, description);
+
+        return new ResponseEntity<>(intent.getClientSecret(),HttpStatus.OK);
     }
 
     @GetMapping("/payment-history")

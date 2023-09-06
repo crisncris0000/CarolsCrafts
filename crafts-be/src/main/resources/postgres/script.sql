@@ -66,7 +66,7 @@ CREATE TABLE payment_history (
     transaction_id VARCHAR(255) NOT NULL,
     total_price FLOAT NOT NULL,
     description TEXT NOT NULL,
-    user_id INT NOT NULL,
+    user_id INT,
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id)

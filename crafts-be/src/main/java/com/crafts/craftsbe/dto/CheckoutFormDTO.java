@@ -4,12 +4,16 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
 public class CheckoutFormDTO{
 
     private int id;
+
+    private List<GuestCartDTO> guestCartDTO;
 
     private String firstName;
 

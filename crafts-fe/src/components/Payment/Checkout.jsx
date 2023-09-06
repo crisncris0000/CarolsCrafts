@@ -7,7 +7,7 @@ import CartSummary from './CartSummary';
 import Customerinfo from './Customerinfo';
 import Error from '../Messages/Error';
 import {useDispatch, useSelector} from 'react-redux';
-import { clearCart } from '../../features/cart';
+import {clearCart} from '../../features/cart';
 
 
 export default function Checkout() {
@@ -31,7 +31,9 @@ export default function Checkout() {
     const [errorMessage, setErrorMessage] = useState('');
     const [clientSecret, setClientSecret] = useState(null);
     const [formCompletion, setFormCompletion] = useState(false);
+
     const user = useSelector((state) => state.user.value);
+    const guestCart = useSelector(state => state.cart);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -40,6 +42,7 @@ export default function Checkout() {
         if (formCompletion) {
             const formData = {
                 id: user.id,
+                guestCartDTO: guestCart.items,
                 firstName,
                 lastName,
                 email,
@@ -49,43 +52,73 @@ export default function Checkout() {
                 city,
                 totalPrice
             };
-    
-            axios.post('http://localhost:8080/api/payment/process-payment', formData)
-                .then(response => {
-                    setClientSecret(response.data);
-                
-                    const cardNumberElement = elements.getElement(CardNumberElement);
-                    
-                    return stripe.confirmCardPayment(response.data, {
-                        payment_method: {
-                            card: cardNumberElement,
-                            billing_details: {
-                                name: `${firstName} ${lastName}`,
-                                email: email
-                            }
-                        }
-                    });
-                })
-                .then(result => {
-                    if (result.error) {
-                        setError(true);
-                        setErrorMessage(result.error.message);
-                    } else {
-                        if(user.isGuest) {
-                            dispatch(clearCart());
-                        }
-                        navigate('/');
-                    }
-                })
-                .catch(error => {
-                    setError(true);
-                    setErrorMessage(error.response ? error.response.data : error.message);
-                });
-    
+            if (! user.isGuest) {
+                handleUserSubmit(formData);
+            } else {
+                handleGuestSubmit(formData);
+            }
             setFormCompletion(false);
         }
     }, [formCompletion]);
-    
+
+
+    function handleUserSubmit(formData) {
+        axios.post('http://localhost:8080/api/payment/process-payment', formData).then(response => {
+            setClientSecret(response.data);
+
+            const cardNumberElement = elements.getElement(CardNumberElement);
+
+            return stripe.confirmCardPayment(response.data, {
+                payment_method: {
+                    card: cardNumberElement,
+                    billing_details: {
+                        name: `${firstName} ${lastName}`,
+                        email: email
+                    }
+                }
+            });
+        }).then(result => {
+            if (result.error) {
+                setError(true);
+                setErrorMessage(result.error.message);
+            } else {
+                navigate('/');
+            }
+        }).catch(error => {
+            setError(true);
+            setErrorMessage(error.response ? error.response.data : error.message);
+        });
+    }
+
+    function handleGuestSubmit(formData) {
+        axios.post('http://localhost:8080/api/payment/process-payment/guest', formData).then(response => {
+            setClientSecret(response.data);
+
+            const cardNumberElement = elements.getElement(CardNumberElement);
+
+            return stripe.confirmCardPayment(response.data, {
+                payment_method: {
+                    card: cardNumberElement,
+                    billing_details: {
+                        name: `${firstName} ${lastName}`,
+                        email: email
+                    }
+                }
+            });
+        }).then(result => {
+            if (result.error) {
+                setError(true);
+                setErrorMessage(result.error.message);
+            } else {
+                navigate('/');
+                dispatch(clearCart());
+            }
+        }).catch(error => {
+            setError(true);
+            setErrorMessage(error.response ? error.response.data : error.message);
+        });
+    }
+
     useEffect(() => {
         if (error) {
             const timer = setTimeout(() => {
@@ -98,39 +131,40 @@ export default function Checkout() {
     function handleSubmitForm(event) {
         event.preventDefault();
         setFormCompletion(true);
-    }    
+    }
 
     return (
-    <> 
-      {error ? <Error message={errorMessage}/> : null}
-        <div className="checkout-container">
-            <form onSubmit={handleSubmitForm}>
-                <Customerinfo firstName={firstName}
-                    setFirstName={setFirstName}
-                    lastName={lastName}
-                    setLastName={setLastName}
-                    email={email}
-                    address={address}
-                    setAddress={setAddress}
-                    setEmail={setEmail}
-                    country={country}
-                    setCountry={setCountry}
-                    countryCode={countryCode}
-                    setCountryCode={setCountryCode}
-                    state={state}
-                    setState={setState}
-                    stateCode={stateCode}
-                    setStateCode={setStateCode}
-                    city={city}
-                    setCity={setCity}/>
+        <> {
+            error ? <Error message={errorMessage}/> : null
+        }
+            <div className="checkout-container">
+                <form onSubmit={handleSubmitForm}>
+                    <Customerinfo firstName={firstName}
+                        setFirstName={setFirstName}
+                        lastName={lastName}
+                        setLastName={setLastName}
+                        email={email}
+                        address={address}
+                        setAddress={setAddress}
+                        setEmail={setEmail}
+                        country={country}
+                        setCountry={setCountry}
+                        countryCode={countryCode}
+                        setCountryCode={setCountryCode}
+                        state={state}
+                        setState={setState}
+                        stateCode={stateCode}
+                        setStateCode={setStateCode}
+                        city={city}
+                        setCity={setCity}/>
 
-                <CardInfo/>
+                    <CardInfo/>
 
-                <CartSummary/>
+                    <CartSummary/>
 
-                <button type="submit" id="submit" className="submit-btn">Submit</button>
-            </form>
-        </div>
-    </>
+                    <button type="submit" id="submit" className="submit-btn">Submit</button>
+                </form>
+            </div>
+        </>
     )
 }
