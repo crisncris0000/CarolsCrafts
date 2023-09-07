@@ -53,7 +53,7 @@ export default function TransactionHistory({tableStyle}) {
                 </CTableHead>
                 <CTableBody>
                     {paymentHistory.map((previousPayment) => (
-                        <CTableRow>
+                        <CTableRow key={previousPayment.id}>
                             <CTableHeaderCell scope="row">{previousPayment.id}</CTableHeaderCell>
                             <CTableDataCell>${previousPayment.totalPrice}</CTableDataCell>
                             <CTableDataCell>{formatDate(previousPayment.createdAt)}</CTableDataCell>

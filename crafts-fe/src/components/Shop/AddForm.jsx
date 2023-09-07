@@ -3,6 +3,8 @@ import Form from 'react-bootstrap/Form';
 import { CButton } from '@coreui/react';
 import axios from 'axios';
 import Success from '../Messages/Success';
+import { useSelector } from 'react-redux';
+import Unauthroized from '../Messages/Unauthorized';
 
 export default function AddForm() {
   const [label, setLabel] = useState('Select your image');
@@ -11,10 +13,14 @@ export default function AddForm() {
   const [description, setDescription] = useState('');
   const [selectedFile, setSelectedFile] = useState('');
   const [price, setPrice] = useState(0);
+  
   const [success, setSuccess] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
+  const user = useSelector(state => state.user.value);
+
   
   const fileChangedHandler = (event) => {
     const file = event.target.files[0];
@@ -74,42 +80,50 @@ export default function AddForm() {
     }
   }, [success, error]);
 
-  return (
-    <>
-      {success ? <Success message={"Successfully added a new item"}/> : null}
-      <div className="form-container">
-        <h3 id="form-header">Add new Item</h3>
-          <Form className="add-form">
-            <Form.Group className="mb-3">
-              <Form.Label>Craft Title</Form.Label>
-              <Form.Control type="title" placeholder="Example: Holiday Cups" onChange={(e) => setItemTitle(e.target.value)}/>
-            </Form.Group>
-            
-            <Form.Group className="mb-3">
-              <Form.Label>Description</Form.Label>
-              <Form.Control as="textarea" rows={3} style={{resize: 'none'}} onChange={(e) => setDescription(e.target.value)}/>
-            </Form.Group>
+    if(user.role === 'ADMIN'){
+      return(
+      <>
+        {success ? <Success message={"Successfully added a new item"}/> : null}
+        <div className="form-container">
+          <h3 id="form-header">Add new Item</h3>
+            <Form className="add-form">
+              <Form.Group className="mb-3">
+                <Form.Label>Craft Title</Form.Label>
+                <Form.Control type="title" placeholder="Example: Holiday Cups" onChange={(e) => setItemTitle(e.target.value)}/>
+              </Form.Group>
+                
+              <Form.Group className="mb-3">
+                <Form.Label>Description</Form.Label>
+                <Form.Control as="textarea" rows={3} style={{resize: 'none'}} onChange={(e) => setDescription(e.target.value)}/>
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Price</Form.Label>
-              <Form.Control type="number" style={{resize: 'none'}} onChange={(e) => setPrice(e.target.value)}/>
-            </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Price</Form.Label>
+                <Form.Control type="number" style={{resize: 'none'}} onChange={(e) => setPrice(e.target.value)}/>
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              <div className="custom-file-upload">
+              <Form.Group className="mb-3">
+                <div className="custom-file-upload">
                   <input type="file" id="file-upload" name="myImage" accept="image/png, image/gif, image/jpeg" 
-                   onChange={fileChangedHandler}/>
+                  onChange={fileChangedHandler}/>
                   <label htmlFor="file-upload">{label}</label>
-              </div>
-            </Form.Group>
+                </div>
+              </Form.Group>
             <CButton type="button" color="primary" id="submit" onClick={handleSubmit}>Submit</CButton>
           </Form>
-      </div>
+        </div>
 
-      <div className="preview-container" style={{marginTop: "100px"}}>
-                <h3>Image preview</h3>
-                {previewSrc !== null ? <img src={previewSrc} alt="Preview image" className="preview-img"/> : null}
-      </div>
-    </>
-  )
+        <div className="preview-container" style={{marginTop: "100px"}}>
+          <h3>Image preview</h3>
+          {previewSrc !== null ? <img src={previewSrc} alt="Preview image" className="preview-img"/> : null}
+        </div>
+      </>
+      )
+    } else {
+      return (
+        <>
+          <Unauthroized />
+        </>
+      )
+    }
 }

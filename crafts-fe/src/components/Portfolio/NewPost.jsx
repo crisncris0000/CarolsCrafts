@@ -7,10 +7,12 @@ export default function NewPost() {
     const [label, setLabel] = useState('Select your image');
     const [previewSrc, setPreviewSrc] = useState(null);
     const [selectedFile, setSelectedFile] = useState(null);
+    
     const [success, setSuccess] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+
     const fileChangedHandler = (event) => {
         const file = event.target.files[0];
 

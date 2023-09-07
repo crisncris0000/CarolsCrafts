@@ -39,6 +39,7 @@ const LoginForm = () => {
           firstName: decodedToken.firstName,
           lastName: decodedToken.lastName
         }));
+
       localStorage.setItem('token', jsonToken);
       localStorage.removeItem('guestId');
       localStorage.removeItem('guestCart');

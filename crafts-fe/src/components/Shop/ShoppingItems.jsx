@@ -63,7 +63,7 @@ export default function ShoppingItems() {
           <CCard style={{ width: '15rem' }} key={item.id}>
           <CCardImage orientation="top" src={`data:${item.mimeType};base64,${item.imageData}`} className="card-img" alt={item.title}/>
           <CCardBody>
-            <CCardTitle><h3>{item.itemTitle}</h3></CCardTitle>
+            <CCardTitle>{item.itemTitle}</CCardTitle>
             <ItemInfo itemObject={item}/>
             {user.role === 'ADMIN' ? <button type="button" className='delete-btn' onClick={() => handleDelete(item.id)}><img src={Delete} alt="delete icon" id="delete"/></button> : null}
           </CCardBody>
