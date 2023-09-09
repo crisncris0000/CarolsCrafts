@@ -35,7 +35,8 @@ public class SecurityConfig {
                             .requestMatchers("/api/users/**").permitAll()
                             .requestMatchers("/api/portfolio/**").permitAll()
                             .requestMatchers("/api/shop/**").permitAll()
-                            .requestMatchers("/api/payment/**").permitAll();
+                            .requestMatchers("/api/payment/**").permitAll()
+                            .requestMatchers("/send-email").permitAll();
                 })
                 .csrf((csrf) -> {
                     csrf.disable();

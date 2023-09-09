@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { CButton } from '@coreui/react';
 import axios from 'axios';
 import Success from '../Messages/Success';
+import Error from '../Messages/Error';
 import { useSelector } from 'react-redux';
 import Unauthroized from '../Messages/Unauthorized';
 
@@ -83,7 +84,8 @@ export default function AddForm() {
     if(user.role === 'ADMIN'){
       return(
       <>
-        {success ? <Success message={"Successfully added a new item"}/> : null}
+        {success ? <Success message={successMessage}/> : null}
+        {error ? <Error message={errorMessage} /> : null}
         <div className="form-container">
           <h3 id="form-header">Add new Item</h3>
             <Form className="add-form">

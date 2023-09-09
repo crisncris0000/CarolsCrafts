@@ -10,18 +10,18 @@ import { Link } from 'react-router-dom';
 export default function SampleItems() {
   return (
     <>  
-        <div className="sample-container">
-          <img src={CakeTopper} alt="Cake Topper"/>
-          <img src={Cups} alt="Cups"/>
-          <img src={TurkeyImg} alt="Cups"/>
+      <div className="sample-container">
+        <img src={CakeTopper} alt="Cake Topper"/>
+        <img src={Cups} alt="Cups"/>
+        <img src={TurkeyImg} alt="Cups"/>
           
-          <img src={Hats} alt="Manaquin wearing hat"/>
-          <img src={CustomSweater} alt="Red sweater with attachments to it"/>
-          <img src={SantaCam} alt="Santa Cam"/>
-        </div>
-        <div className="btn-container">
-          <Link to={"/portfolio"}><button>See Work</button></Link>
-        </div>
+        <img src={Hats} alt="Manaquin wearing hat"/>
+        <img src={CustomSweater} alt="Red sweater with attachments to it"/>
+        <img src={SantaCam} alt="Santa Cam"/>
+      </div>
+      <div className="btn-container">
+        <Link to={"/portfolio"}><button>See Work</button></Link>
+      </div>
     </>
   )
 }
