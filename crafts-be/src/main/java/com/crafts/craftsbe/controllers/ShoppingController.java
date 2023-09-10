@@ -1,6 +1,7 @@
 package com.crafts.craftsbe.controllers;
 
 import com.crafts.craftsbe.models.Item;
+import com.crafts.craftsbe.service.CartService;
 import com.crafts.craftsbe.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,9 @@ public class ShoppingController {
 
     @Autowired
     ItemService itemService;
+
+    @Autowired
+    CartService cartService;
 
     @GetMapping("/get-items")
     public ResponseEntity<List<Item>> getItems() {
@@ -60,6 +64,8 @@ public class ShoppingController {
     public ResponseEntity<String> deleteItem(@RequestParam("id") int id) {
 
         Item item = itemService.getItemById(id);
+
+        cartService.clearUserCartByItemId(id);
 
         itemService.deleteItem(item);
 

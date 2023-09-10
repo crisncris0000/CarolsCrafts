@@ -53,4 +53,10 @@ public class CartServiceImpl implements CartService {
     public void clearUserCart(int userId) {
         cartRepository.clearCartByUserId(userId);
     }
+
+    @Transactional
+    @Override
+    public void clearUserCartByItemId(int itemId) {
+        cartRepository.clearCartByItemId(itemId);
+    }
 }

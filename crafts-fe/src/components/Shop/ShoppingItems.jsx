@@ -5,27 +5,19 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import ItemInfo from './ItemInfo';
 import Error from '../Messages/Error';
-import Success from '../Messages/Success';
 
 export default function ShoppingItems() {
   const user = useSelector((states) => states.user.value);
   const [items, setItems] = useState([]);
-  
-  const [success, setSuccess] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
 
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   function handleDelete(itemId) {
     axios.delete(`http://localhost:8080/api/shop/delete-item?id=${itemId}`)
-      .then((response) => {
-        setSuccess(true);
-        setSuccessMessage(response.data);
-      })
       .catch((error) => {
-        setError(true);
         setErrorMessage(error.response ? error.response.data : "Server not active please come back later");
+        setError(true);
       })
   }
 
@@ -33,16 +25,9 @@ export default function ShoppingItems() {
     axios.get('http://localhost:8080/api/shop/get-items')
       .then((response) => setItems(response.data))
       .catch(error => {
-        setError(true);
         setErrorMessage(error.response ? error.response.data : "Server not active please come back later");
+        setError(true);
       });
-
-      if (success) {
-        const timer = setTimeout(() => {
-          setSuccess(false);
-        }, 1500);
-        return () => clearTimeout(timer); 
-      }
 
       if (error) {
         const timer = setTimeout(() => {
@@ -51,12 +36,11 @@ export default function ShoppingItems() {
         return () => clearTimeout(timer); 
       }
 
-  }, [items, success, error]);
+  }, [items, error]);
 
   return (
     <>
       {error ? <Error message={errorMessage}/> : null}
-      {success ? <Success message={successMessage}/> : null}
     
       <div className="shopping-items">
         {items.map((item) => (

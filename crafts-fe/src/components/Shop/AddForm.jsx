@@ -59,7 +59,7 @@ export default function AddForm() {
       setSuccess(true);
     }).catch((error) => {
       setError(true);
-      setErrorMessage(error.response.data);
+      setErrorMessage(error.response ? error.response.data : "Error adding form");
     })
   }
 

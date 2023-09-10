@@ -59,7 +59,7 @@ export default function ItemInfo( {itemObject} ) {
           setSuccessMessage(response.data);
         }).catch((error) => {
           setError(true);
-          setErrorMessage(error.response.data);
+          setErrorMessage(error ? error.response.data : "Server error");
         });
     }
   };

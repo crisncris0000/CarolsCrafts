@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import PriceSummary from './PriceSummary';
 import GuestHeader from './GuestHeader';
 import axios from 'axios';
+import Error from '../Messages/Error';
 
 export default function ShoppingCart() {
   
@@ -13,15 +14,26 @@ export default function ShoppingCart() {
   const [userCart, setUserCart] = useState([]);
   const guestCart = useSelector((state) => state.cart);
 
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
 
   useEffect(() => {
     axios.get(`http://localhost:8080/api/users/cart/user-cart?id=${user.id}`)
         .then((response) => {
-            setUserCart(response.data);
+          setUserCart(response.data);
         }).catch((error) => {
-            console.log(error);
+          setErrorMessage(error.response ? error.response.data : "Error retrieving cart");
+          setError(true);
         })
-    }, [user, userCart, guestCart]);
+        
+        if (error) {
+          const timer = setTimeout(() => {
+            setError(false);
+          }, 1500);
+          return () => clearTimeout(timer); 
+        }
+    }, [user, userCart, guestCart, error]);
 
 
 
@@ -31,8 +43,9 @@ export default function ShoppingCart() {
   }
 
   return (
-    <div className="cart-container">
-        
+      <div className="cart-container">
+        {error ? <Error message={errorMessage}/> : null}
+
         <GuestHeader />
 
         <div className="my-cart">
@@ -57,6 +70,6 @@ export default function ShoppingCart() {
         </div>
 
         <PriceSummary cart={user.isGuest ? guestCart : userCart} user={user}/>
-    </div>
+      </div>
   )
 }

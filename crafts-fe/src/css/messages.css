@@ -1,5 +1,5 @@
 .success-msg {
-    background-color: 2px solid rgb(30, 100, 100, 0.577);
+    background-color: rgba(30, 100, 100, 0.577);
     height: 100px;
     width: 70vw;
     position: fixed;

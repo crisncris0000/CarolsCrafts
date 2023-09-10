@@ -22,7 +22,6 @@ export default function Footer() {
             <ul className="contact-info">
               <li>Email: motame@outlook.com</li>
             </ul>
-
             <div className="social-icons">
               <a href="https://www.instagram.com/mckcarcreations/" target="_blank" className="social-icon">
                 <img src={InstagramLogo} id="logo" alt="instagram page" rel="noreferrer"/>
