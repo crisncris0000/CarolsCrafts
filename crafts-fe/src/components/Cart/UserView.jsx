@@ -46,13 +46,13 @@ export default function UserView( {userCart} ) {
             {success ? <Success message={successMessage} /> : null}
             {userCart.map((cart, index) => (
                 <CTableRow active key={`${cart.item.id}-${index}`}>
-                <CTableHeaderCell scope="row">
-                    <img src={`data:${cart.item.mimeType};base64,${cart.item.imageData}`} className="cart-img"/>
-                </CTableHeaderCell>
-                <CTableDataCell>{cart.item.itemTitle}</CTableDataCell>
-                <CTableDataCell><MoreInfo cart={cart}/></CTableDataCell>
-                <CTableDataCell>{cart.item.itemPrice * cart.quantity}</CTableDataCell>
-                <CTableDataCell><button type="button" onClick={() => handleRemove(cart)}>Remove</button></CTableDataCell>
+                    <CTableHeaderCell scope="row">
+                        <img src={`data:${cart.item.mimeType};base64,${cart.item.imageData}`} className="cart-img"/>
+                    </CTableHeaderCell>
+                    <CTableDataCell>{cart.item.itemTitle}</CTableDataCell>
+                    <CTableDataCell><MoreInfo cart={cart}/></CTableDataCell>
+                    <CTableDataCell>{cart.item.itemPrice * cart.quantity}</CTableDataCell>
+                    <CTableDataCell><button type="button" onClick={() => handleRemove(cart)}>Remove</button></CTableDataCell>
                 </CTableRow>
             ))}
         </>

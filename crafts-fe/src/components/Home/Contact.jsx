@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap';
 import Success from '../Messages/Success';
 import Error from '../Messages/Error';
+import { Hourglass } from 'react-loader-spinner';
 
 export default function Contact() {
 
@@ -16,6 +17,8 @@ export default function Contact() {
   const [successMessage, setSuccessMessage] = useState('');
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = () =>{
 
@@ -30,10 +33,12 @@ export default function Contact() {
         .then((response) => {
           setSuccess(true);
           setSuccessMessage(response.data);
+          setIsLoading(false);
         })
         .catch((error) => {
           setError(true);
           setErrorMessage(error.response ? error.response.data : "Error sending email");
+          setIsLoading(false);
         })
   }
 
@@ -60,7 +65,11 @@ export default function Contact() {
       <div className="contact-me">
         <h4>Wanna get in touch? Have an order you don't see? Shoot me an email</h4>
         <div className="contact-form">
-          <Form>
+          <Form onSubmit={(e) => {
+            e.preventDefault();
+            setIsLoading(true);
+            handleSubmit();
+            }}>
             <Form.Group className="mb-3 name-group">
               <Form.Label>Name *</Form.Label>
                 <div className="name-fields-container">
@@ -76,7 +85,19 @@ export default function Contact() {
                 <Form.Label>Email Body *</Form.Label>
                 <Form.Control as="textarea" rows={3} id="body" value={body} required onChange={(e) => setBody(e.target.value)}/>
               </Form.Group>
-            <CButton type="button" onClick={handleSubmit}>Send</CButton>
+            {isLoading ? 
+            <Hourglass
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="hourglass-loading"
+              wrapperStyle={{}}
+              colors={['#e092b1', '#ffffff']}
+            />
+
+            :
+
+            <CButton type="submit">Send</CButton>}
           </Form>
         </div>
       </div>

@@ -8,6 +8,7 @@ import Customerinfo from './Customerinfo';
 import Error from '../Messages/Error';
 import {useDispatch, useSelector} from 'react-redux';
 import {clearCart} from '../../features/cart';
+import { Hourglass } from 'react-loader-spinner';
 
 
 export default function Checkout() {
@@ -34,6 +35,8 @@ export default function Checkout() {
 
     const user = useSelector((state) => state.user.value);
     const guestCart = useSelector(state => state.cart);
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -130,6 +133,7 @@ export default function Checkout() {
 
     function handleSubmitForm(event) {
         event.preventDefault();
+        setIsLoading(true);
         setFormCompletion(true);
     }
 
@@ -162,7 +166,18 @@ export default function Checkout() {
 
                     <CartSummary/>
 
-                    <button type="submit" id="submit" className="submit-btn">Submit</button>
+
+                    {isLoading ? 
+                    <Hourglass
+                        visible={true}
+                        height="80"
+                        width="80"
+                        ariaLabel="hourglass-loading"
+                        wrapperStyle={{}}
+                        colors={['#e092b1', '#ffffff']}
+                    />
+                    :
+                    <button type="submit" id="submit" className="submit-btn">Submit</button>}
                 </form>
             </div>
         </>
