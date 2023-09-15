@@ -15,7 +15,7 @@ export default function Customerinfo({
     city, setCity
 }) {
 
-    const countries = Country.getAllCountries();
+    const specificCountry = Country.getCountryByCode('US');
     const states = State.getStatesOfCountry(countryCode);
 
     function handleCountryChange(selectedOption) {
@@ -123,13 +123,14 @@ export default function Customerinfo({
                     <div className="input-group">
                         <label htmlFor="country">Country</label>
                         <Select
-                            options={countries.map((country) => ({
-                            value: country.isoCode,
-                            label: country.name,
-                            }))}
+                            options={[
+                                {
+                                    value: specificCountry.isoCode,
+                                    label: specificCountry.name
+                                }
+                            ]}
                             className="options"
                             onChange={handleCountryChange}
-                            value={country}
                             styles={{
                                 control: (provided, state) => ({
                                     ...provided,
