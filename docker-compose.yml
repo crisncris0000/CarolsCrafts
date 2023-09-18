@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    image: crisncris0000/crafts_backend
+    container_name: backend_c
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./crafts-be:/app
+
+  frontend: 
+    image: crisncris0000/crafts_frontend
+    container_name: frontend_c
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+  
+  db: 
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: CarolsCrafts
+    volumes:
+      - ./crafts-be/src/main/resources/postgres/script.sql:/docker-entrypoint-initdb.d/script.sql
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+      
