@@ -29,7 +29,7 @@ export default function Contact() {
       body,
     }
 
-    axios.post('http://localhost:8080/send-email', formData)
+    axios.post('https://api.mckcreation.com/send-email', formData)
         .then((response) => {
           setSuccess(true);
           setSuccessMessage(response.data);

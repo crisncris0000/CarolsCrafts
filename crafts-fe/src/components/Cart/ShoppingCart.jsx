@@ -19,7 +19,7 @@ export default function ShoppingCart() {
 
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/users/cart/user-cart?id=${user.id}`)
+    axios.get(`https://api.mckcreation.com/api/users/cart/user-cart?id=${user.id}`)
         .then((response) => {
           setUserCart(response.data);
         }).catch((error) => {

@@ -17,7 +17,7 @@ const ResetForm = () => {
     const handleSendToken = (e) => {
         e.preventDefault();
         
-        axios.post('http://localhost:8080/api/users/send-token', {email}).then((response) => {
+        axios.post('https://api.mckcreation.com/api/users/send-token', {email}).then((response) => {
             setSuccessMsg(response.data);
             setTokenSent(true);
             setSuccess(true);
@@ -42,7 +42,7 @@ const ResetForm = () => {
             password
         }
 
-        axios.post('http://localhost:8080/api/users/reset-password', data).then((response) => {
+        axios.post('https://api.mckcreation.com/api/users/reset-password', data).then((response) => {
             setSuccess(true);
             setSuccessMsg(response.data);
         }).catch((error) => {

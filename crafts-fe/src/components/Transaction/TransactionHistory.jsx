@@ -15,7 +15,7 @@ export default function TransactionHistory({tableStyle}) {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/payment/payment-history?id=${user.id}`)
+        axios.get(`https://api.mckcreation.com/api/payment/payment-history?id=${user.id}`)
             .then((response) => {
                 setPaymentHistory(response.data);
             }).catch(() => {

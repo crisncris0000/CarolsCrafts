@@ -52,7 +52,7 @@ export default function ItemInfo( {itemObject} ) {
     } else {
       axios
         .post(
-          "http://localhost:8080/api/users/cart/add-to-cart",
+          "https://api.mckcreation.com/api/users/cart/add-to-cart",
           { userId: user.id, itemId: itemObject.id, userCustomization }
         ).then((response) => {
           setSuccess(true);

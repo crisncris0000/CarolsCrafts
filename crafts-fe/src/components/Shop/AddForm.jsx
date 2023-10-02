@@ -56,7 +56,7 @@ export default function AddForm() {
       itemPrice: price
     }
 
-    axios.post('http://localhost:8080/api/shop/add-item', data, {
+    axios.post('https://api.mckcreation.com/api/shop/add-item', data, {
       headers: {
         'Content-Type' : 'multipart/form-data'
       }

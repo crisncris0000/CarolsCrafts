@@ -18,7 +18,7 @@ const LoginForm = () => {
 
   const sendUser = async (user) => {
     try {
-      const response = await axios.post("http://localhost:8080/api/users/login", user);
+      const response = await axios.post("https://api.mckcreation.com/api/users/login", user);
       return response.data;
     } catch (error) {
       setError(error.response.data);

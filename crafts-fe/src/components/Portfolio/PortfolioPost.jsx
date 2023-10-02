@@ -29,7 +29,7 @@ export default function PortfolioPost() {
   }, [posts, error])
 
   function handleDelete(itemId) {
-    axios.delete(`http://localhost:8080/api/portfolio/delete-post?id=${itemId}`)
+    axios.delete(`https://api.mckcreation.com/api/portfolio/delete-post?id=${itemId}`)
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   }

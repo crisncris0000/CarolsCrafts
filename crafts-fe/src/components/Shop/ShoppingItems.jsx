@@ -14,7 +14,7 @@ export default function ShoppingItems() {
   const [errorMessage, setErrorMessage] = useState('');
 
   function handleDelete(itemId) {
-    axios.delete(`http://localhost:8080/api/shop/delete-item?id=${itemId}`)
+    axios.delete(`https://api.mckcreation.com/api/shop/delete-item?id=${itemId}`)
       .catch((error) => {
         setErrorMessage(error.response ? error.response.data : "Server not active please come back later");
         setError(true);
@@ -22,7 +22,7 @@ export default function ShoppingItems() {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/shop/get-items')
+    axios.get('https://api.mckcreation.com/api/shop/get-items')
       .then((response) => setItems(response.data))
       .catch(error => {
         setErrorMessage(error.response ? error.response.data : "Server not active please come back later");

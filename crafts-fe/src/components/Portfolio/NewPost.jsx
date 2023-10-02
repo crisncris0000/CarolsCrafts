@@ -42,7 +42,7 @@ export default function NewPost() {
             const formData = new FormData();
             formData.append('myImage', selectedFile);
 
-            const response = await axios.post('http://localhost:8080/api/portfolio/create-post', formData, {
+            const response = await axios.post('https://api.mckcreation.com/api/portfolio/create-post', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

@@ -14,7 +14,7 @@ export default function UserSummary() {
     }, [user.id]);
 
     function getUserCart() {
-        axios.get(`http://localhost:8080/api/users/cart/user-cart?id=${user.id}`)
+        axios.get(`https://api.mckcreation.com/api/users/cart/user-cart?id=${user.id}`)
             .then(response => setCart(response.data))
             .catch(error => console.log(error));
     }

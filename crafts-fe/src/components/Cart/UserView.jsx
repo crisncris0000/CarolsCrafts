@@ -13,7 +13,7 @@ export default function UserView( {userCart} ) {
     const [successMessage, setSuccessMessage] = useState('');
 
     const handleRemove = (cart) => {
-        axios.delete(`http://localhost:8080/api/users/cart/remove-cart?id=${cart.id}`)
+        axios.delete(`https://api.mckcreation.com/api/users/cart/remove-cart?id=${cart.id}`)
             .then((response) => {
                 setSuccessMessage(response.data);
                 setSuccess(true);

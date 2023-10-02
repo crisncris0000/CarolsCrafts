@@ -19,7 +19,7 @@ services:
     image: postgres
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: root
+      POSTGRES_PASSWORD:
       POSTGRES_DB: CarolsCrafts
     volumes:
       - ./crafts-be/src/main/resources/postgres/script.sql:/docker-entrypoint-initdb.d/script.sql
