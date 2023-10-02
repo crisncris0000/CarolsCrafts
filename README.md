@@ -48,3 +48,6 @@ docker-compose down
 <img width="1313" alt="Screenshot 2023-10-02 at 2 19 10 PM" src="https://github.com/crisncris0000/CarolsCrafts/assets/53241124/3ace83ab-beed-451f-9c9a-dfa38006b665">
 
 <img width="1313" alt="Screenshot 2023-10-02 at 2 19 03 PM" src="https://github.com/crisncris0000/CarolsCrafts/assets/53241124/20de66dc-9b76-4fd3-a199-6d6865d70749">
+
+# License
+[MIT]url(https://choosealicense.com/licenses/mit/)
