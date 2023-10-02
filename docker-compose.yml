@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    image: crisncris0000/crafts_backend:demo
+    image: crisncris0000/crafts_backend
     container_name: backend_c
     ports:
       - "8080:8080"
@@ -10,7 +10,7 @@ services:
       - ./crafts-be:/app
 
   frontend: 
-    image: crisncris0000/crafts_frontend:demo
+    image: crisncris0000/crafts_frontend
     container_name: frontend_c
     ports:
         - "8081:80"
