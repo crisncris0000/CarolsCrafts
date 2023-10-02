@@ -15,7 +15,7 @@ An e-commerce web application built with Java Spring and ReactJS for crafting en
 
 Clone the application and cd into your application
 ```
-https://github.com/crisncris0000/CarolsCrafts
+git clone https://github.com/crisncris0000/CarolsCrafts
 cd CarolsCrafts
 ```
 Then use the Docker command to boot up the application
