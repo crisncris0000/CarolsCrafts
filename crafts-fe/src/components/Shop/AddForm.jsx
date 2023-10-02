@@ -6,6 +6,7 @@ import Success from '../Messages/Success';
 import Error from '../Messages/Error';
 import { useSelector } from 'react-redux';
 import Unauthroized from '../Messages/Unauthorized';
+import Compressor from 'compressorjs';
 
 export default function AddForm() {
   const [label, setLabel] = useState('Select your image');
@@ -24,22 +25,28 @@ export default function AddForm() {
 
   
   const fileChangedHandler = (event) => {
-    const file = event.target.files[0];
+      const file = event.target.files[0];
 
+      if (!file) {
+          return;
+      }
 
-    if (!file) {
-        return;
-    }
+      new Compressor(file, {
+          quality: 0.7,
+          success(result) {
+              setSelectedFile(result);
 
-    setSelectedFile(file);
+              setLabel('File uploaded');
 
-    setLabel('File uploaded');
+              const objectURL = URL.createObjectURL(result);
+              setPreviewSrc(objectURL);
+          },
+          error(err) {
+              console.error('[Compressor.js] Error:', err.message);
+          },
+      });
+  };
 
-    const objectURL = URL.createObjectURL(file);
-    setPreviewSrc(objectURL);
-
-    return () => URL.revokeObjectURL(objectURL);
-  }
 
   const handleSubmit = async () => {
     const data = {

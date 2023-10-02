@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    image: crisncris0000/crafts_backend
+    image: crisncris0000/crafts_backend:demo
     container_name: backend_c
     ports:
       - "8080:8080"
@@ -10,14 +10,12 @@ services:
       - ./crafts-be:/app
 
   frontend: 
-    image: crisncris0000/crafts_frontend
+    image: crisncris0000/crafts_frontend:demo
     container_name: frontend_c
     ports:
-      - "3000:3000"
-    stdin_open: true
-    tty: true
-  
-  db: 
+        - "8081:80"
+      
+  db:
     image: postgres
     environment:
       POSTGRES_USER: postgres

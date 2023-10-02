@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Success from '../Messages/Success';
 import Error from '../Messages/Error';
+import Compressor from 'compressorjs';
 
 export default function NewPost() {
     const [label, setLabel] = useState('Select your image');
@@ -15,20 +16,26 @@ export default function NewPost() {
 
     const fileChangedHandler = (event) => {
         const file = event.target.files[0];
-
+  
         if (!file) {
             return;
         }
-
-        setSelectedFile(file);
-
-        setLabel('File uploaded');
-
-        const objectURL = URL.createObjectURL(file);
-        setPreviewSrc(objectURL);
-
-        return () => URL.revokeObjectURL(objectURL);
-    }
+  
+        new Compressor(file, {
+            quality: 0.7,
+            success(result) {
+                setSelectedFile(result);
+  
+                setLabel('File uploaded');
+  
+                const objectURL = URL.createObjectURL(result);
+                setPreviewSrc(objectURL);
+            },
+            error(err) {
+                console.error('[Compressor.js] Error:', err.message);
+            },
+        });
+    };
 
     const submitHandler = async () => {
         try {
