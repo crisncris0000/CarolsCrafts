@@ -13,7 +13,7 @@ An e-commerce web application built with Java Spring and ReactJS for crafting en
 - Docker
 - Docker Compose
 
-Clone the application and cd into your application
+Clone the application and cd into the folder
 ```
 git clone https://github.com/crisncris0000/CarolsCrafts
 cd CarolsCrafts
