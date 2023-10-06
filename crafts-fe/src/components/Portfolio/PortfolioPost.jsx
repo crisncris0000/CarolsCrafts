@@ -11,7 +11,7 @@ export default function PortfolioPost() {
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/portfolio/get-posts')
+    axios.get('https://api.mckcreation.com/api/portfolio/get-posts')
           .then((response) => {
             setPosts(response.data);
           }).catch(() => {
