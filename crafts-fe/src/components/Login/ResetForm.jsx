@@ -85,7 +85,7 @@ const ResetForm = () => {
                                 required
                             />
                         </div>
-                        <button type="submit">Send Token</button>
+                        <button type="submit" className="reset-token">Send Token</button>
                     </form>
                 </div>
             </>
