@@ -1,29 +1,63 @@
-.register-container{
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 100px;
-    
-    height: 600px;
-    width: 70vw;
-  
-    background-color: rgba(211, 211, 211, 0.623);
-  
-    border: 2px solid black;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+.register-container {
+  max-width: 400px;
+  margin: 150px auto;
+  padding: 20px 40px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 12px rgba(240, 92, 143, 0.15);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.register-container .header-container {
-  width: 50rem;
-  padding-top: 10px;
+.header-container {
+  width: 100%;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #fc628d;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.register-container .register-form {
-  margin-top: 50px;
+.header-container h3 {
+  color: #fc628d; 
+  font-weight: 600;
 }
 
-.register-container .input-field {
-  width: 250px;
+.register-form {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.mb-3 {
+  margin-bottom: 20px;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #fcd3e1;
+  border-radius: 5px;
+  background-color: #fff7f9;
+  transition: border-color 0.3s;
+  font-size: 16px;
+}
+
+input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover,
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+  border-color: #fc628d;
+}
+
+CButton {
+  background-color: #fc628d; 
+  color: #ffffff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+CButton:hover {
+  background-color: #e0507f;
 }
