@@ -1,58 +1,91 @@
-.login-container .header-container {
-  border-bottom: 2px solid black;
-  margin-top: -150px;
-}
-
-.login-container{
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 100px;
-  height: 650px;
-  width: 85vw;
-
-  background-color: rgba(211, 211, 211, 0.623);
-  border: 2px solid black;
+.login-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px 40px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 12px rgba(240, 92, 143, 0.15);
+  border-radius: 10px;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  align-items: center;
 }
 
-.login-container .login-form {
-  margin-top: 100px;
+.header-container {
+  width: 100%;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #fc628d;
+  margin-bottom: 20px;
 }
 
-.login-container input {
-  background-color: rgb(211, 211, 211);
-  height: 30px;
-  margin-top: 50px;
+.header-container h2 {
+  color: #fc628d;
+  font-weight: 600;
 }
 
-.login-container label img{
-  height: 40px;
-  width: 40px;
-  margin-right: 20px;
-  margin-top: -15px;
+.login-form {
+  width: 100%;
+  margin-top: 20px;
 }
 
-a:hover{
-  color: red;
+.email-field, .password-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.login-container button{
-  width: 100px;
-  height: 30px;
-  margin-top: 70px;
-  margin-left: 30px;
-  background-color: pink;
+label img {
+  height: 24px;
+  width: 24px;
+  margin-right: 10px;
 }
 
+input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #fcd3e1;
+  border-radius: 5px;
+  background-color: #fff7f9;
+  transition: border-color 0.3s;
+}
 
-.login-container button:active{
-  background-color: rgb(179, 148, 153);
+input[type="email"]:hover, input[type="password"]:hover,
+input[type="email"]:focus, input[type="password"]:focus {
+  border-color: #fc628d;
+}
+
+button, #pass-reset {
+  color: #ffffff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#login, #register {
+  background-color: #fc628d;
+  margin-right: 10px;
+}
+
+button:hover, #register:hover {
+  background-color: #e0507f;
 }
 
 #pass-reset {
-  margin-top: 50px;
+  margin-top: 10px;
+  background: none;
+  text-decoration: underline;
+  color: #fc628d;
+  cursor: pointer;
+}
+
+#pass-reset:hover {
+  text-decoration: none;
+  color: #e0507f;
+}
+
+#login {
+  margin-right: 10px;
 }
 
 .reset-container {
@@ -62,55 +95,61 @@ a:hover{
   justify-content: center;
   align-items: center;
   width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  margin: 100px auto;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(240, 92, 143, 0.15); 
+  background-color: #ffffff;
 }
 
 .reset-form {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
 }
 
 h2 {
   text-align: center;
-  color: #333;
-  margin-bottom: 20px;
+  color: #fc628d;
+  margin-bottom: 25px;
+  font-weight: 600;
 }
 
 .input-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 label {
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   color: #555;
 }
 
 input {
+  width: 100%;
   padding: 10px 15px;
-  border: none;
+  border: 1px solid #fcd3e1;
   border-radius: 5px;
-  outline: none;
-  border: 1px solid #d1d1d1;
+  background-color: #fff7f9;
+  transition: border-color 0.3s;
+  font-size: 16px;
 }
 
-.reset-btn {
+input:focus {
+  border-color: #fc628d;
+}
+
+.reset-token {
+  width: 100%;
   cursor: pointer;
-  background-color: #3498db;
+  background-color: #fc628d;
   color: white;
   border: none;
   border-radius: 5px;
   padding: 10px 15px;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  margin-top: 15px;
+  transition: background-color 0.3s;
 }
 
-.reset-btn:hover {
-  background-color: #2980b9;
+.reset-token:hover {
+  background-color: #e0507f;
 }
-
-

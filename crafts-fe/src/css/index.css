@@ -93,47 +93,76 @@ code {
 }
 
 .contact-me {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 100px;
-  background-image: radial-gradient(farthest-side, #e092b1, #E0B7B7) !important;
+  max-width: 800px;
+  margin: 100px auto;
+  padding: 40px;
+  background: #ffffff; 
+  box-shadow: 0px 4px 12px rgba(240, 92, 143, 0.15);
+  border-radius: 10px;
 }
 
-.contact-form {
-  width: 40vw;
-  margin-left: auto;
-  margin-right: auto;
+.contact-form h4 {
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #fc628d;
+}
+
+#first-name, 
+#last-name, 
+#email, 
+#body {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 10px 0;
+  border: 1px solid #fcd3e1;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+  background-color: #fff7f9;
+}
+
+#first-name:hover, 
+#last-name:hover, 
+#email:hover, 
+#body:hover,
+#first-name:focus, 
+#last-name:focus, 
+#email:focus, 
+#body:focus {
+  border-color: #fc628d;
 }
 
 .name-fields-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+  gap: 20px;
 }
 
-#first-name,
-#last-name {
-  width: 20vw;
-  margin: 10px;
+.name-fields-container #first-name, 
+.name-fields-container #last-name {
+  flex: 1;
 }
 
-#first-name, #last-name,
-#email, #body {
-  border-radius: 0%;
+CButton {
+  padding: 12px 20px;
+  background-color: #fc628d;
+  border: none;  
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0px 4px 12px rgba(240, 92, 143, 0.2);
 }
 
-.name-group {
-  margin-bottom: 10px;
+CButton:hover {
+  background-color: #e0507f;
 }
 
 .footer {
   background-image: radial-gradient(farthest-side, #F0D2D1, #BBA0CA);
   padding: 20px 0;
   margin-top: 10vw;
-  text-align: center; /* Center the content inside the footer */
+  text-align: center;
 }
 
 .footer h5 {

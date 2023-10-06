@@ -32,7 +32,6 @@ export default function RegisterForm() {
       }, [displayError]);
 
   return (
-
     <>
         {displayError ? <Error message={error}/> : null}
         <div className="register-container">
@@ -84,7 +83,6 @@ export default function RegisterForm() {
             </CForm>
 
         </div>
-    
     </>
   )
 }

@@ -69,7 +69,6 @@ const LoginForm = () => {
             <label htmlFor="email"><img src={LoginIcon} alt="login icon"/></label>
             <input
               type="email" 
-              id="email" 
               required 
               placeholder="Enter your email" 
               onChange={(e) => setEmail(e.target.value)}
