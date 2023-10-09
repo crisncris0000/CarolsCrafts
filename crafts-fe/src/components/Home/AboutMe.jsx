@@ -1,5 +1,5 @@
 import React from 'react';
-import Selfie from "../../images/mami-selfie.jpeg"
+import Selfie from "../../images/mami-selfie.png"
 export default function AboutMe() {
   return (
     <>
