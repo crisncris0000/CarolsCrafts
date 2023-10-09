@@ -11,17 +11,18 @@ export default function SampleItems() {
   return (
     <>  
       <div className="sample-container">
-        <img src={CakeTopper} alt="Cake Topper"/>
-        <img src={Cups} alt="Cups"/>
-        <img src={TurkeyImg} alt="Cups"/>
-          
-        <img src={Hats} alt="Manaquin wearing hat"/>
-        <img src={CustomSweater} alt="Red sweater with attachments to it"/>
-        <img src={SantaCam} alt="Santa Cam"/>
+        <img src={CakeTopper} alt="A decorative cake topper"/>
+        <img src={Cups} alt="A collection of cups"/>
+        <img src={TurkeyImg} alt="A crafted turkey image"/>
+        <img src={Hats} alt="Mannequin showcasing a hat"/>
+        <img src={CustomSweater} alt="A unique red sweater with custom attachments"/>
+        <img src={SantaCam} alt="A decorative Santa Cam"/>
       </div>
+      
       <div className="btn-container">
-        <Link to={"/portfolio"}><button>See Work</button></Link>
+        <Link to={"/portfolio"} className="portfolio-btn">See Work</Link>
       </div>
     </>
   )
+  
 }
