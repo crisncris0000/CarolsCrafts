@@ -11,7 +11,9 @@ export default function AboutMe() {
             <h2 style={{textDecoration: "underline"}}>About Me</h2>
 
             <p className="description">
-              I am Carol and I make crafts
+            Hello! I'm Carol, a passionate crafter with a knack for adding personal touches to everyday items. 
+            From customizing sweaters with unique names to designing bespoke cups and celebration cake toppers, 
+            my crafts infuse moments with a special charm.
             </p>
           </div>
         </div>

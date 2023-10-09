@@ -52,45 +52,102 @@ code {
 
 .about-section {
   display: flex;
-  justify-content:center;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   margin-top: 100px;
+  padding: 4rem 0;
 }
 
-.about-section .image-container{
-  padding-right: 10rem;
+.image-container {
+  padding-right: 5rem;
+  flex-basis: 40%;
 }
 
-.about-section .image-container img{
-  height: 40vw;
-  width: 30vw;
+.image-container img {
+  border-radius: 50%;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+  max-width: 100%;
+  height: auto;
 }
 
 .about-me {
-  width: 50vw;
+  flex-basis: 50%;
 }
 
-.about-me p{
-  font-weight: bolder;
-  font-size: larger;
+.about-me h2 {
+  font-size: 2rem;
+  color: #5C3A4B;
+  text-decoration: none;
+  border-bottom: 2px dotted #FAB1BF;
+  padding-bottom: 0.5rem; 
+  margin-bottom: 1rem;
+}
+
+.about-me .description {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #5C3A4B;
+  line-height: 1.6;
 }
 
 .sample-container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 90%;
+  margin: 50px auto; 
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
-  margin-top: 50px;
 }
 
 .sample-container img {
   height: auto;
-  width: 100%;
+  width: calc(33.33% - 10px);
   max-width: 450px;
   margin-top: 1vw;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.sample-container img:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.portfolio-btn {
+  background-color: #FFD1DC;
+  color: #5C3A4B;
+  border: 2px solid #FAB1BF;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-btn:hover {
+  background-color: #FAB1BF; 
+  transform: translateY(-4px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.portfolio-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-btn:focus {
+  outline: 2px dotted #5C3A4B;
+  outline-offset: 4px;
+}
+
+
 
 .contact-me {
   max-width: 800px;
