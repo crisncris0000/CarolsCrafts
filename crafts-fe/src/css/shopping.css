@@ -1,24 +1,56 @@
 .shopping-items {
-    margin-top: 50px;
-    background-color: #f1dede1f;
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
 }
 
-.shopping-items .delete-btn {
-    width: 7rem;
-    height: 50px;
+.CCard {
+    width: 15rem;
+    border: 2px dashed #FFC0CB;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+    background-color: #FFF1F9;
+    transition: transform 0.3s;
+}
+
+.CCard:hover {
+    transform: scale(1.05);
+}
+
+.card-img {
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+
+.CCardTitle {
+    font-family: 'Pacifico', cursive;
+    font-size: 20px;
+    color: #D43BAD;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Delete button */
+.delete-btn {
+    display: block;
+    margin: auto;
     background-color: #FF928B;
-    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px 15px;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
-.shopping-items .delete-btn:active {
-    width: 7rem;
-    height: 50px;
-    background-color: #b06863;
+.delete-btn:hover {
+    background-color: #FF1493;
 }
-
 .custom-modal-button {
     height: 50px;
     background-color: #FF928B !important;
