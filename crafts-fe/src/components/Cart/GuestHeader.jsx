@@ -5,7 +5,7 @@ export default function GuestHeader() {
     const user = useSelector((states) => states.user.value)
   return (
     <>
-        { user.isGuest ?
+        {user.isGuest ?
             <div className="guest-notification">
                 <h4>Not logged in</h4>
                 <p>
